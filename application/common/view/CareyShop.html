@@ -1,0 +1,1 @@
+{if is_array($data) OR is_object($data)}{foreach name="data" item="vo"}{$vo}{/foreach}{else /}{$data}{/if}
