@@ -31,7 +31,7 @@ class Batch extends CareyShop
 
         // 字段不存在时直接返回
         if (!isset($this->params['batch']) || !is_array($this->params['batch'])) {
-            return $this->outputResult();
+            $this->outputError('batch参数与规则不符');
         }
 
         $result = [];
@@ -117,6 +117,10 @@ class Batch extends CareyShop
                 $oldData['class'],
                 $this->getError()
             );
+        }
+
+        if (empty($result)) {
+            $this->outputError('未发现可执行的接口请求');
         }
 
         return $this->outputResult($result);
