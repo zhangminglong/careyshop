@@ -29,21 +29,30 @@ class Batch extends CareyShop
         unset($this->params['format']);
         unset($this->params['method']);
 
+        // 字段不存在时直接返回
+        if (!isset($this->params['batch']) || !is_array($this->params['batch'])) {
+            return $this->outputResult();
+        }
+
         $result = [];
-        foreach ($this->params as $key => $value) {
+        foreach ($this->params['batch'] as $key => $value) {
+            isset($value['version']) ?: $value['version'] = '';
+            isset($value['controller']) ?: $value['controller'] = '';
+            isset($value['method']) ?: $value['method'] = '';
+
             // 为生成控制器与模型对象准备数据
             $version = Str::lower($value['version']);
-            $module = Str::studly($value['module']);
+            $controller = Str::studly($value['controller']);
             $method = $value['method'];
 
             $oldData['version'] = $value['version'];
-            $oldData['module'] = $value['module'];
+            $oldData['controller'] = $value['controller'];
             $oldData['method'] = $value['method'];
-            $oldData['class'] = sprintf('app\\api\\controller\\%s\\%s', $version, $module);
+            $oldData['class'] = sprintf('app\\api\\controller\\%s\\%s', $version, $controller);
 
             $callback = null;
             static::$model = null;
-            $authUrl = sprintf('%s/%s/%s/%s', $this->request->module(), $version, $module, $method);
+            $authUrl = sprintf('%s/%s/%s/%s', $this->request->module(), $version, $controller, $method);
 
             try {
                 // 验证数据
@@ -66,7 +75,7 @@ class Batch extends CareyShop
 
                 $method = $route[$method];
                 if (!isset($method[1])) {
-                    $method[1] = 'app\\common\\model\\' . $module;
+                    $method[1] = 'app\\common\\model\\' . $controller;
                 }
 
                 if (class_exists($method[1])) {
@@ -79,7 +88,7 @@ class Batch extends CareyShop
                     throw new \Exception('method成员方法不存在');
                 }
 
-                unset($value['version'], $value['module'], $value['method']);
+                unset($value['version'], $value['controller'], $value['method']);
                 $callback = call_user_func([static::$model, $method[0]], $value);
             } catch (\Exception $e) {
                 $callback = false;
@@ -92,12 +101,12 @@ class Batch extends CareyShop
             }
 
             $result[$key] = [
-                'status'  => false !== $callback ? 200 : 500,
-                'message' => false !== $callback ? 'success' : $this->getError(),
-                'version' => $oldData['version'],
-                'module'  => $oldData['module'],
-                'method'  => $oldData['method'],
-                'data'    => $callback,
+                'status'     => false !== $callback ? 200 : 500,
+                'message'    => false !== $callback ? 'success' : $this->getError(),
+                'version'    => $oldData['version'],
+                'controller' => $oldData['controller'],
+                'method'     => $oldData['method'],
+                'data'       => $callback,
             ];
 
             // 日志记录

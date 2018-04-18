@@ -20,15 +20,15 @@ class CareyShop extends Validate
      * @var array
      */
     protected $rule = [
-        'appkey'    => 'integer|length:8',
-        'token'     => 'length:32',
-        'sign'      => 'length:32',
-        'timestamp' => 'integer|checkTimestamp',
-        'format'    => 'in:json,jsonp,xml',
-        'version'   => 'max:10',
-        'module'    => 'max:20',
-        'method'    => 'max:100',
-        'callback'  => 'max:100',
+        'appkey'     => 'integer|length:8',
+        'token'      => 'length:32',
+        'sign'       => 'length:32',
+        'timestamp'  => 'integer|checkTimestamp',
+        'format'     => 'in:json,jsonp,xml',
+        'version'    => 'max:10',
+        'controller' => 'max:20',
+        'method'     => 'max:100',
+        'callback'   => 'max:100', // jsonp的返回方法
     ];
 
     /**
@@ -37,9 +37,9 @@ class CareyShop extends Validate
      */
     protected $scene = [
         'batch' => [
-            'version' => 'require',
-            'module'  => 'require',
-            'method'  => 'require',
+            'version'    => 'require',
+            'controller' => 'require',
+            'method'     => 'require',
         ],
     ];
 
