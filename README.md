@@ -27,3 +27,5 @@ CareyShop 仅提供个人非商业用途免费使用，商业需授权。
 本项目包含的第三方源码和二进制文件之版权信息另行标注。
 
 Copyright © 2018 [Carey Stu.](https://www.careyshop.cn "CareyShop") 保留所有权利。
+
+软著登记号：2018SR066544
