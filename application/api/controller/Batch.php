@@ -120,7 +120,7 @@ class Batch extends CareyShop
         }
 
         if (empty($result)) {
-            $this->outputError('未发现可执行的接口请求');
+            $this->outputError('请求结果为空');
         }
 
         return $this->outputResult($result);
