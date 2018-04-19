@@ -44,17 +44,17 @@
     },
     {
         "name": "topthink/framework",
-        "version": "v5.0.16",
-        "version_normalized": "5.0.16.0",
+        "version": "v5.0.18",
+        "version_normalized": "5.0.18.0",
         "source": {
             "type": "git",
             "url": "https://github.com/top-think/framework.git",
-            "reference": "e6b7e87586ca86777317ec54c32eaf4e8d2bf211"
+            "reference": "513701788ef223b8342537546b29bceaaf0cf1f0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/top-think/framework/e6b7e87586ca86777317ec54c32eaf4e8d2bf211.zip",
-            "reference": "e6b7e87586ca86777317ec54c32eaf4e8d2bf211",
+            "url": "https://files.phpcomposer.com/files/top-think/framework/513701788ef223b8342537546b29bceaaf0cf1f0.zip",
+            "reference": "513701788ef223b8342537546b29bceaaf0cf1f0",
             "shasum": ""
         },
         "require": {
@@ -69,7 +69,7 @@
             "phpunit/phpunit": "4.8.*",
             "sebastian/phpcpd": "2.*"
         },
-        "time": "2018-03-26T07:06:09+00:00",
+        "time": "2018-04-16T04:46:58+00:00",
         "type": "think-framework",
         "installation-source": "dist",
         "autoload": {
@@ -139,7 +139,8 @@
             "barcode",
             "php",
             "qrcode"
-        ]
+        ],
+        "abandoned": "endroid/qr-code"
     },
     {
         "name": "aliyuncs/oss-sdk-php",
@@ -186,17 +187,17 @@
     },
     {
         "name": "phpmailer/phpmailer",
-        "version": "v6.0.3",
-        "version_normalized": "6.0.3.0",
+        "version": "v6.0.5",
+        "version_normalized": "6.0.5.0",
         "source": {
             "type": "git",
             "url": "https://github.com/PHPMailer/PHPMailer.git",
-            "reference": "44d49bab5ab1fef721d3ee07e75dc0865ddf4cc6"
+            "reference": "cb3ea134d4d3729e7857737d5f320cce9caf4d32"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/PHPMailer/PHPMailer/44d49bab5ab1fef721d3ee07e75dc0865ddf4cc6.zip",
-            "reference": "44d49bab5ab1fef721d3ee07e75dc0865ddf4cc6",
+            "url": "https://files.phpcomposer.com/files/PHPMailer/PHPMailer/cb3ea134d4d3729e7857737d5f320cce9caf4d32.zip",
+            "reference": "cb3ea134d4d3729e7857737d5f320cce9caf4d32",
             "shasum": ""
         },
         "require": {
@@ -221,7 +222,7 @@
             "stevenmaguire/oauth2-microsoft": "Needed for Microsoft XOAUTH2 authentication",
             "symfony/polyfill-mbstring": "To support UTF-8 if the Mbstring PHP extension is not enabled (^1.2)"
         },
-        "time": "2018-01-05T13:19:58+00:00",
+        "time": "2018-03-27T13:49:45+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
