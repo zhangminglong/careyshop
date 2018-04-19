@@ -953,7 +953,8 @@ class Goods extends CareyShop
 
         $brandResult = Brand::cache(true, null, 'Brand')
             ->field('brand_id,name,phonetic,logo')
-            ->where(['status' => ['eq', 1], 'brand_id' => ['exp', 'IN ' . $subQuery]])
+            ->where(['status' => ['eq', 1]])
+            ->whereExp('brand_id', 'IN ' . $subQuery)
             ->order(['sort' => 'asc', 'brand_id' => 'desc'])
             ->select();
 

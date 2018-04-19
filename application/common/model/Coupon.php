@@ -271,7 +271,7 @@ class Coupon extends CareyShop
     public function getCouponActive()
     {
         $map['type'] = ['eq', 2];
-        $map['give_num'] = ['exp', '> `receive_num`'];
+        $map['give_num'] = ['exp', $this->raw('> `receive_num`')];
         $map['give_begin_time'] = ['<= time', time()];
         $map['give_end_time'] = ['> time', time()];
         $map['status'] = ['eq', 1];

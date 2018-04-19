@@ -247,7 +247,7 @@ class DeliveryDist extends CareyShop
             $map['delivery_dist.state'] = ['neq', 3];
 
             if ($data['timeout'] <= 30) {
-                $map['delivery_dist.create_time'] = ['exp', sprintf('+ %d >= %d', $data['timeout'] * 86400, time())];
+                $map['delivery_dist.create_time'] = ['exp', $this->raw(sprintf('+ %d >= %d', $data['timeout'] * 86400, time()))];
             }
         }
 
