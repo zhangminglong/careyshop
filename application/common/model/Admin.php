@@ -79,7 +79,7 @@ class Admin extends CareyShop
      */
     public function hasToken()
     {
-        return $this->hasOne('Token');
+        return $this->hasOne('Token', 'admin_id', 'client_id');
     }
 
     /**
@@ -109,7 +109,7 @@ class Admin extends CareyShop
 
         $field = ['username', 'password', 'group_id', 'nickname', 'head_pic'];
         if (false !== $this->allowField($field)->save($data)) {
-            return $this->toArray();
+            return $this->hidden(['password_confirm'])->toArray();
         }
 
         return false;
@@ -126,6 +126,9 @@ class Admin extends CareyShop
         if (!$this->validateSetData($data, 'Admin.set')) {
             return false;
         }
+
+        // 数据类型修改
+        $data['client_id'] = (int)$data['client_id'];
 
         if (isset($data['nickname'])) {
             $nickMap['admin_id'] = ['neq', $data['client_id']];
