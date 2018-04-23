@@ -85,7 +85,7 @@ class User extends CareyShop
      */
     public function hasToken()
     {
-        return $this->hasOne('Token');
+        return $this->hasOne('Token', 'user_id', 'client_id');
     }
 
     /**
@@ -170,6 +170,9 @@ class User extends CareyShop
         if (!$this->validateData($data, 'User.set')) {
             return false;
         }
+
+        // 数据类型修改
+        $data['client_id'] = (int)$data['client_id'];
 
         $map = ['user_id' => is_client_admin() ? $data['client_id'] : get_client_id()];
         $field = ['group_id', 'nickname', 'head_pic', 'sex', 'birthday', 'status'];
