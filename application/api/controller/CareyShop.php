@@ -363,7 +363,7 @@ class CareyShop extends Controller
     {
         // 初始账号数据
         $GLOBALS['client'] = [
-            'type'        => config('ClientGroup.' . $this->apiDebug ? 'admin' : 'visitor')['value'],
+            'type'        => config('ClientGroup.' . ($this->apiDebug ? 'admin' : 'visitor'))['value'],
             'group_id'    => $this->apiDebug ? AUTH_SUPER_ADMINISTRATOR : AUTH_GUEST,
             'client_id'   => $this->apiDebug ? 1 : 0,
             'client_name' => $this->apiDebug ? 'CareyShop' : '游客',
