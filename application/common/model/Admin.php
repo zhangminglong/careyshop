@@ -338,10 +338,14 @@ class Admin extends CareyShop
     {
         $map['client_id'] = ['eq', get_client_id()];
         $map['client_type'] = ['eq', 1];
-        $map['token'] = Request::instance()->param('token', '');
+
+        $token = Request::instance()->param('token');
+        if (!empty($token)) {
+            $map['token'] = ['eq', $token];
+            Cache::rm('token:' . $token);
+        }
 
         $this->hasToken()->where($map)->delete();
-        Cache::rm('token:' . $map['token']);
         $GLOBALS['client'] = [];
 
         return true;
