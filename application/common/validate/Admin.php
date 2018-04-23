@@ -28,7 +28,7 @@ class Admin extends CareyShop
         'password_old' => 'min:6',
         'account'      => 'max:80',
         'platform'     => 'max:50',
-        'refresh'      => 'max:32',
+        'refresh'      => 'length:32',
         'page_no'      => 'integer|gt:0',
         'page_size'    => 'integer|between:1,40',
         'order_type'   => 'in:asc,desc',
@@ -100,7 +100,7 @@ class Admin extends CareyShop
             'platform' => 'require|max:50',
         ],
         'refresh' => [
-            'refresh' => 'require|max:32',
+            'refresh' => 'require|length:32',
         ],
     ];
 }
