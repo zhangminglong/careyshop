@@ -172,7 +172,7 @@ class User extends CareyShop
         }
 
         $map = ['user_id' => is_client_admin() ? $data['client_id'] : get_client_id()];
-        $field = ['user_level_id', 'group_id', 'nickname', 'head_pic', 'sex', 'birthday', 'status'];
+        $field = ['group_id', 'nickname', 'head_pic', 'sex', 'birthday', 'status'];
 
         if (isset($data['nickname'])) {
             $nickMap['user_id'] = ['neq', $map['user_id']];
@@ -184,7 +184,6 @@ class User extends CareyShop
         }
 
         if (!is_client_admin()) {
-            unset($data['user_level_id']);
             unset($data['password']);
             unset($data['status']);
             unset($data['group_id']);

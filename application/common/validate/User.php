@@ -81,7 +81,6 @@ class User extends CareyShop
             'head_pic',
             'sex',
             'birthday',
-            'user_level_id',
             'group_id',
             'status',
         ],
