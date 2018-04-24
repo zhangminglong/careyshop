@@ -131,7 +131,7 @@ class UserAddress extends CareyShop
                 $this->setUserAddressDefault($this->getAttr('user_id'), $this->getAttr('user_address_id'));
             }
 
-            return $this->toArray();
+            return $this->hidden(['client_id'])->toArray();
         }
 
         return false;
