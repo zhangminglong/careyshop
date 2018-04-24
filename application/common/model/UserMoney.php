@@ -369,7 +369,7 @@ class UserMoney extends CareyShop
         // 管理员可选择性查看,用户组必须指定
         $result = self::get(function ($query) use ($data) {
             $map['user_id'] = ['eq', is_client_admin() ? $data['client_id'] : get_client_id()];
-            $query->field('total_money,balance,points')->where($map);
+            $query->field('total_money,balance,lock_balance,points,lock_points')->where($map);
         });
 
         if (false !== $result) {
