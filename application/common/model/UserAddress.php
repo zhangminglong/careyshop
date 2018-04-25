@@ -151,6 +151,7 @@ class UserAddress extends CareyShop
 
         // 处理部分数据
         unset($data['user_address_id'], $data['is_delete']);
+        !isset($data['is_default']) ?: $data['is_default'] = (int)$data['is_default'];
         $data['user_id'] = is_client_admin() ? $data['client_id'] : get_client_id();
 
         if (false !== $this->allowField(true)->save($data)) {
@@ -176,8 +177,9 @@ class UserAddress extends CareyShop
             return false;
         }
 
-        // 避免无关字段
+        // 避免无关字段,并且处理部分字段
         unset($data['is_delete']);
+        !isset($data['is_default']) ?: $data['is_default'] = (int)$data['is_default'];
 
         $userId = is_client_admin() ? $data['client_id'] : get_client_id();
         $map['user_id'] = ['eq', $userId];
@@ -188,7 +190,7 @@ class UserAddress extends CareyShop
                 $this->setUserAddressDefault($userId, $this->getAttr('user_address_id'));
             }
 
-            return $this->toArray();
+            return $this->hidden(['client_id'])->toArray();
         }
 
         return false;
