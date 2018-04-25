@@ -56,7 +56,7 @@ class UserAddress extends CareyShop
      * @var array
      */
     protected $scene = [
-        'set'     => [
+        'set'         => [
             'client_id',
             'user_address_id' => 'require|integer|gt:0',
             'consignee',
@@ -70,21 +70,24 @@ class UserAddress extends CareyShop
             'mobile',
             'is_default',
         ],
-        'list'    => [
+        'list'        => [
             'client_id',
         ],
-        'item'    => [
+        'item'        => [
             'client_id',
             'user_address_id' => 'require|integer|gt:0',
         ],
-        'del'     => [
+        'del'         => [
             'client_id',
             'user_address_id' => 'require|arrayHasOnlyInts',
         ],
-        'default' => [
+        'default'     => [
             'user_address_id' => 'require|integer|gt:0',
         ],
-        'maximum' => [
+        'maximum'     => [
+            'client_id',
+        ],
+        'get_default' => [
             'client_id',
         ],
     ];

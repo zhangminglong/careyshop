@@ -27,6 +27,8 @@ class UserAddress extends CareyShop
             'get.user.address.list'    => ['getAddressList'],
             // 获取指定账号的一个收货地址
             'get.user.address.item'    => ['getAddressItem'],
+            // 获取指定账号的默认收货地址信息
+            'get.user.address.default' => ['getAddressDefault'],
             // 添加一个收货地址
             'add.user.address.item'    => ['addAddressItem'],
             // 编辑一个收货地址

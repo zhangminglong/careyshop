@@ -111,6 +111,33 @@ class UserAddress extends CareyShop
     }
 
     /**
+     * 获取指定账号的默认收货地址信息
+     * @access public
+     * @param  array $data 外部数据
+     * @return array/false
+     */
+    public function getAddressDefault($data)
+    {
+        if (!$this->validateData($data, 'UserAddress.get_default')) {
+            return false;
+        }
+
+        $map['user_id'] = ['eq', is_client_admin() ? $data['client_id'] : get_client_id()];
+        $userId = User::where($map)->value('user_address_id', 0);
+
+        if (!$userId) {
+            return $this->setError('账号不存在');
+        }
+
+        $result = self::get($userId);
+        if (false !== $result) {
+            return is_null($result) ? null : $result->toArray();
+        }
+
+        return false;
+    }
+
+    /**
      * 添加一个收货地址
      * @access public
      * @param  array $data 外部数据
