@@ -126,7 +126,7 @@ class UserAddress extends CareyShop
         $userId = User::where($map)->value('user_address_id', 0);
 
         if (!$userId) {
-            return $this->setError('账号不存在');
+            return $this->setError('尚未指定默认收货地址或尚未存在');
         }
 
         $result = self::get($userId);
