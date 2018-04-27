@@ -296,9 +296,10 @@ class GoodsCategory extends CareyShop
             $value->setAttr('level', $level);
             $tree[] = $value->toArray();
 
-            // 需要返回本级分类时保留列表数据,否则引起树的重复
+            // 需要返回本级分类时保留列表数据,否则引起树的重复,并且需要自增层级
             if (true == $isLayer) {
                 $isLayer = false;
+                $level++;
                 continue;
             }
 
