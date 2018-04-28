@@ -191,6 +191,7 @@ class Menu extends CareyShop
         $treeCache = 'MenuTree:' . $module;
 
         // 搜索条件
+        $joinMap = '';
         $map['m.module'] = ['eq', $module];
 
         // 过滤'is_navi'与'status'
@@ -199,16 +200,17 @@ class Menu extends CareyShop
                 continue;
             }
 
-            $map['m.' . $key] = $value;
+            $map['m.' . $key] = (int)$value;
+            $joinMap .= sprintf(' AND s.%s = %d', $key, $value);
             $treeCache .= $key . $value;
         }
 
-        $result = self::all(function ($query) use ($map) {
+        $result = self::all(function ($query) use ($map, $joinMap) {
             $query
                 ->cache(true, null, 'CommonAuth')
                 ->alias('m')
                 ->field('m.*,count(s.menu_id) children_total')
-                ->join('menu s', 's.parent_id = m.menu_id', 'left')
+                ->join('menu s', 's.parent_id = m.menu_id' . $joinMap, 'left')
                 ->where($map)
                 ->group('m.menu_id')
                 ->order('m.parent_id,m.sort,m.menu_id');

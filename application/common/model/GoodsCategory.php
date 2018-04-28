@@ -329,7 +329,12 @@ class GoodsCategory extends CareyShop
         $result = self::all(function ($query) use ($isGoodsTotal) {
             // 搜索条件
             $map = [];
-            is_client_admin() ?: $map['c.status'] = ['eq', 1];
+            $joinMap = '';
+
+            if (!is_client_admin()) {
+                $map['c.status'] = ['eq', 1];
+                $joinMap = ' AND s.status = ' . 1;
+            }
 
             $goodsSql = $goodsTotal = '';
             if ($isGoodsTotal) {
@@ -343,7 +348,7 @@ class GoodsCategory extends CareyShop
             $query
                 ->alias('c')
                 ->field('c.*,count(s.goods_category_id) children_total' . $goodsTotal)
-                ->join('goods_category s', 's.parent_id = c.goods_category_id', 'left');
+                ->join('goods_category s', 's.parent_id = c.goods_category_id' . $joinMap, 'left');
 
             if ($isGoodsTotal) {
                 $query->join([$goodsSql => 'g'], 'g.goods_category_id = c.goods_category_id', 'left');
