@@ -72,6 +72,7 @@ class WithdrawUser extends CareyShop
 
         // 避免无关字段并初始化部分数据
         unset($data['withdraw_user_id'], $data['is_delete']);
+        empty($data['client_id']) ?: $data['client_id'] = (int)$data['client_id'];
         $data['user_id'] = is_client_admin() ? $data['client_id'] : get_client_id();
 
         if (false !== $this->allowField(true)->save($data)) {
@@ -93,8 +94,9 @@ class WithdrawUser extends CareyShop
             return false;
         }
 
-        // 避免无关字段
+        // 避免无关字段并初始化部分数据
         unset($data['is_delete']);
+        empty($data['client_id']) ?: $data['client_id'] = (int)$data['client_id'];
 
         $userId = is_client_admin() ? $data['client_id'] : get_client_id();
         $map['user_id'] = ['eq', $userId];
