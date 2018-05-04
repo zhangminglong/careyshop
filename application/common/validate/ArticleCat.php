@@ -44,7 +44,7 @@ class ArticleCat extends CareyShop
         'description'    => '文章分类描述',
         'sort'           => '文章分类排序值',
         'is_navi'        => '是否显示到导航',
-        'not_empty'      => '是否存在关联文章',
+        'not_empty'      => '是否存在关联',
         'level'          => '文章分类深度',
         'is_layer'       => '是否返回本级分类',
     ];
