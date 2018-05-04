@@ -19,7 +19,7 @@ class Order extends CareyShop
      */
     protected $rule = [
         'order_no'             => 'max:50',
-        'source'               => 'require|integer|egt:0',
+        'source'               => 'require|integer|between:0,9',
         'type'                 => 'require|in:buynow,cart',
         'is_submit'            => 'in:0,1',
         'delivery_id'          => 'integer|egt:0',

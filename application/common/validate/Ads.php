@@ -20,7 +20,7 @@ class Ads extends CareyShop
     protected $rule = [
         'ads_id'          => 'integer|gt:0',
         'ads_position_id' => 'require|integer|gt:0',
-        'type'            => 'integer|gt:0',
+        'type'            => 'integer|between:-128,127',
         'name'            => 'require|max:100',
         'url'             => 'require|max:255',
         'target'          => 'in:_self,_blank',

@@ -28,7 +28,7 @@ class GoodsCategory extends CareyShop
         'category_ioc'      => 'max:50',
         'keywords'          => 'max:255',
         'description'       => 'max:255',
-        'category_type'     => 'integer|egt:0',
+        'category_type'     => 'integer|between:-128,127',
         'sort'              => 'integer|between:0,255',
         'is_navi'           => 'in:0,1',
         'status'            => 'in:0,1',

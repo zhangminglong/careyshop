@@ -19,7 +19,7 @@ class Message extends CareyShop
      */
     protected $rule = [
         'message_id'  => 'integer|gt:0',
-        'type'        => 'require|between:0,9',
+        'type'        => 'require|integer|between:0,9',
         'member'      => 'require|in:1,2',
         'title'       => 'require|max:200',
         'content'     => 'require',
@@ -80,7 +80,7 @@ class Message extends CareyShop
             'message_id' => 'require|arrayHasOnlyInts',
         ],
         'list'   => [
-            'type'   => 'between:0,9',
+            'type'   => 'integer|between:0,9',
             'member' => 'in:1,2',
             'title'  => 'max:200',
             'is_top',
@@ -92,11 +92,11 @@ class Message extends CareyShop
             'order_field',
         ],
         'unread' => [
-            'type' => 'between:0,9',
+            'type' => 'integer|between:0,9',
         ],
         'user'   => [
             'message_id' => 'require|arrayHasOnlyInts',
-            'type'       => 'between:0,9',
+            'type'       => 'integer|between:0,9',
         ],
     ];
 }
