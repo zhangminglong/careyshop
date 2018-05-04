@@ -20,7 +20,7 @@ class Payment extends CareyShop
     protected $rule = [
         'payment_id'   => 'integer|gt:0',
         'name'         => 'require|max:50',
-        'code'         => 'require|integer|egt:0',
+        'code'         => 'require|integer|between:0,9',
         'image'        => 'max:255',
         'is_deposit'   => 'require|in:0,1',
         'is_inpour'    => 'require|in:0,1',

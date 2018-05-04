@@ -28,7 +28,7 @@ class Coupon extends CareyShop
         'category'         => 'array',
         'exclude_category' => 'array',
         'level'            => 'array',
-        'frequency'        => 'integer|egt:0',
+        'frequency'        => 'integer|between:0,255',
         'give_num'         => 'require|integer|gt:0',
         'give_begin_time'  => 'require|date|betweenTime|beforeTime:give_end_time',
         'give_end_time'    => 'require|date|betweenTime|afterTime:give_begin_time',
