@@ -29,7 +29,7 @@ class ArticleCat extends CareyShop
             'set.article.cat.item' => ['setArticleCatItem'],
             // 批量删除文章分类
             'del.article.cat.list' => ['delArticleCatList'],
-            // 根据主Id获取文章分类
+            // 获取一个文章分类
             'get.article.cat.item' => ['getArticleCatItem'],
             // 获取分类所有列表
             'get.article.cat.list' => ['getArticleCatList'],
