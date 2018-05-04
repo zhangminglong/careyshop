@@ -31,7 +31,7 @@ class ArticleCat extends CareyShop
             'del.article.cat.list' => ['delArticleCatList'],
             // 获取一个文章分类
             'get.article.cat.item' => ['getArticleCatItem'],
-            // 获取分类所有列表
+            // 获取文章分类列表
             'get.article.cat.list' => ['getArticleCatList'],
             // 根据分类Id生成导航数据
             'get.article.cat.navi' => ['getArticleCatNavi'],
@@ -43,7 +43,7 @@ class ArticleCat extends CareyShop
     }
 
     /**
-     * 获取分类所有列表
+     * 获取文章分类列表
      * @access protected
      * @param  int  $articleCatId 文章分类Id
      * @param  bool $isLayer      是否返回本级分类
