@@ -21,7 +21,7 @@ class ArticleCat extends CareyShop
         'article_cat_id' => 'integer|gt:0',
         'parent_id'      => 'integer|egt:0',
         'cat_name'       => 'require|max:100',
-        'cat_type'       => 'integer|egt:0',
+        'cat_type'       => 'integer|between:-128,127',
         'keywords'       => 'max:255',
         'description'    => 'max:255',
         'sort'           => 'integer|between:0,255',
