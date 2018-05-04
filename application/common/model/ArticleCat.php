@@ -333,7 +333,7 @@ class ArticleCat extends CareyShop
             return false;
         }
 
-        $map['article_cat_id'] = ['eq', $data['article_cat_id']];
+        $map['article_cat_id'] = ['in', $data['article_cat_id']];
         if (false !== $this->save(['is_navi' => $data['is_navi']], $map)) {
             Cache::clear('ArticleCat');
             return true;
