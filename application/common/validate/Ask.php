@@ -20,7 +20,7 @@ class Ask extends CareyShop
     protected $rule = [
         'answer'      => 'max:200',
         'ask_id'      => 'integer|gt:0',
-        'ask_type'    => 'require|between:0,3',
+        'ask_type'    => 'require|in:0,1,2,3',
         'title'       => 'require|max:120',
         'ask'         => 'require|max:200',
         'account'     => 'max:80',
@@ -69,7 +69,7 @@ class Ask extends CareyShop
             'ask_id' => 'require|integer|gt:0',
         ],
         'list'     => [
-            'ask_type' => 'between:0,3',
+            'ask_type' => 'in:0,1,2,3',
             'status',
             'account',
             'page_no',
