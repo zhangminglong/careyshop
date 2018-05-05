@@ -48,7 +48,7 @@ class Ads extends CareyShop
         'begin_time'      => '开始投放时间',
         'end_time'        => '投放结束时间',
         'sort'            => '广告排序值',
-        'status'          => '广告是否可见',
+        'status'          => '是否可见',
         'page_no'         => '页码',
         'page_size'       => '每页数量',
         'order_type'      => '排序方式',
