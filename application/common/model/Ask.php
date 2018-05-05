@@ -91,9 +91,19 @@ class Ask extends CareyShop
     public function getUser()
     {
         return $this
-            ->hasOne('User', 'user_id', 'user_id')
+            ->hasOne('User', 'user_id', 'user_id', 'left')
             ->field('username,nickname,head_pic')
             ->setEagerlyType(0);
+    }
+
+    /**
+     * hasMany cs_ask
+     * @access public
+     * @return $this
+     */
+    public function getItems()
+    {
+        return $this->hasMany('Ask', 'parent_id');
     }
 
     /**
@@ -270,16 +280,22 @@ class Ask extends CareyShop
             return false;
         }
 
-        $result = self::useGlobalScope(false)->select(function ($query) use ($data) {
-            is_client_admin() ? $query->with('getUser') : $map['ask.user_id'] = ['eq', get_client_id()];
-            $map['ask.ask_id|ask.parent_id'] = ['eq', $data['ask_id']];
+        // 获取主题与账号信息
+        $result = self::useGlobalScope(false)->find(function ($query) use ($data) {
+            $map['ask.ask_id'] = ['eq', $data['ask_id']];
             $map['ask.is_delete'] = ['eq', 0];
+            is_client_admin() ?: $map['ask.user_id'] = ['eq', get_client_id()];
 
-            $query->alias('ask')->where($map)->order('ask.ask_id');
+            $with = ['getUser'];
+            $with['getItems'] = function ($query) {
+                $query->field('user_id,ask_type,title,status', true)->order('ask_id');
+            };
+
+            $query->where($map)->with($with);
         });
 
         if (false !== $result) {
-            return $result->toArray();
+            return is_null($result) ? null : $result->toArray();
         }
 
         return false;
