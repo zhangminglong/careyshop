@@ -291,7 +291,7 @@ class Ask extends CareyShop
                 $query->field('user_id,ask_type,title,status', true)->order('ask_id');
             };
 
-            $query->where($map)->with($with);
+            $query->where($map)->field('ask,answer', true)->with($with);
         });
 
         if (false !== $result) {
