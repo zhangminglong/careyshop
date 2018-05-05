@@ -36,14 +36,6 @@ class Ads extends CareyShop
     ];
 
     /**
-     * 新增自动完成列表
-     * @var array
-     */
-    protected $insert = [
-        'code' => '',
-    ];
-
-    /**
      * hasOne cs_ads_position
      * @access public
      * @return $this
