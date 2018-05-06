@@ -31,7 +31,7 @@ class Ads extends CareyShop
             'del.ads.list'   => ['delAdsList'],
             // 设置广告排序
             'set.ads.sort'   => ['setAdsSort'],
-            // 批量设置广告是否显示
+            // 批量设置是否显示
             'set.ads.status' => ['setAdsStatus'],
             // 获取一个广告
             'get.ads.item'   => ['getAdsItem'],

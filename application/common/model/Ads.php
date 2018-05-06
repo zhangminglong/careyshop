@@ -128,7 +128,7 @@ class Ads extends CareyShop
     }
 
     /**
-     * 批量设置广告是否显示
+     * 批量设置是否显示
      * @access public
      * @param  array $data 外部数据
      * @return bool
