@@ -108,5 +108,10 @@ class AdsPosition extends CareyShop
         'code'   => [
             'code' => 'require|max:16',
         ],
+        'select' => [
+            'platform' => 'integer|between:-128,127',
+            'type'     => 'in:0,1',
+            'status',
+        ],
     ];
 }

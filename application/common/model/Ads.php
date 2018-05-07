@@ -109,16 +109,19 @@ class Ads extends CareyShop
             $query->where(['ads_id' => ['eq', $data['ads_id']]]);
         });
 
-        if (isset($data['ads_position_id'])) {
-            if ($result->getAttr('ads_position_id') != $data['ads_position_id']) {
-                $position = AdsPosition::where(['ads_position_id' => ['eq', $data['ads_position_id']]])->find();
-                if (!$position) {
-                    return is_null($position) ? $this->setError('广告位不存在') : false;
-                }
+        if (!$result) {
+            return is_null($result) ? $this->setError('数据不存在') : false;
+        }
 
-                $result->setAttr('platform', $position['platform']);
-                $result->setAttr('type', $position['type']);
+        if (isset($data['ads_position_id']) && $result->getAttr('ads_position_id') != $data['ads_position_id']) {
+            $position = AdsPosition::where(['ads_position_id' => ['eq', $data['ads_position_id']]])->find();
+            if (!$position) {
+                return is_null($position) ? $this->setError('广告位不存在') : false;
             }
+
+            $result->setAttr('platform', $position['platform']);
+            $result->setAttr('type', $position['type']);
+
         }
 
         if (false !== $result->allowField(true)->save($data)) {

@@ -27,13 +27,16 @@ class AdsPosition extends CareyShop
      */
     protected $type = [
         'ads_position_id' => 'integer',
+        'platform'        => 'integer',
         'width'           => 'integer',
         'height'          => 'integer',
+        'type'            => 'integer',
+        'display'         => 'integer',
         'status'          => 'integer',
     ];
 
     /**
-     * 添加一个广告位置
+     * 添加一个广告位
      * @access public
      * @param  array $data 外部数据
      * @return array/false
@@ -55,7 +58,7 @@ class AdsPosition extends CareyShop
     }
 
     /**
-     * 编辑一个广告位置
+     * 编辑一个广告位
      * @access public
      * @param  array $data 外部数据
      * @return array/false
@@ -66,25 +69,44 @@ class AdsPosition extends CareyShop
             return false;
         }
 
-        if (isset($data['position_name'])) {
+        if (!empty($data['code'])) {
             $map['ads_position_id'] = ['neq', $data['ads_position_id']];
-            $map['position_name'] = ['eq', $data['position_name']];
+            $map['code'] = ['eq', $data['code']];
 
             if (self::checkUnique($map)) {
-                return $this->setError('广告位置名称已存在');
+                return $this->setError('广告位编码已存在');
             }
         }
 
-        $map = ['ads_position_id' => ['eq', $data['ads_position_id']]];
-        if (false !== $this->allowField(true)->save($data, $map)) {
-            return $this->toArray();
+        $result = self::get(function ($query) use ($data) {
+            $query->where(['ads_position_id' => ['eq', $data['ads_position_id']]]);
+        });
+
+        if (!$result) {
+            return is_null($result) ? $this->setError('数据不存在') : false;
+        }
+
+        if (isset($data['platform']) && $result->getAttr('platform') != $data['platform']) {
+            $adsData['platform'] = $data['platform'];
+        }
+
+        if (isset($data['type']) && $result->getAttr('type') != $data['type']) {
+            $adsData['type'] = $data['type'];
+        }
+
+        if (false !== $result->allowField(true)->save($data)) {
+            if (!empty($adsData)) {
+                Ads::update($adsData, ['ads_position_id' => ['eq', $data['ads_position_id']]]);
+            }
+
+            return $result->toArray();
         }
 
         return false;
     }
 
     /**
-     * 批量删除广告位置(支持检测是否存在关联广告)
+     * 批量删除广告位(支持检测是否存在关联广告)
      * @access public
      * @param  array $data 外部数据
      * @return bool
@@ -100,15 +122,15 @@ class AdsPosition extends CareyShop
             $result = self::get(function ($query) use ($data) {
                 $query
                     ->alias('p')
-                    ->field('p.ads_position_id,p.position_name')
+                    ->field('p.ads_position_id,p.name')
                     ->join('ads a', 'a.ads_position_id = p.ads_position_id')
                     ->where(['p.ads_position_id' => ['in', $data['ads_position_id']]])
                     ->group('p.ads_position_id');
             });
 
             if ($result) {
-                $error = 'Id:' . $result->getAttr('ads_position_id') . ' 广告位置"';
-                $error .= $result->getAttr('position_name') . '"存在关联广告';
+                $error = 'Id:' . $result->getAttr('ads_position_id') . ' 广告位"';
+                $error .= $result->getAttr('name') . '"存在关联广告';
                 return $this->setError($error);
             }
         }
@@ -119,29 +141,49 @@ class AdsPosition extends CareyShop
     }
 
     /**
-     * 验证广告位置名称是否唯一
+     * 验证广告位编号是否唯一
      * @access public
      * @param  array $data 外部数据
      * @return bool
      */
-    public function uniquePositionName($data)
+    public function uniquePositionCode($data)
     {
         if (!$this->validateData($data, 'AdsPosition.unique')) {
             return false;
         }
 
-        $map['position_name'] = ['eq', $data['position_name']];
+        $map['code'] = ['eq', $data['code']];
         !isset($data['exclude_id']) ?: $map['ads_position_id'] = ['neq', $data['exclude_id']];
 
         if (self::checkUnique($map)) {
-            return $this->setError('广告位置名称已存在');
+            return $this->setError('广告位编码已存在');
         }
 
         return true;
     }
 
     /**
-     * 获取一个广告位置
+     * 批量设置广告位状态
+     * @access public
+     * @param  array $data 外部数据
+     * @return bool
+     */
+    public function setPositionStatus($data)
+    {
+        if (!$this->validateData($data, 'AdsPosition.status')) {
+            return false;
+        }
+
+        $map['ads_position_id'] = ['in', $data['ads_position_id']];
+        if (false !== $this->save(['status' => $data['status']], $map)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * 获取一个广告位
      * @access public
      * @param  array $data 外部数据
      * @return array/false
@@ -173,14 +215,12 @@ class AdsPosition extends CareyShop
         }
 
         // 搜索条件
-        $map['status'] = ['eq', 1];
-
-        // 后台管理搜索
-        if (is_client_admin()) {
-            unset($map['status']);
-            !isset($data['status']) ?: $map['status'] = ['eq', $data['status']];
-            empty($data['position_name']) ?: $map['position_name'] = ['like', '%' . $data['position_name'] . '%'];
-        }
+        $map = [];
+        empty($data['name']) ?: $map['name'] = ['like', '%' . $data['name'] . '%'];
+        empty($data['code']) ?: $map['code'] = ['eq', $data['code']];
+        !isset($data['platform']) ?: $map['platform'] = ['eq', $data['platform']];
+        !isset($data['type']) ?: $map['type'] = ['eq', $data['type']];
+        !isset($data['status']) ?: $map['status'] = ['eq', $data['status']];
 
         // 获取总数量,为空直接返回
         $totalResult = $this->where($map)->count();
@@ -212,20 +252,29 @@ class AdsPosition extends CareyShop
     }
 
     /**
-     * 批量设置广告位置状态
+     * 获取广告位选择列表
      * @access public
      * @param  array $data 外部数据
-     * @return bool
+     * @return array/false
      */
-    public function setPositionStatus($data)
+    public function getPositionSelect($data)
     {
-        if (!$this->validateData($data, 'AdsPosition.status')) {
+        if (!$this->validateData($data, 'AdsPosition.select')) {
             return false;
         }
 
-        $map['ads_position_id'] = ['in', $data['ads_position_id']];
-        if (false !== $this->save(['status' => $data['status']], $map)) {
-            return true;
+        $result = self::all(function ($query) use ($data) {
+            // 搜索条件
+            $map = [];
+            !isset($data['platform']) ?: $map['platform'] = ['eq', $data['platform']];
+            !isset($data['type']) ?: $map['type'] = ['eq', $data['type']];
+            !isset($data['status']) ?: $map['status'] = ['eq', $data['status']];
+
+            $query->field('ads_position_id,name')->where($map);
+        });
+
+        if (false !== $result) {
+            return $result->toArray();
         }
 
         return false;
