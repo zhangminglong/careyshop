@@ -70,10 +70,10 @@ class Ads extends CareyShop
         });
 
         if (!$result) {
-            return is_null($result) ? $this->setError('广告位置不存在') : false;
+            return is_null($result) ? $this->setError('广告位不存在') : false;
         }
 
-        // 将广告位置的属性赋值到广告
+        // 将广告位的属性赋值到广告
         $data['platform'] = $result->getAttr('platform');
         $data['type'] = $result->getAttr('type');
 
@@ -113,7 +113,7 @@ class Ads extends CareyShop
             if ($result->getAttr('ads_position_id') != $data['ads_position_id']) {
                 $position = AdsPosition::where(['ads_position_id' => ['eq', $data['ads_position_id']]])->find();
                 if (!$position) {
-                    return is_null($position) ? $this->setError('广告位置不存在') : false;
+                    return is_null($position) ? $this->setError('广告位不存在') : false;
                 }
 
                 $result->setAttr('platform', $position['platform']);

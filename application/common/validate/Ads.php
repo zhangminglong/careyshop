@@ -45,7 +45,7 @@ class Ads extends CareyShop
      */
     protected $field = [
         'ads_id'          => '广告编号',
-        'ads_position_id' => '广告位置编号',
+        'ads_position_id' => '广告位编号',
         'code'            => '广告编码',
         'platform'        => '广告平台',
         'name'            => '广告名称',
