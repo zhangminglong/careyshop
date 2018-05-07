@@ -297,4 +297,26 @@ class Ads extends CareyShop
 
         return false;
     }
+
+    /**
+     * 验证广告编码是否唯一
+     * @access public
+     * @param  array $data 外部数据
+     * @return bool
+     */
+    public function uniqueAdsCode($data)
+    {
+        if (!$this->validateData($data, 'Ads.unique')) {
+            return false;
+        }
+
+        $map['code'] = ['eq', $data['code']];
+        !isset($data['exclude_id']) ?: $map['ads_id'] = ['neq', $data['exclude_id']];
+
+        if (self::checkUnique($map)) {
+            return $this->setError('广告编码已存在');
+        }
+
+        return true;
+    }
 }

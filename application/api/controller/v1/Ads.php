@@ -24,21 +24,23 @@ class Ads extends CareyShop
     {
         return [
             // 添加一个广告
-            'add.ads.item'   => ['addAdsItem'],
+            'add.ads.item'    => ['addAdsItem'],
             // 编辑一个广告
-            'set.ads.item'   => ['setAdsItem'],
+            'set.ads.item'    => ['setAdsItem'],
             // 批量删除广告
-            'del.ads.list'   => ['delAdsList'],
+            'del.ads.list'    => ['delAdsList'],
             // 设置广告排序
-            'set.ads.sort'   => ['setAdsSort'],
+            'set.ads.sort'    => ['setAdsSort'],
             // 批量设置是否显示
-            'set.ads.status' => ['setAdsStatus'],
+            'set.ads.status'  => ['setAdsStatus'],
             // 获取一个广告
-            'get.ads.item'   => ['getAdsItem'],
+            'get.ads.item'    => ['getAdsItem'],
             // 获取广告列表
-            'get.ads.list'   => ['getAdsList'],
+            'get.ads.list'    => ['getAdsList'],
             // 根据编码获取广告
-            'get.ads.code'   => ['getAdsCode'],
+            'get.ads.code'    => ['getAdsCode'],
+            // 验证广告编码是否唯一
+            'unique.ads.code' => ['uniqueAdsCode'],
         ];
     }
 }

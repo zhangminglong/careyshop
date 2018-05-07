@@ -32,6 +32,7 @@ class Ads extends CareyShop
         'end_time'        => 'require|date|betweenTime|afterTime:begin_time',
         'sort'            => 'integer|between:0,255',
         'status'          => 'in:0,1',
+        'exclude_id'      => 'integer|gt:0',
         'page_no'         => 'integer|gt:0',
         'page_size'       => 'integer|between:1,40',
         'order_type'      => 'in:asc,desc',
@@ -57,6 +58,7 @@ class Ads extends CareyShop
         'end_time'        => '投放结束时间',
         'sort'            => '广告排序值',
         'status'          => '是否可见',
+        'exclude_id'      => '广告排除Id',
         'page_no'         => '页码',
         'page_size'       => '每页数量',
         'order_type'      => '排序方式',
@@ -112,6 +114,10 @@ class Ads extends CareyShop
             'page_size',
             'order_type',
             'order_field',
+        ],
+        'unique' => [
+            'code' => 'require|max:16',
+            'exclude_id',
         ],
     ];
 }
