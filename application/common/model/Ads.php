@@ -28,6 +28,7 @@ class Ads extends CareyShop
     protected $type = [
         'ads_id'          => 'integer',
         'ads_position_id' => 'integer',
+        'platform'        => 'integer',
         'type'            => 'integer',
         'begin_time'      => 'timestamp',
         'end_time'        => 'timestamp',

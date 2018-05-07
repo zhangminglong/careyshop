@@ -37,6 +37,8 @@ class Ads extends CareyShop
             'get.ads.item'   => ['getAdsItem'],
             // 获取广告列表
             'get.ads.list'   => ['getAdsList'],
+            // 根据编码获取广告
+            'get.ads.code'   => ['getAdsCode'],
         ];
     }
 }
