@@ -279,4 +279,19 @@ class AdsPosition extends CareyShop
 
         return false;
     }
+
+    /**
+     * 根据广告位编码获取广告
+     * @access public
+     * @param  array $data 外部数据
+     * @return array/false
+     */
+    public function getPositionCode($data)
+    {
+        if (!$this->validateData($data, 'AdsPosition.code')) {
+            return false;
+        }
+
+        return true;
+    }
 }
