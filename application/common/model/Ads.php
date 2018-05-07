@@ -62,7 +62,20 @@ class Ads extends CareyShop
         }
 
         // 避免无关字段
-        unset($data['ads_id']);
+        unset($data['ads_id'], $data['platform'], $data['type']);
+
+        // 获取广告位
+        $result = AdsPosition::get(function ($query) use ($data) {
+            $query->where(['ads_position_id' => ['eq', $data['ads_position_id']]]);
+        });
+
+        if (!$result) {
+            return is_null($result) ? $this->setError('广告位置不存在') : false;
+        }
+
+        // 将广告位置的属性赋值到广告
+        $data['platform'] = $result->getAttr('platform');
+        $data['type'] = $result->getAttr('type');
 
         if (false !== $this->allowField(true)->save($data)) {
             return $this->toArray();
@@ -83,9 +96,33 @@ class Ads extends CareyShop
             return false;
         }
 
-        $map['ads_id'] = ['eq', $data['ads_id']];
-        if (false !== $this->allowField(true)->save($data, $map)) {
-            return $this->toArray();
+        if (!empty($data['code'])) {
+            $map['ads_id'] = ['neq', $data['ads_id']];
+            $map['code'] = ['eq', $data['code']];
+
+            if (self::checkUnique($map)) {
+                return $this->setError('广告编码已存在');
+            }
+        }
+
+        $result = self::get(function ($query) use ($data) {
+            $query->where(['ads_id' => ['eq', $data['ads_id']]]);
+        });
+
+        if (isset($data['ads_position_id'])) {
+            if ($result->getAttr('ads_position_id') != $data['ads_position_id']) {
+                $position = AdsPosition::where(['ads_position_id' => ['eq', $data['ads_position_id']]])->find();
+                if (!$position) {
+                    return is_null($position) ? $this->setError('广告位置不存在') : false;
+                }
+
+                $result->setAttr('platform', $position['platform']);
+                $result->setAttr('type', $position['type']);
+            }
+        }
+
+        if (false !== $result->allowField(true)->save($data)) {
+            return $result->toArray();
         }
 
         return false;
