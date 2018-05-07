@@ -102,7 +102,7 @@ class Ads extends CareyShop
         'list'   => [
             'ads_position_id' => 'integer|gt:0',
             'code'            => 'max:16',
-            'platform'        => 'require|integer|between:-128,127',
+            'platform'        => 'integer|between:-128,127',
             'name'            => 'max:100',
             'type',
             'status',

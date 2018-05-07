@@ -45,7 +45,7 @@ class Ads extends CareyShop
     {
         return $this
             ->hasOne('AdsPosition', 'ads_position_id', 'ads_position_id')
-            ->field('ads_position_id,position_name')
+            ->field('ads_position_id,name')
             ->setEagerlyType(0);
     }
 
@@ -198,10 +198,7 @@ class Ads extends CareyShop
         }
 
         $result = self::get(function ($query) use ($data) {
-            $map['ads_id'] = ['eq', $data['ads_id']];
-            is_client_admin() ?: $map['status'] = ['eq', 1];
-
-            $query->where($map);
+            $query->where(['ads_id' => ['eq', $data['ads_id']]]);
         });
 
         if (false !== $result) {
@@ -225,22 +222,14 @@ class Ads extends CareyShop
 
         // 搜索条件
         $map = [];
-        !isset($data['type']) ?: $map['ads.type'] = ['eq', $data['type']];
+        !isset($data['platform']) ?: $map['ads.platform'] = ['eq', $data['platform']];
         !isset($data['ads_position_id']) ?: $map['ads.ads_position_id'] = ['eq', $data['ads_position_id']];
-
-        // 区分前后台需求
-        if (!is_client_admin()) {
-            $map['ads.status'] = ['eq', 1];
-            $map['getAdsPosition.status'] = ['eq', 1];
-            $map['ads.begin_time'] = ['<= time', time()];
-            $map['ads.end_time'] = ['>= time', time()];
-        } else {
-            !isset($data['status']) ?: $map['ads.status'] = ['eq', $data['status']];
-            !isset($data['status']) ?: $map['getAdsPosition.status'] = ['eq', $data['status']];
-            empty($data['name']) ?: $map['ads.name'] = ['like', '%' . $data['name'] . '%'];
-            empty($data['begin_time']) ?: $map['ads.begin_time'] = ['< time', $data['end_time']];
-            empty($data['end_time']) ?: $map['ads.end_time'] = ['> time', $data['begin_time']];
-        }
+        empty($data['code']) ?: $map['ads.code'] = ['eq', $data['code']];
+        empty($data['name']) ?: $map['ads.name'] = ['like', '%' . $data['name'] . '%'];
+        !isset($data['type']) ?: $map['ads.type'] = ['eq', $data['type']];
+        !isset($data['status']) ?: $map['ads.status'] = ['eq', $data['status']];
+        empty($data['begin_time']) ?: $map['ads.begin_time'] = ['< time', $data['end_time']];
+        empty($data['end_time']) ?: $map['ads.end_time'] = ['> time', $data['begin_time']];
 
         $totalResult = $this->with('getAdsPosition')->where($map)->count();
         if ($totalResult <= 0) {
@@ -274,6 +263,36 @@ class Ads extends CareyShop
 
         if (false !== $result) {
             return ['items' => $result->toArray(), 'total_result' => $totalResult];
+        }
+
+        return false;
+    }
+
+    /**
+     * 根据编码获取广告
+     * @access public
+     * @param  array $data 外部数据
+     * @return array/false
+     */
+    public function getAdsCode($data)
+    {
+        if (!$this->validateData($data, 'Ads.code')) {
+            return false;
+        }
+
+        $result = self::get(function ($query) use ($data) {
+            $map['code'] = ['eq', $data['code']];
+            $map['begin_time'] = ['<= time', time()];
+            $map['end_time'] = ['>= time', time()];
+            $map['status'] = ['eq', 1];
+
+            $query
+                ->field('code,ads_position_id,begin_time,end_time,sort,status', true)
+                ->where($map);
+        });
+
+        if (false !== $result) {
+            return is_null($result) ? null : $result->toArray();
         }
 
         return false;
