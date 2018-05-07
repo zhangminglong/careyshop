@@ -2,7 +2,7 @@
 /**
  * @copyright   Copyright (c) http://careyshop.cn All rights reserved.
  *
- * CareyShop    广告位置模型
+ * CareyShop    广告位模型
  *
  * @author      zxm <252404501@qq.com>
  * @version     v1.1
