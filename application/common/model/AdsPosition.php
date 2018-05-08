@@ -220,6 +220,7 @@ class AdsPosition extends CareyShop
         empty($data['code']) ?: $map['code'] = ['eq', $data['code']];
         !isset($data['platform']) ?: $map['platform'] = ['eq', $data['platform']];
         !isset($data['type']) ?: $map['type'] = ['eq', $data['type']];
+        !isset($data['display']) ?: $map['display'] = ['eq', $data['display']];
         !isset($data['status']) ?: $map['status'] = ['eq', $data['status']];
 
         // 获取总数量,为空直接返回
@@ -268,9 +269,10 @@ class AdsPosition extends CareyShop
             $map = [];
             !isset($data['platform']) ?: $map['platform'] = ['eq', $data['platform']];
             !isset($data['type']) ?: $map['type'] = ['eq', $data['type']];
+            !isset($data['display']) ?: $map['display'] = ['eq', $data['display']];
             !isset($data['status']) ?: $map['status'] = ['eq', $data['status']];
 
-            $query->field('ads_position_id,name')->where($map);
+            $query->field('description,width,height,content,color', true)->where($map);
         });
 
         if (false !== $result) {
@@ -292,6 +294,56 @@ class AdsPosition extends CareyShop
             return false;
         }
 
-        return true;
+        $result = self::get(function ($query) use ($data) {
+            $map['code'] = ['eq', $data['code']];
+            $map['status'] = ['eq', 1];
+
+            $query
+                ->field('code,description,status', true)
+                ->where($map);
+        });
+
+        if (!$result) {
+            return is_null($result) ? null : false;
+        }
+
+        $adsDb = new Ads();
+        $adsResult = $adsDb::all(function ($query) use ($result) {
+            $map['ads_position_id'] = ['eq', $result->getAttr('ads_position_id')];
+            $map['begin_time'] = ['<= time', time()];
+            $map['end_time'] = ['>= time', time()];
+            $map['status'] = ['eq', 1];
+
+            $query
+                ->field('ads_id,name,url,target,content,color')
+                ->where($map)
+                ->order(['sort' => 'asc', 'ads_id' => 'desc']);
+        });
+
+        if (false === $adsResult) {
+            return $this->setError($adsDb->getError());
+        }
+
+        // 从Ads数据集获取 0=多个 1=单个 2=随机多个 3=随机单个
+        $adsData = $adsResult->toArray();
+        if (!empty($adsData)) {
+            switch ($result->getAttr('display')) {
+                case 1:
+                    $adsData = [array_shift($adsData)];
+                    break;
+
+                case 2:
+                    shuffle($adsData);
+                    break;
+
+                case 3:
+                    shuffle($adsData);
+                    $adsData = [array_shift($adsData)];
+                    break;
+            }
+        }
+
+        $result->setAttr('ads_items', $adsData);
+        return $result->toArray();
     }
 }

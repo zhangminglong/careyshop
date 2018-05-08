@@ -28,6 +28,7 @@ class AdsPosition extends CareyShop
         'content'         => 'min:0',
         'color'           => 'max:10',
         'type'            => 'require|in:0,1',
+        'display'         => 'in:0,1,2,3',
         'status'          => 'in:0,1',
         'not_empty'       => 'in:0,1',
         'exclude_id'      => 'integer|gt:0',
@@ -52,6 +53,7 @@ class AdsPosition extends CareyShop
         'content'         => '广告位默认内容',
         'color'           => '广告位背景色',
         'type'            => '广告位类型',
+        'display'         => '广告位展示方式',
         'status'          => '广告位状态',
         'not_empty'       => '是否存在关联广告',
         'exclude_id'      => '广告位排除Id',
@@ -77,6 +79,7 @@ class AdsPosition extends CareyShop
             'content',
             'color',
             'type',
+            'display',
             'status',
         ],
         'del'    => [
@@ -95,6 +98,7 @@ class AdsPosition extends CareyShop
             'code'     => 'max:16',
             'platform' => 'integer|between:-128,127',
             'type'     => 'in:0,1',
+            'display',
             'status',
             'page_no',
             'page_size',
@@ -111,6 +115,7 @@ class AdsPosition extends CareyShop
         'select' => [
             'platform' => 'integer|between:-128,127',
             'type'     => 'in:0,1',
+            'display',
             'status',
         ],
     ];
