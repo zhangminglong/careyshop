@@ -314,10 +314,12 @@ class AdsPosition extends CareyShop
             $map['end_time'] = ['>= time', time()];
             $map['status'] = ['eq', 1];
 
-            $query
-                ->field('ads_id,name,url,target,content,color')
-                ->where($map)
-                ->order(['sort' => 'asc', 'ads_id' => 'desc']);
+            // 随机展示的广告没必要排序
+            if (in_array($result->getAttr('display'), [0, 1])) {
+                $query->order(['sort' => 'asc', 'ads_id' => 'desc']);
+            }
+
+            $query->field('ads_id,name,url,target,content,color')->where($map);
         });
 
         if (false === $adsResult) {
