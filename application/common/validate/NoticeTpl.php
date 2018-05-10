@@ -24,7 +24,7 @@ class NoticeTpl extends CareyShop
         'type'          => 'integer|between:0,8',
         'sms_code'      => 'max:20',
         'title'         => 'max:255',
-        'template'      => '',
+        'template'      => 'min:0',
         'status'        => 'in:0,1',
     ];
 
