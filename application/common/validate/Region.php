@@ -51,7 +51,7 @@ class Region extends CareyShop
             'region_id' => 'require|arrayHasOnlyInts',
         ],
         'item' => [
-            'region_id' => 'require',
+            'region_id' => 'require|integer|gt:0',
             'region_all',
         ],
         'list' => [
