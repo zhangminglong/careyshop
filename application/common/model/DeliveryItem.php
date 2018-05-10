@@ -230,7 +230,7 @@ class DeliveryItem extends CareyShop
         !isset($data['type']) ?: $map['type'] = ['eq', $data['type']];
         isset($data['company_all']) && $data['company_all'] == 1 ?: $map['is_delete'] = ['eq', 0];
 
-        $totalResult = $this->with('getDeliveryItem')->where($map)->count();
+        $totalResult = $this->where($map)->count();
         if ($totalResult <= 0) {
             return ['total_result' => 0];
         }
