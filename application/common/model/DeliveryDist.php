@@ -90,9 +90,9 @@ class DeliveryDist extends CareyShop
         }
 
         // 避免无关字段及设置部分字段
-        unset($data['delivery_dist_id'], $data['delivery_code'], $data['state']);
         $data['user_id'] = is_client_admin() ? $data['client_id'] : get_client_id();
         $data['trace'] = [];
+        unset($data['delivery_dist_id'], $data['delivery_code'], $data['state'], $data['client_id']);
 
         // 根据配送方式编号获取快递公司编码
         $deliveryResult = Delivery::get(function ($query) use ($data) {
