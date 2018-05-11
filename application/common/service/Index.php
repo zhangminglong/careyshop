@@ -31,7 +31,7 @@ class Index extends CareyShop
         ];
 
         $result = [];
-        $rootPath = ROOT_PATH . 'command';
+        $rootPath = ROOT_PATH . 'careyshop';
 
         foreach ($shell as $key => $value) {
             $output = shell_exec(sprintf('php %s %s', $rootPath, $value));
