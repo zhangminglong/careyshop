@@ -246,7 +246,7 @@ class DeliveryItem extends CareyShop
             $orderType = !empty($data['order_type']) ? $data['order_type'] : 'asc';
 
             // 排序的字段
-            $orderField = !empty($data['order_field']) ? $data['order_field'] : 'phonetic';
+            $orderField = !empty($data['order_field']) ? $data['order_field'] : 'delivery_item_id';
 
             $query
                 ->where($map)

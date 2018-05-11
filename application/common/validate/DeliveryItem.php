@@ -28,7 +28,7 @@ class DeliveryItem extends CareyShop
         'page_no'          => 'integer|gt:0',
         'page_size'        => 'integer|between:1,40',
         'order_type'       => 'in:asc,desc',
-        'order_field'      => 'in:name,phonetic,code',
+        'order_field'      => 'in:delivery_item_id,name,phonetic,code,type',
     ];
 
     /**
