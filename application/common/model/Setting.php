@@ -103,9 +103,8 @@ class Setting extends CareyShop
         try {
             foreach ($data['data'] as $key => $value) {
                 switch ($key) {
-                    case 'ebusiness_id':
+                    case 'api_id':
                     case 'api_key':
-                    case 'api_url':
                         $this->setSettingItem($key, $value, 'delivery_dist', 'Setting.string');
                         break;
 

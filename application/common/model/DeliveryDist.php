@@ -17,6 +17,18 @@ use util\Http;
 class DeliveryDist extends CareyShop
 {
     /**
+     * 即时查询URL
+     * @var string
+     */
+    const TRACK_URL = 'http://api.kdniao.cc/Ebusiness/EbusinessOrderHandle.aspx';
+
+    /**
+     * 轨迹订阅URL
+     * @var string
+     */
+    const FOLLOW_URL = 'http://api.kdniao.cc/api/dist';
+
+    /**
      * 是否需要自动写入时间戳
      * @var bool
      */
@@ -122,13 +134,13 @@ class DeliveryDist extends CareyShop
         // 请求系统参数
         $postData = [
             'RequestData' => urlencode($requestData),
-            'EBusinessID' => Config::get('ebusiness_id.value', 'delivery_dist'),
+            'EBusinessID' => Config::get('api_id.value', 'delivery_dist'),
             'RequestType' => '1008',
             'DataSign'    => \app\common\service\DeliveryDist::getCallbackSign($requestData),
             'DataType'    => '2',
         ];
 
-        $result = Http::httpPost(Config::get('api_url.value', 'delivery_dist'), $postData);
+        $result = Http::httpPost(self::FOLLOW_URL, $postData);
         $result = json_decode($result, true);
 
         if (true != $result['Success']) {
@@ -152,7 +164,7 @@ class DeliveryDist extends CareyShop
     {
         $result['callback_return_type'] = 'json';
         $result['is_callback'] = [
-            'EBusinessID' => Config::get('ebusiness_id.value', 'delivery_dist'),
+            'EBusinessID' => Config::get('api_id.value', 'delivery_dist'),
             'UpdateTime'  => date('Y-m-d H:i:s'),
             'Success'     => true,
         ];
