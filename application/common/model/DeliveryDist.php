@@ -104,7 +104,7 @@ class DeliveryDist extends CareyShop
         });
 
         if (!$deliveryResult) {
-            return $this->setError('数据不存在');
+            return $this->setError('配送方式数据不存在');
         }
 
         // 请求正文内容
