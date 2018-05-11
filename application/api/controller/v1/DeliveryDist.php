@@ -29,9 +29,9 @@ class DeliveryDist extends CareyShop
             'subscribe.delivery.dist.item' => ['subscribeDistItem'],
             // 接收推送过来的配送数据
             'put.delivery.dist.data'       => ['putDistData'],
-            // 获取配送信息
+            // 获取一条配送轨迹
             'get.delivery.dist.item'       => ['getDistItem'],
-            // 获取配送信息列表
+            // 获取配送轨迹列表
             'get.delivery.dist.list'       => ['getDistList'],
         ];
     }

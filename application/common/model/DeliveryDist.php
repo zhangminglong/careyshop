@@ -196,7 +196,7 @@ class DeliveryDist extends CareyShop
     }
 
     /**
-     * 获取配送信息
+     * 获取一条配送轨迹
      * @access public
      * @param  array $data 外部数据
      * @return false/array
@@ -226,7 +226,7 @@ class DeliveryDist extends CareyShop
     }
 
     /**
-     * 获取配送信息列表
+     * 获取配送轨迹列表
      * @access public
      * @param  array $data 外部数据
      * @return false/array
