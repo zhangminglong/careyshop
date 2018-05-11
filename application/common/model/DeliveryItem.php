@@ -287,11 +287,11 @@ class DeliveryItem extends CareyShop
     }
 
     /**
-     * 设置一个快递公司为热门
+     * 复制一个快递公司为"热门类型"
      * @access public
      * @return array/false
      */
-    public function setCompanyHot($data)
+    public function copyCompanyHot($data)
     {
         if (!$this->validateData($data, 'DeliveryItem.hot')) {
             return false;

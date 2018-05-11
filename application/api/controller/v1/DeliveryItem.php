@@ -37,8 +37,8 @@ class DeliveryItem extends CareyShop
             'get.delivery.company.list'    => ['getCompanyList'],
             // 获取快递公司选择列表
             'get.delivery.company.select'  => ['getCompanySelect'],
-            // 设置一个快递公司为热门
-            'set.delivery.company.hot'     => ['setCompanyHot'],
+            // 复制一个快递公司为"热门类型"
+            'copy.delivery.company.hot'    => ['copyCompanyHot'],
         ];
     }
 }
