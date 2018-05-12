@@ -108,6 +108,10 @@ class Setting extends CareyShop
                         $this->setSettingItem($key, $value, 'delivery_dist', 'Setting.string');
                         break;
 
+                    case 'is_sub':
+                        $this->setSettingItem($key, $value, 'delivery_dist', 'Setting.status');
+                        break;
+
                     default:
                         throw new \Exception('键名' . $key . '不在允许范围内');
                 }

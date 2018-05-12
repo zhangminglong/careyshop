@@ -24,15 +24,15 @@ class DeliveryDist extends CareyShop
     {
         return [
             // 获取配送回调URL接口
-            'get.delivery.dist.callback'   => ['getDistCallback', 'app\common\service\DeliveryDist'],
-            // 订阅一条配送轨迹
-            'subscribe.delivery.dist.item' => ['subscribeDistItem'],
-            // 接收推送过来的配送数据
-            'put.delivery.dist.data'       => ['putDistData'],
-            // 获取一条推送过来的配送轨迹
-            'get.delivery.dist.item'       => ['getDistItem'],
-            // 获取推送过来的配送轨迹列表
-            'get.delivery.dist.list'       => ['getDistList'],
+            'get.delivery.dist.callback' => ['getDistCallback', 'app\common\service\DeliveryDist'],
+            // 添加一条配送记录
+            'add.delivery.dist.item'     => ['addDeliveryDistItem'],
+            // 接收推送过来的配送轨迹
+            'put.delivery.dist.data'     => ['putDeliveryDistData'],
+            // 根据流水号获取配送记录
+            'get.delivery.dist.code'     => ['getDeliveryDistCode'],
+            // 获取配送记录列表
+            'get.delivery.dist.list'     => ['getDeliveryDistList'],
         ];
     }
 }

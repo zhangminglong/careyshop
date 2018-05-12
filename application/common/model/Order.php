@@ -1642,7 +1642,7 @@ class Order extends CareyShop
                 throw new \Exception($this->getError());
             }
 
-            // 订阅物流轨迹
+            // 添加一条配送记录
             if (!empty($data['logistic_code']) && $this->orderData['delivery_id'] != 0) {
                 $deliveryData = [
                     'client_id'     => $this->orderData['user_id'],
@@ -1652,7 +1652,7 @@ class Order extends CareyShop
                 ];
 
                 $deliveryDb = new DeliveryDist();
-                if (false === $deliveryDb->subscribeDistItem($deliveryData)) {
+                if (false === $deliveryDb->addDeliveryDistItem($deliveryData)) {
                     throw new \Exception($deliveryDb->getError());
                 }
             }

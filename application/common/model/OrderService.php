@@ -1035,7 +1035,7 @@ class OrderService extends CareyShop
         $result::startTrans();
 
         try {
-            // 订阅配送轨迹
+            // 添加一条配送记录
             $distData = [
                 'client_id'     => $result->getAttr('user_id'),
                 'order_code'    => $result->getAttr('service_no'),
@@ -1044,7 +1044,7 @@ class OrderService extends CareyShop
             ];
 
             $distDb = new DeliveryDist();
-            if (false === $distDb->subscribeDistItem($distData)) {
+            if (false === $distDb->addDeliveryDistItem($distData)) {
                 throw new \Exception($distDb->getError());
             }
 
@@ -1577,7 +1577,7 @@ class OrderService extends CareyShop
         $serviceDb::startTrans();
 
         try {
-            // 订阅配送轨迹
+            // 添加一条配送记录
             if ($serviceDb->getAttr('is_return') === 1) {
                 $distData = [
                     'client_id'     => $serviceDb->getAttr('user_id'),
@@ -1587,7 +1587,7 @@ class OrderService extends CareyShop
                 ];
 
                 $distDb = new DeliveryDist();
-                if (false === $distDb->subscribeDistItem($distData)) {
+                if (false === $distDb->addDeliveryDistItem($distData)) {
                     throw new \Exception($distDb->getError());
                 }
             }

@@ -60,6 +60,7 @@ class DeliveryDist extends CareyShop
         'user_id'          => 'integer',
         'delivery_item_id' => 'integer',
         'state'            => 'integer',
+        'is_sub'           => 'integer',
         'trace'            => 'array',
     ];
 
@@ -90,21 +91,21 @@ class DeliveryDist extends CareyShop
     }
 
     /**
-     * 订阅一条配送轨迹
+     * 添加一条配送记录
      * @access public
      * @param  array $data 外部数据
      * @return false/array
      */
-    public function subscribeDistItem($data)
+    public function addDeliveryDistItem($data)
     {
         if (!$this->validateData($data, 'DeliveryDist')) {
             return false;
         }
 
         // 避免无关字段及设置部分字段
-        $data['user_id'] = is_client_admin() ? $data['client_id'] : get_client_id();
         $data['trace'] = [];
-        unset($data['delivery_dist_id'], $data['delivery_code'], $data['state'], $data['client_id']);
+        $data['user_id'] = is_client_admin() ? $data['client_id'] : get_client_id();
+        unset($data['delivery_dist_id'], $data['delivery_code'], $data['state']);
 
         // 根据配送方式编号获取快递公司编码
         $deliveryResult = Delivery::get(function ($query) use ($data) {
@@ -119,32 +120,52 @@ class DeliveryDist extends CareyShop
             return $this->setError('配送方式数据不存在');
         }
 
-        // 请求正文内容
-        $requestData = [
-            'ShipperCode'  => $deliveryResult->getAttr('code'),
-            'LogisticCode' => $data['logistic_code'],
-            'OrderCode'    => $data['order_code'],
-            'Remark'       => 'CareyShop',
-        ];
-
-        $data['delivery_code'] = $requestData['ShipperCode'];
+        // 对数据再次进行处理
+        $data['delivery_code'] = $deliveryResult->getAttr('code');
         $data['delivery_item_id'] = $deliveryResult->getAttr('delivery_item_id');
-        $requestData = json_encode($requestData, JSON_UNESCAPED_UNICODE);
+        $data['is_sub'] = Config::get('is_sub.value', 'delivery_dist');
+        unset($data['client_id'], $data['delivery_id']);
 
-        // 请求系统参数
-        $postData = [
-            'RequestData' => urlencode($requestData),
-            'EBusinessID' => Config::get('api_id.value', 'delivery_dist'),
-            'RequestType' => '1008',
-            'DataSign'    => \app\common\service\DeliveryDist::getCallbackSign($requestData),
-            'DataType'    => '2',
-        ];
+        // 配送记录存在则直接返回
+        $distResult = self::get(function ($query) use ($data) {
+            $map['user_id'] = ['eq', $data['user_id']];
+            $map['order_code'] = ['eq', $data['order_code']];
+            $map['delivery_code'] = ['eq', $data['delivery_code']];
+            $map['logistic_code'] = ['eq', $data['logistic_code']];
 
-        $result = Http::httpPost(self::FOLLOW_URL, $postData);
-        $result = json_decode($result, true);
+            $query->where($map);
+        });
 
-        if (true != $result['Success']) {
-            return $this->setError($result['Reason']);
+        if ($distResult) {
+            return $distResult->toArray();
+        }
+
+        // 如开启订阅配送轨迹则向第三方订阅
+        if (1 == $data['is_sub']) {
+            // 请求正文内容
+            $requestData = [
+                'ShipperCode'  => $deliveryResult->getAttr('code'),
+                'LogisticCode' => $data['logistic_code'],
+                'OrderCode'    => $data['order_code'],
+                'Remark'       => 'CareyShop',
+            ];
+            $requestData = json_encode($requestData, JSON_UNESCAPED_UNICODE);
+
+            // 请求系统参数
+            $postData = [
+                'RequestData' => urlencode($requestData),
+                'EBusinessID' => Config::get('api_id.value', 'delivery_dist'),
+                'RequestType' => '1008',
+                'DataSign'    => \app\common\service\DeliveryDist::getCallbackSign($requestData),
+                'DataType'    => '2',
+            ];
+
+            $result = Http::httpPost(self::FOLLOW_URL, $postData);
+            $result = json_decode($result, true);
+
+            if (!isset($result['Success']) || true != $result['Success']) {
+                return $this->setError(isset($result['Reason']) ? $result['Reason'] : '订阅配送轨迹出错');
+            }
         }
 
         if (false !== $this->allowField(true)->save($data)) {
@@ -155,12 +176,12 @@ class DeliveryDist extends CareyShop
     }
 
     /**
-     * 接收推送过来的配送数据
+     * 接收推送过来的配送轨迹
      * @access public
      * @param  array $data 外部数据
      * @return false/array
      */
-    public function putDistData($data)
+    public function putDeliveryDistData($data)
     {
         $result['callback_return_type'] = 'json';
         $result['is_callback'] = [
@@ -208,12 +229,47 @@ class DeliveryDist extends CareyShop
     }
 
     /**
-     * 获取一条配送轨迹
+     * 查询实时物流轨迹
+     * @access private
+     * @param  string $deliveryCode 快递公司编码
+     * @param  string $logisticCode 快递单号
+     * @return false/array
+     */
+    private function getOrderTracesByJson($deliveryCode, $logisticCode)
+    {
+        // 请求正文内容
+        $requestData = ['ShipperCode' => $deliveryCode, 'LogisticCode' => $logisticCode];
+        $requestData = json_encode($requestData, JSON_UNESCAPED_UNICODE);
+
+        // 请求系统参数
+        $postData = [
+            'RequestData' => urlencode($requestData),
+            'EBusinessID' => Config::get('api_id.value', 'delivery_dist'),
+            'RequestType' => '1002',
+            'DataSign'    => \app\common\service\DeliveryDist::getCallbackSign($requestData),
+            'DataType'    => '2',
+        ];
+
+        $result = Http::httpPost(self::TRACK_URL, $postData);
+        $result = json_decode($result, true);
+
+        if (!isset($result['Success']) || true != $result['Success']) {
+            return false;
+        }
+
+        return [
+            'state' => $result['State'],
+            'trace' => \app\common\service\DeliveryDist::snake($result['Traces']),
+        ];
+    }
+
+    /**
+     * 根据流水号获取配送记录
      * @access public
      * @param  array $data 外部数据
      * @return false/array
      */
-    public function getDistItem($data)
+    public function getDeliveryDistCode($data)
     {
         if (!$this->validateData($data, 'DeliveryDist.item')) {
             return false;
@@ -227,14 +283,46 @@ class DeliveryDist extends CareyShop
             $with = ['getDeliveryItem'];
             is_client_admin() ? $with[] = 'getUser' : $map['delivery_dist.user_id'] = ['eq', get_client_id()];
 
-            $query->field('delivery_dist_id', true)->with($with)->where($map);
+            $query->with($with)->where($map);
         });
 
-        if (false !== $result) {
-            return $result->toArray();
+        if (false === $result) {
+            return false;
         }
 
-        return false;
+        $updata = [];
+        $result = $result->toArray();
+
+        foreach ($result as $key => $value) {
+            // 忽略已订阅或已签收的配送记录
+            if (1 === $value['is_sub'] || 3 === $value['state']) {
+                unset($result[$key]['delivery_dist_id']);
+                continue;
+            }
+
+            $track = $this->getOrderTracesByJson($value['get_delivery_item']['code'], $value['logistic_code']);
+            if (false !== $track) {
+                $result[$key]['state'] = $track['state'];
+                $result[$key]['trace'] = $track['trace'];
+
+                // 如已签收则更新数据
+                if (3 == $track['state']) {
+                    $updata[] = [
+                        'delivery_dist_id' => $value['delivery_dist_id'],
+                        'state'            => $track['state'],
+                        'trace'            => $track['trace'],
+                    ];
+                }
+            }
+
+            unset($result[$key]['delivery_dist_id']);
+        }
+
+        if (!empty($updata)) {
+            self::saveAll($updata);
+        }
+
+        return $result;
     }
 
     /**
