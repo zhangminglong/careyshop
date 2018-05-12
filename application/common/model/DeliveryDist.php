@@ -296,7 +296,6 @@ class DeliveryDist extends CareyShop
         foreach ($result as $key => $value) {
             // 忽略已订阅或已签收的配送记录
             if (1 === $value['is_sub'] || 3 === $value['state']) {
-                unset($result[$key]['delivery_dist_id']);
                 continue;
             }
 
@@ -314,8 +313,6 @@ class DeliveryDist extends CareyShop
                     ];
                 }
             }
-
-            unset($result[$key]['delivery_dist_id']);
         }
 
         if (!empty($updata)) {
@@ -326,12 +323,12 @@ class DeliveryDist extends CareyShop
     }
 
     /**
-     * 获取配送轨迹列表
+     * 获取配送记录列表
      * @access public
      * @param  array $data 外部数据
      * @return false/array
      */
-    public function getDistList($data)
+    public function getDeliveryDistList($data)
     {
         if (!$this->validateData($data, 'DeliveryDist.list')) {
             return false;
@@ -342,13 +339,11 @@ class DeliveryDist extends CareyShop
         empty($data['order_code']) ?: $map['delivery_dist.order_code'] = ['eq', $data['order_code']];
         empty($data['logistic_code']) ?: $map['delivery_dist.logistic_code'] = ['eq', $data['logistic_code']];
         !isset($data['state']) ?: $map['delivery_dist.state'] = ['eq', $data['state']];
+        !isset($data['is_sub']) ?: $map['delivery_dist.is_sub'] = ['eq', $data['is_sub']];
 
         if (!empty($data['timeout'])) {
             $map['delivery_dist.state'] = ['neq', 3];
-
-            if ($data['timeout'] <= 30) {
-                $map['delivery_dist.create_time'] = ['exp', $this->raw(sprintf('+ %d >= %d', $data['timeout'] * 86400, time()))];
-            }
+            $map['delivery_dist.create_time'] = ['elt', time() - ($data['timeout'] * 86400)];
         }
 
         if (is_client_admin() && !empty($data['account'])) {
