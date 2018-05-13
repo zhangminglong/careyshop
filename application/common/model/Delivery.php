@@ -369,12 +369,12 @@ class Delivery extends CareyShop
     }
 
     /**
-     * 验证快递公司编号是否唯一
+     * 验证快递公司编号是否已存在
      * @access public
      * @param  array $data 外部数据
      * @return bool
      */
-    public function uniqueDeliveryItemId($data)
+    public function uniqueDeliveryItem($data)
     {
         if (!$this->validateData($data, 'Delivery.unique')) {
             return false;

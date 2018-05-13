@@ -24,25 +24,25 @@ class Delivery extends CareyShop
     {
         return [
             // 添加一个配送方式
-            'add.delivery.item'       => ['addDeliveryItem'],
+            'add.delivery.item'    => ['addDeliveryItem'],
             // 编辑一个配送方式
-            'set.delivery.item'       => ['setDeliveryItem'],
+            'set.delivery.item'    => ['setDeliveryItem'],
             // 批量删除配送方式
-            'del.delivery.list'       => ['delDeliveryList'],
+            'del.delivery.list'    => ['delDeliveryList'],
             // 获取一个配送方式
-            'get.delivery.item'       => ['getDeliveryItems'],
+            'get.delivery.item'    => ['getDeliveryItems'],
             // 获取配送方式列表
-            'get.delivery.list'       => ['getDeliveryList'],
+            'get.delivery.list'    => ['getDeliveryList'],
             // 获取配送方式选择列表
-            'get.delivery.select'     => ['getDeliverySelect'],
+            'get.delivery.select'  => ['getDeliverySelect'],
             // 根据配送方式获取运费
-            'get.delivery.freight'    => ['getDeliveryFreight'],
+            'get.delivery.freight' => ['getDeliveryFreight'],
             // 批量设置配送方式状态
-            'set.delivery.status'     => ['setDeliveryStatus'],
-            // 验证快递公司编号是否唯一
-            'unique.delivery.item.id' => ['uniqueDeliveryItemId'],
+            'set.delivery.status'  => ['setDeliveryStatus'],
+            // 验证快递公司编号是否已存在
+            'unique.delivery.item' => ['uniqueDeliveryItem'],
             // 设置配送方式排序
-            'set.delivery.sort'       => ['setDeliverySort'],
+            'set.delivery.sort'    => ['setDeliverySort'],
         ];
     }
 }
