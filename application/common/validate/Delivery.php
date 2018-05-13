@@ -40,6 +40,7 @@ class Delivery extends CareyShop
         'item_total'          => 'integer|egt:0',
         'volume_total'        => 'float|egt:0|regex:^\d+(\.\d{1,2})?$',
         'exclude_id'          => 'integer|gt:0',
+        'name'                => 'max:50',
         'order_type'          => 'in:asc,desc',
         'order_field'         => 'in:delivery_id,name,content,sort,status',
     ];
@@ -71,6 +72,7 @@ class Delivery extends CareyShop
         'item_total'          => '计件合计',
         'volume_total'        => '体积量合计',
         'exclude_id'          => '配送方式排除Id',
+        'name'                => '快递公司名称',
         'order_type'          => '排序方式',
         'order_field'         => '排序字段',
     ];
@@ -106,7 +108,7 @@ class Delivery extends CareyShop
             'delivery_id' => 'require|integer|gt:0',
         ],
         'list'    => [
-            'name' => 'max:50',
+            'name',
             'status',
             'order_type',
             'order_field',

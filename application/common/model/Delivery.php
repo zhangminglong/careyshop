@@ -314,7 +314,7 @@ class Delivery extends CareyShop
             $result['delivery_fee'] += $firstWeightPrice;
             $weight = $data['weight_total'] - $delivery['first_weight'];
 
-            while ($weight > 0 && $secondWeightPrice > 0) {
+            while ($weight > 0 && $delivery['second_weight'] > 0 && $secondWeightPrice > 0) {
                 $weight -= $delivery['second_weight'];
                 $result['weight_fee'] += $secondWeightPrice;
                 $result['delivery_fee'] += $secondWeightPrice;
@@ -326,7 +326,7 @@ class Delivery extends CareyShop
             $result['delivery_fee'] += $firstItemPrice;
             $item = $data['item_total'] - $delivery['first_item'];
 
-            while ($item > 0 && $secondItemPrice > 0) {
+            while ($item > 0 && $delivery['second_item'] > 0 && $secondItemPrice > 0) {
                 $item -= $delivery['second_item'];
                 $result['item_fee'] += $secondItemPrice;
                 $result['delivery_fee'] += $secondItemPrice;
@@ -338,7 +338,7 @@ class Delivery extends CareyShop
             $result['delivery_fee'] += $firstVolumePrice;
             $volume = $data['volume_total'] - $delivery['first_volume'];
 
-            while ($volume > 0 && $secondVolumePrice > 0) {
+            while ($volume > 0 && $delivery['second_volume'] > 0 && $secondVolumePrice > 0) {
                 $volume -= $delivery['second_volume'];
                 $result['volume_fee'] += $secondVolumePrice;
                 $result['delivery_fee'] += $secondVolumePrice;
