@@ -216,13 +216,7 @@ class DeliveryArea extends CareyShop
         }
 
         // 获取配送方式基础数据
-        $deliveryData = Delivery::get(function ($query) use ($data) {
-            $map['delivery_id'] = ['eq', $data['delivery_id']];
-            empty($data['name']) ?: $map['name'] = ['like', '%' . $data['name'] . '%'];
-
-            $query->where($map);
-        });
-
+        $deliveryData = Delivery::get($data['delivery_id']);
         if (!$deliveryData) {
             return $this->setError('配送方式不存在');
         }
@@ -241,11 +235,17 @@ class DeliveryArea extends CareyShop
 
         // 获取对应配送方式下的配送区域
         $result = self::all(function ($query) use ($data) {
-            $query->where(['delivery_id' => ['eq', $data['delivery_id']]]);
+            $map['delivery_id'] = ['eq', $data['delivery_id']];
+            empty($data['name']) ?: $map['name'] = ['like', '%' . $data['name'] . '%'];
+
+            $query->where($map);
         });
 
         if (false !== $result) {
-            $result->unshift($baseData);
+            if (empty($data['name'])) {
+                $result->unshift($baseData);
+            }
+
             return $result->toArray();
         }
 
