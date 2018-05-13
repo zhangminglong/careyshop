@@ -21,7 +21,7 @@ class DeliveryArea extends CareyShop
         'delivery_area_id'    => 'integer|gt:0',
         'delivery_id'         => 'require|integer|gt:0',
         'name'                => 'require|max:50',
-        'region'              => 'array',
+        'region'              => 'arrayHasOnlyInts',
         'first_weight_price'  => 'require|float|egt:0|regex:^\d+(\.\d{1,2})?$',
         'second_weight_price' => 'require|float|egt:0|regex:^\d+(\.\d{1,2})?$',
         'first_item_price'    => 'require|float|egt:0|regex:^\d+(\.\d{1,2})?$',
