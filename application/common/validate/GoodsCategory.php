@@ -22,7 +22,7 @@ class GoodsCategory extends CareyShop
         'parent_id'         => 'integer|egt:0',
         'name'              => 'require|max:100',
         'name_phonetic'     => 'max:10',
-        'alias'             => 'max:50|requireWith:alias_phonetic',
+        'alias'             => 'max:50',
         'alias_phonetic'    => 'max:10',
         'category_pic'      => 'max:255',
         'category_ioc'      => 'max:50',
