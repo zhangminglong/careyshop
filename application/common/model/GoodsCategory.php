@@ -279,9 +279,7 @@ class GoodsCategory extends CareyShop
      */
     private static function setCategoryTree($parentId, &$list, $limitLevel = null, $isLayer = false, $level = 0)
     {
-        self::$tree = [];
         $parentId != 0 ?: $isLayer = false; // 返回全部分类不需要本级
-
         foreach ($list as $key => $value) {
             // 获取分类主Id
             $goodsCategoryId = $value->getAttr('goods_category_id');
@@ -380,6 +378,7 @@ class GoodsCategory extends CareyShop
             return Cache::get($treeCache);
         }
 
+        self::$tree = [];
         $tree = self::setCategoryTree((int)$catId, $result, $level, $isLayer);
         Cache::tag('GoodsCategory')->set($treeCache, $tree);
 
