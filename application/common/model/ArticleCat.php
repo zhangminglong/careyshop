@@ -260,7 +260,7 @@ class ArticleCat extends CareyShop
     }
 
     /**
-     * 根据分类Id生成导航数据
+     * 获取分类导航数据
      * @access public
      * @param  array $data 外部数据
      * @return array/false
@@ -322,7 +322,7 @@ class ArticleCat extends CareyShop
     }
 
     /**
-     * 批量设置文章分类是否导航
+     * 批量设置是否导航
      * @access public
      * @param  array $data 外部数据
      * @return bool

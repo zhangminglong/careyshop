@@ -33,11 +33,11 @@ class ArticleCat extends CareyShop
             'get.article.cat.item' => ['getArticleCatItem'],
             // 获取文章分类列表
             'get.article.cat.list' => ['getArticleCatList'],
-            // 根据分类Id生成导航数据
+            // 获取分类导航数据
             'get.article.cat.navi' => ['getArticleCatNavi'],
             // 设置文章分类排序
             'set.article.cat.sort' => ['setArticleCatSort'],
-            // 批量设置文章分类是否导航
+            // 批量设置是否导航
             'set.article.cat.navi' => ['setArticleCatNavi'],
         ];
     }
