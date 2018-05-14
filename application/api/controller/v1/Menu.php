@@ -29,19 +29,19 @@ class Menu extends CareyShop
             'get.menu.item'      => ['getMenuItem'],
             // 编辑一个菜单
             'set.menu.item'      => ['setMenuItem'],
-            // 删除一个菜单(影响下级子菜单)
+            // 删除一个菜单
             'del.menu.item'      => ['delMenuItem'],
             // 获取菜单列表
             'get.menu.list'      => ['getMenuList'],
-            // 根据菜单Id生成导航数据
+            // 根据Id获取导航数据
             'get.menu.id.navi'   => ['getMenuIdNavi'],
-            // 根据菜单url生成导航数据
+            // 根据Url获取导航数据
             'get.menu.url.navi'  => ['getMenuUrlNavi'],
-            // 批量设置是否属于导航菜单
+            // 批量设置是否导航
             'set.menu.navi'      => ['setMenuNavi'],
             // 设置菜单排序
             'set.menu.sort'      => ['setMenuSort'],
-            // 设置菜单状态(影响上下级菜单)
+            // 设置菜单状态
             'set.menu.status'    => ['setMenuStatus'],
             // 根据权限获取菜单列表
             'get.menu.auth.list' => ['getMenuAuthList'],

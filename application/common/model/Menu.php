@@ -321,7 +321,7 @@ class Menu extends CareyShop
     }
 
     /**
-     * 根据菜单Id生成导航数据
+     * 根据Id获取导航数据
      * @access public
      * @param  array $data 外部数据
      * @return array/false
@@ -340,7 +340,7 @@ class Menu extends CareyShop
     }
 
     /**
-     * 根据菜单url生成导航数据
+     * 根据Url获取导航数据
      * @access public
      * @param  array $data 外部数据
      * @return array/false
@@ -360,7 +360,7 @@ class Menu extends CareyShop
     }
 
     /**
-     * 批量设置是否属于导航菜单
+     * 批量设置是否导航
      * @access public
      * @param  array $data 外部数据
      * @return bool
