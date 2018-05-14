@@ -396,8 +396,13 @@ class GoodsCategory extends CareyShop
         $isGoodsTotal = isset($data['goods_total']) ? $data['goods_total'] : false;
         $isLayer = isset($data['is_layer']) ? $data['is_layer'] : true;
 
+        // 提取实际存在的分类Id,否则会引起缓存返回空而导致整个数组为空
+        $map['goods_category_id'] = ['in', $data['goods_category_id']];
+        $idList = self::where($map)->column('goods_category_id');
+
         $result = [];
-        foreach ($data['goods_category_id'] as $value) {
+        foreach ($idList as $value) {
+            // 返回的是static类型数据,所以直接赋值也是最后合并的结果
             $result = self::getCategoryList($value, $isGoodsTotal, $isLayer, $level);
         }
 
