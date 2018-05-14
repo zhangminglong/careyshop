@@ -29,7 +29,7 @@ class GoodsCategory extends CareyShop
             'set.goods.category.item'   => ['setCategoryItem'],
             // 批量删除商品分类(支持检测是否存在子节点与关联商品)
             'del.goods.category.list'   => ['delCategoryList'],
-            // 根据主Id获取商品分类
+            // 获取一个商品分类
             'get.goods.category.item'   => ['getCategoryItem'],
             // 获取所有商品分类
             'get.goods.category.list'   => ['getCategoryList'],

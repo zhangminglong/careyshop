@@ -170,7 +170,7 @@ class GoodsCategory extends CareyShop
     }
 
     /**
-     * 根据主Id获取商品分类
+     * 获取一个商品分类
      * @access public
      * @param  array $data 外部数据
      * @return array/false
