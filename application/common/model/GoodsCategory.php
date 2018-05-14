@@ -236,6 +236,8 @@ class GoodsCategory extends CareyShop
                     }
 
                     if ($value['parent_id'] == $result[$i]['parent_id']) {
+                        // 既然是同级,那么就没必要再返回父级Id
+                        unset($value['parent_id']);
                         $result[$i]['same_level'][] = $value;
                     }
                 }
