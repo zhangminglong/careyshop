@@ -207,7 +207,11 @@ class GoodsCategory extends CareyShop
             return false;
         }
 
-        $catList = $this->cache('GoodsCategoryNavi', null, 'GoodsCategory')->column('goods_category_id,parent_id,name');
+        $catList = $this
+            ->cache('GoodsCategoryNavi', null, 'GoodsCategory')
+            ->order('sort,goods_category_id')
+            ->column('goods_category_id,parent_id,name');
+
         if (false === $catList) {
             Cache::clear('GoodsCategory');
             return false;
@@ -244,6 +248,7 @@ class GoodsCategory extends CareyShop
             $data['goods_category_id'] = $catList[$data['goods_category_id']]['parent_id'];
         }
 
+        // 导航需要反转的顺序返回
         return array_reverse($result);
     }
 
