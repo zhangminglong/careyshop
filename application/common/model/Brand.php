@@ -93,7 +93,7 @@ class Brand extends CareyShop
         }
 
         $map = ['brand_id' => ['eq', $data['brand_id']]];
-        if (false != $this->allowField(true)->save($data, $map)) {
+        if (false !== $this->allowField(true)->save($data, $map)) {
             Cache::clear('Brand');
             return $this->toArray();
         }

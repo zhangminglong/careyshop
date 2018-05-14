@@ -113,7 +113,7 @@ class GoodsCategory extends CareyShop
         }
 
         $map['goods_category_id'] = ['eq', $data['goods_category_id']];
-        if (false != $this->allowField(true)->save($data, $map)) {
+        if (false !== $this->allowField(true)->save($data, $map)) {
             Cache::clear('GoodsCategory');
             return $this->toArray();
         }
