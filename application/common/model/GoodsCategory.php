@@ -18,6 +18,12 @@ use util\Phonetic;
 class GoodsCategory extends CareyShop
 {
     /**
+     * 分类树
+     * @var int
+     */
+    private static $tree = [];
+
+    /**
      * 只读属性
      * @var array
      */
@@ -273,7 +279,7 @@ class GoodsCategory extends CareyShop
      */
     private static function setCategoryTree($parentId, &$list, $limitLevel = null, $isLayer = false, $level = 0)
     {
-        static $tree = [];
+        self::$tree = [];
         $parentId != 0 ?: $isLayer = false; // 返回全部分类不需要本级
 
         foreach ($list as $key => $value) {
@@ -294,7 +300,7 @@ class GoodsCategory extends CareyShop
             }
 
             $value->setAttr('level', $level);
-            $tree[] = $value->toArray();
+            self::$tree[] = $value->toArray();
 
             // 需要返回本级分类时保留列表数据,否则引起树的重复,并且需要自增层级
             if (true == $isLayer) {
@@ -311,7 +317,7 @@ class GoodsCategory extends CareyShop
             }
         }
 
-        return $tree;
+        return self::$tree;
     }
 
     /**
@@ -396,14 +402,14 @@ class GoodsCategory extends CareyShop
         $isGoodsTotal = isset($data['goods_total']) ? $data['goods_total'] : false;
         $isLayer = isset($data['is_layer']) ? $data['is_layer'] : true;
 
-        // 提取实际存在的分类Id,否则会引起缓存返回空而导致整个数组为空
-        $map['goods_category_id'] = ['in', $data['goods_category_id']];
-        $idList = self::where($map)->column('goods_category_id');
-
         $result = [];
-        foreach ($idList as $value) {
-            // 返回的是static类型数据,所以直接赋值也是最后合并的结果
-            $result = self::getCategoryList($value, $isGoodsTotal, $isLayer, $level);
+        foreach ($data['goods_category_id'] as $value) {
+            self::$tree = [];
+            $list = self::getCategoryList($value, $isGoodsTotal, $isLayer, $level);
+
+            if ($list) {
+                $result = array_merge($result, $list);
+            }
         }
 
         return $result;
