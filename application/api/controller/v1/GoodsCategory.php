@@ -31,23 +31,23 @@ class GoodsCategory extends CareyShop
             'del.goods.category.list'   => ['delCategoryList'],
             // 获取一个商品分类
             'get.goods.category.item'   => ['getCategoryItem'],
-            // 获取所有商品分类
+            // 获取商品分类列表
             'get.goods.category.list'   => ['getCategoryList'],
-            // 根据主Id集合获取所有子级
+            // 获取所有子级分类
             'get.goods.category.son'    => ['getCategorySon'],
-            // 根据分类Id生成导航数据
+            // 获取分类导航数据
             'get.goods.category.navi'   => ['getCategoryNavi'],
-            // 批量设置商品分类是否显示
+            // 批量设置是否显示
             'set.goods.category.status' => ['setCategoryStatus'],
             // 设置商品分类排序
             'set.goods.category.sort'   => ['setCategorySort'],
-            // 批量设置商品分类是否导航
+            // 批量设置是否导航
             'set.goods.category.navi'   => ['setCategoryNavi'],
         ];
     }
 
     /**
-     * 根据主Id集合获取所有子级
+     * 获取所有子级分类
      * @access protected
      * @return array
      */
@@ -64,7 +64,7 @@ class GoodsCategory extends CareyShop
     }
 
     /**
-     * 获取所有商品分类
+     * 获取商品分类列表
      * @access protected
      * @param  int  $catId        分类Id
      * @param  bool $isGoodsTotal 是否获取关联商品数
