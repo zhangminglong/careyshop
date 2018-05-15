@@ -159,7 +159,7 @@ class GoodsAttribute extends CareyShop
         $order['goods_attribute_id'] = 'asc';
 
         $result = $this
-            ->field('goods_attribute_id,attr_name')
+            ->field('goods_attribute_id,attr_name,description')
             ->where($map)
             ->order($order)
             ->select();
@@ -270,7 +270,7 @@ class GoodsAttribute extends CareyShop
             }];
 
             $query
-                ->field('goods_attribute_id,attr_name,goods_type_id,sort')
+                ->field('goods_attribute_id,attr_name,description,goods_type_id,sort')
                 ->with($with)
                 ->where($map)
                 ->order($order);
