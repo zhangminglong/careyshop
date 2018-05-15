@@ -19,7 +19,7 @@ class Brand extends CareyShop
      */
     protected $rule = [
         'brand_id'          => 'integer|gt:0',
-        'goods_category_id' => 'integer|gt:0',
+        'goods_category_id' => 'integer|egt:0',
         'name'              => 'require|max:50|unique:brand,name,0,brand_id',
         'phonetic'          => 'max:10',
         'logo'              => 'max:255',
@@ -89,8 +89,8 @@ class Brand extends CareyShop
             'brand_id' => 'require|integer|gt:0',
         ],
         'list'   => [
-            'goods_category_id',
-            'name' => 'max:50',
+            'goods_category_id' => 'integer|gt:0',
+            'name'              => 'max:50',
             'status',
             'page_no',
             'page_size',
