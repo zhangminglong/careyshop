@@ -241,7 +241,7 @@ class Brand extends CareyShop
             $query
                 ->cache(true, null, 'Brand')
                 ->alias('b')
-                ->field('b.*,ifnull(c.name, \'\') goods_category_name')
+                ->field('b.*,ifnull(c.name, \'\') category_name,ifnull(c.alias, \'\') category_alias')
                 ->join('goods_category c', 'c.status = 1 AND c.goods_category_id = b.goods_category_id', 'left')
                 ->where($map)
                 ->order($order)
