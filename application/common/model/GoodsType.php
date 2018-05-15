@@ -125,18 +125,12 @@ class GoodsType extends CareyShop
     /**
      * 获取商品模型选择列表
      * @access public
-     * @param  array $data 外部数据
      * @return array/false
      */
-    public function getTypeSelect($data)
+    public function getTypeSelect()
     {
-        if (!$this->validateData($data, 'GoodsType.list')) {
-            return false;
-        }
-
         // 获取商品模型列表
         $result = self::all();
-
         if (false !== $result) {
             return $result->toArray();
         }
