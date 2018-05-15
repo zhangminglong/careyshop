@@ -46,6 +46,7 @@ class Transaction extends CareyShop
         'user_id'        => 'integer',
         'type'           => 'integer',
         'amount'         => 'float',
+        'balance'        => 'float',
         'to_payment'     => 'integer',
     ];
 
