@@ -89,7 +89,7 @@ class Brand extends CareyShop
             'brand_id' => 'require|integer|gt:0',
         ],
         'list'   => [
-            'goods_category_id' => 'integer|gt:0',
+            'goods_category_id' => 'integer|egt:0',
             'name'              => 'max:50',
             'status',
             'page_no',
