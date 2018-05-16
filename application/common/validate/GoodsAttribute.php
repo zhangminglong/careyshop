@@ -19,7 +19,7 @@ class GoodsAttribute extends CareyShop
      */
     protected $rule = [
         'goods_attribute_id' => 'integer|gt:0',
-        'parent_id'          => 'require|integer|egt:0',
+        'parent_id'          => 'require|integer|gt:0',
         'attr_name'          => 'require|max:60',
         'description'        => 'max:255',
         'goods_type_id'      => 'require|gt:0',
@@ -57,6 +57,12 @@ class GoodsAttribute extends CareyShop
         'body'      => [
             'attr_name',
             'goods_type_id',
+            'sort',
+        ],
+        'bodyset'   => [
+            'goods_attribute_id' => 'require|integer|gt:0',
+            'goods_type_id',
+            'attr_name',
             'sort',
         ],
         'bodylist'  => [

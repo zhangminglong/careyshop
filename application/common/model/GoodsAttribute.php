@@ -27,8 +27,8 @@ class GoodsAttribute extends CareyShop
      */
     protected $readonly = [
         'goods_attribute_id',
-        'parent_id',
-        'goods_type_id',
+        //'parent_id',
+        //'goods_type_id',
     ];
 
     /**
@@ -98,7 +98,7 @@ class GoodsAttribute extends CareyShop
      */
     public function setAttributeBodyItem($data)
     {
-        if (!$this->validateSetData($data, 'GoodsAttribute.set')) {
+        if (!$this->validateSetData($data, 'GoodsAttribute.bodyset')) {
             return false;
         }
 
@@ -109,7 +109,7 @@ class GoodsAttribute extends CareyShop
         $map['parent_id'] = ['eq', 0];
         $map['is_delete'] = ['eq', 0];
 
-        if (false !== $this->allowField(true)->save($data, $map)) {
+        if (false !== $this->allowField(['goods_type_id', 'attr_name', 'sort'])->save($data, $map)) {
             return $this->toArray();
         }
 
@@ -131,7 +131,9 @@ class GoodsAttribute extends CareyShop
         $map['goods_attribute_id'] = ['eq', $data['goods_attribute_id']];
         $map['parent_id'] = ['eq', 0];
 
-        $result = self::scope('delete')->where($map)->find();
+        $field = 'goods_attribute_id,attr_name,goods_type_id,sort';
+        $result = self::scope('delete')->field($field)->where($map)->find();
+
         if (false !== $result) {
             return is_null($result) ? null : $result->toArray();
         }
@@ -306,7 +308,7 @@ class GoodsAttribute extends CareyShop
     }
 
     /**
-     * 批量删除商品属性
+     * 批量删除主体或属性
      * @access public
      * @param  array $data 外部数据
      * @return bool

@@ -33,6 +33,8 @@ class GoodsAttribute extends CareyShop
             'get.goods.attribute.body.list' => ['getAttributeBodyList'],
             // 设置商品属性主体排序
             'set.goods.attribute.body.sort' => ['setAttributeSort'],
+            // 批量删除商品属性主体
+            'del.goods.attribute.body.list' => ['delAttributeList'],
             // 添加一个商品属性
             'add.goods.attribute.item'      => ['addAttributeItem'],
             // 编辑一个商品属性
