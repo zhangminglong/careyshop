@@ -22,7 +22,7 @@ class GoodsAttribute extends CareyShop
         'parent_id'          => 'require|integer|gt:0',
         'attr_name'          => 'require|max:60',
         'description'        => 'max:255',
-        'goods_type_id'      => 'require|gt:0',
+        'goods_type_id'      => 'require|integer|gt:0',
         'attr_index'         => 'in:0,1,2',
         'attr_input_type'    => 'require|in:0,1,2',
         'attr_values'        => 'requireIf:attr_input_type,1|array',
@@ -56,6 +56,7 @@ class GoodsAttribute extends CareyShop
     protected $scene = [
         'body'      => [
             'attr_name',
+            'description',
             'goods_type_id',
             'sort',
         ],
@@ -63,11 +64,8 @@ class GoodsAttribute extends CareyShop
             'goods_attribute_id' => 'require|integer|gt:0',
             'goods_type_id',
             'attr_name',
+            'description',
             'sort',
-        ],
-        'bodylist'  => [
-            'goods_type_id',
-            'attribute_all',
         ],
         'set'       => [
             'goods_attribute_id' => 'require|integer|gt:0',
@@ -85,7 +83,7 @@ class GoodsAttribute extends CareyShop
             'goods_attribute_id' => 'require|integer|gt:0',
         ],
         'list'      => [
-            'goods_type_id' => 'require|integer|gt:0',
+            'goods_type_id',
             'attribute_all',
         ],
         'index'     => [

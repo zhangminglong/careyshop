@@ -109,7 +109,8 @@ class GoodsAttribute extends CareyShop
         $map['parent_id'] = ['eq', 0];
         $map['is_delete'] = ['eq', 0];
 
-        if (false !== $this->allowField(['goods_type_id', 'attr_name', 'sort'])->save($data, $map)) {
+        $field = ['goods_type_id', 'attr_name', 'description', 'sort'];
+        if (false !== $this->allowField($field)->save($data, $map)) {
             return $this->toArray();
         }
 
@@ -131,7 +132,7 @@ class GoodsAttribute extends CareyShop
         $map['goods_attribute_id'] = ['eq', $data['goods_attribute_id']];
         $map['parent_id'] = ['eq', 0];
 
-        $field = 'goods_attribute_id,attr_name,goods_type_id,sort';
+        $field = 'goods_attribute_id,attr_name,description,goods_type_id,sort';
         $result = self::scope('delete')->field($field)->where($map)->find();
 
         if (false !== $result) {
@@ -149,7 +150,7 @@ class GoodsAttribute extends CareyShop
      */
     public function getAttributeBodyList($data)
     {
-        if (!$this->validateData($data, 'GoodsAttribute.bodylist')) {
+        if (!$this->validateData($data, 'GoodsAttribute.list')) {
             return false;
         }
 
@@ -161,7 +162,7 @@ class GoodsAttribute extends CareyShop
         $order['goods_attribute_id'] = 'asc';
 
         $result = $this
-            ->field('goods_attribute_id,attr_name,description')
+            ->field('goods_attribute_id,attr_name,description,goods_type_id,sort')
             ->where($map)
             ->order($order)
             ->select();
