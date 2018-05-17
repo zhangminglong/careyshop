@@ -391,4 +391,27 @@ class GoodsAttribute extends CareyShop
 
         return true;
     }
+
+    /**
+     * 获取基础数据索引列表
+     * @access public
+     * @param  array $data 外部数据
+     * @return bool
+     */
+    public function getAttributeData($data)
+    {
+        if (!$this->validateData($data, 'GoodsAttribute.list')) {
+            return false;
+        }
+
+        $map['goods_type_id'] = ['eq', $data['goods_type_id']];
+        isset($data['attribute_all']) && $data['attribute_all'] == 1 ?: $map['is_delete'] = ['eq', 0];
+
+        $result = $this->where($map)->column('goods_attribute_id,attr_name,description,icon');
+        if (false !== $result) {
+            return $result;
+        }
+
+        return false;
+    }
 }

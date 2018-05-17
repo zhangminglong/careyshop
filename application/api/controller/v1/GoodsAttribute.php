@@ -47,6 +47,8 @@ class GoodsAttribute extends CareyShop
             'set.goods.attribute.sort'      => ['setAttributeSort'],
             // 批量删除商品主体或属性
             'del.goods.attribute.list'      => ['delAttributeList'],
+            // 获取基础数据索引列表
+            'get.goods.attribute.data'      => ['getAttributeData'],
         ];
     }
 }
