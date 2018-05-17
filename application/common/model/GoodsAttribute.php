@@ -189,6 +189,11 @@ class GoodsAttribute extends CareyShop
         // 避免无关字段
         unset($data['goods_attribute_id'], $data['is_delete']);
 
+        // 当attr_input_type为手工填写(值=0)时需要清除attr_values
+        if (0 == $data['attr_input_type']) {
+            $data['attr_values'] = [];
+        }
+
         if (false !== $this->allowField(true)->save($data)) {
             return $this->toArray();
         }
@@ -210,6 +215,11 @@ class GoodsAttribute extends CareyShop
 
         // 避免无关字段
         unset($data['is_delete']);
+
+        // 当attr_input_type为手工填写(值=0)时需要清除attr_values
+        if (isset($data['attr_input_type']) && 0 == $data['attr_input_type']) {
+            $data['attr_values'] = [];
+        }
 
         $map['goods_attribute_id'] = ['eq', $data['goods_attribute_id']];
         $map['parent_id'] = ['neq', 0];
@@ -309,7 +319,49 @@ class GoodsAttribute extends CareyShop
     }
 
     /**
-     * 批量删除主体或属性
+     * 批量设置商品属性是否核心
+     * @access public
+     * @param  array $data 外部数据
+     * @return bool
+     */
+    public function setAttributeImportant($data)
+    {
+        if (!$this->validateData($data, 'GoodsAttribute.important')) {
+            return false;
+        }
+
+        $map['goods_attribute_id'] = ['in', $data['goods_attribute_id']];
+        $map['parent_id'] = ['neq', 0];
+
+        if (false !== $this->save(['is_important' => $data['is_important']], $map)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * 设置主体或属性的排序值
+     * @access public
+     * @param  array $data 外部数据
+     * @return bool
+     */
+    public function setAttributeSort($data)
+    {
+        if (!$this->validateData($data, 'GoodsAttribute.sort')) {
+            return false;
+        }
+
+        $map['goods_attribute_id'] = ['eq', $data['goods_attribute_id']];
+        if (false !== $this->save(['sort' => $data['sort']], $map)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * 批量删除商品主体或属性
      * @access public
      * @param  array $data 外部数据
      * @return bool
@@ -337,47 +389,5 @@ class GoodsAttribute extends CareyShop
         }
 
         return true;
-    }
-
-    /**
-     * 批量设置商品属性是否核心
-     * @access public
-     * @param  array $data 外部数据
-     * @return bool
-     */
-    public function setAttributeImportant($data)
-    {
-        if (!$this->validateData($data, 'GoodsAttribute.important')) {
-            return false;
-        }
-
-        $map['goods_attribute_id'] = ['in', $data['goods_attribute_id']];
-        $map['parent_id'] = ['neq', 0];
-
-        if (false !== $this->save(['is_important' => $data['is_important']], $map)) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * 设置商品属性排序
-     * @access public
-     * @param  array $data 外部数据
-     * @return bool
-     */
-    public function setAttributeSort($data)
-    {
-        if (!$this->validateData($data, 'GoodsAttribute.sort')) {
-            return false;
-        }
-
-        $map['goods_attribute_id'] = ['eq', $data['goods_attribute_id']];
-        if (false !== $this->save(['sort' => $data['sort']], $map)) {
-            return true;
-        }
-
-        return false;
     }
 }

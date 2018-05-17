@@ -46,7 +46,7 @@ class GoodsAttribute extends CareyShop
         'attr_values'        => '商品属性可选值',
         'is_important'       => '是否属于核心属性',
         'sort'               => '商品属性排序值',
-        'attribute_all'      => '所有属性(包括已删除)',
+        'attribute_all'      => '获取所有(包括已删除)',
     ];
 
     /**
@@ -90,9 +90,6 @@ class GoodsAttribute extends CareyShop
             'goods_attribute_id' => 'require|arrayHasOnlyInts',
             'attr_index'         => 'require|in:0,1,2',
         ],
-        'del'       => [
-            'goods_attribute_id' => 'require|arrayHasOnlyInts',
-        ],
         'important' => [
             'goods_attribute_id' => 'require|integer|gt:0',
             'is_important'       => 'require|in:0,1',
@@ -100,6 +97,9 @@ class GoodsAttribute extends CareyShop
         'sort'      => [
             'goods_attribute_id' => 'require|integer|gt:0',
             'sort'               => 'require|integer|between:0,255',
+        ],
+        'del'       => [
+            'goods_attribute_id' => 'require|arrayHasOnlyInts',
         ],
     ];
 }
