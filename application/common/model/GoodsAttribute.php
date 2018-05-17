@@ -83,7 +83,8 @@ class GoodsAttribute extends CareyShop
         unset($data['goods_attribute_id'], $data['parent_id'], $data['is_delete']);
         $data['attr_input_type'] = 0;
 
-        if (false !== $this->allowField(true)->save($data)) {
+        $field = ['attr_name', 'description', 'icon', 'goods_type_id', 'sort'];
+        if (false !== $this->allowField($field)->save($data)) {
             return $this->hidden(['attr_input_type', 'attr_values'])->toArray();
         }
 
@@ -109,7 +110,7 @@ class GoodsAttribute extends CareyShop
         $map['parent_id'] = ['eq', 0];
         $map['is_delete'] = ['eq', 0];
 
-        $field = ['goods_type_id', 'attr_name', 'description', 'sort'];
+        $field = ['goods_type_id', 'attr_name', 'description', 'icon', 'sort'];
         if (false !== $this->allowField($field)->save($data, $map)) {
             return $this->toArray();
         }
@@ -132,7 +133,7 @@ class GoodsAttribute extends CareyShop
         $map['goods_attribute_id'] = ['eq', $data['goods_attribute_id']];
         $map['parent_id'] = ['eq', 0];
 
-        $field = 'goods_attribute_id,attr_name,description,goods_type_id,sort';
+        $field = 'goods_attribute_id,attr_name,description,icon,goods_type_id,sort';
         $result = self::scope('delete')->field($field)->where($map)->find();
 
         if (false !== $result) {
@@ -162,7 +163,7 @@ class GoodsAttribute extends CareyShop
         $order['goods_attribute_id'] = 'asc';
 
         $result = $this
-            ->field('goods_attribute_id,attr_name,description,goods_type_id,sort')
+            ->field('goods_attribute_id,attr_name,description,icon,goods_type_id,sort')
             ->where($map)
             ->order($order)
             ->select();
@@ -283,7 +284,7 @@ class GoodsAttribute extends CareyShop
             }];
 
             $query
-                ->field('goods_attribute_id,attr_name,description,goods_type_id,sort')
+                ->field('goods_attribute_id,attr_name,description,icon,goods_type_id,sort')
                 ->with($with)
                 ->where($map)
                 ->order($order);
