@@ -102,6 +102,28 @@ class CareyShop extends Validate
     }
 
     /**
+     * 检测数组内所有键值是否都为string
+     * @access public
+     * @param array $args 参数
+     * @return bool
+     */
+    public function arrayHasOnlyStrings(...$args)
+    {
+        if (!is_array($args[0])) {
+            return $args[4] . '必须是数组';
+        }
+
+        if ($args[0] === array_filter($args[0], function ($value) {
+                return is_string($value);
+            })
+        ) {
+            return true;
+        }
+
+        return $args[4] . '内的键值必须是字符串';
+    }
+
+    /**
      * 获取验证器编辑场景
      * @access public
      * @param string $scene 场景名

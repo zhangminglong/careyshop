@@ -21,7 +21,7 @@ class Spec extends CareyShop
         'spec_id'       => 'integer|gt:0',
         'goods_type_id' => 'require|integer|gt:0',
         'name'          => 'require|max:60',
-        'spec_item'     => 'require|array',
+        'spec_item'     => 'require|arrayHasOnlyStrings',
         'spec_index'    => 'in:0,1',
         'sort'          => 'integer|between:0,255',
     ];
