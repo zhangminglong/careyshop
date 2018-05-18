@@ -26,7 +26,7 @@ class GoodsComment extends CareyShop
         'is_anon'          => 'in:0,1',
         'type'             => 'integer|between:0,3',
         'content'          => 'max:200',
-        'image'            => 'array',
+        'image'            => 'arrayHasOnlyStrings',
         'score'            => 'require|integer|between:1,5',
         'is_show'          => 'in:0,1',
         'is_top'           => 'in:0,1',

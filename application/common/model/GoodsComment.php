@@ -307,7 +307,7 @@ class GoodsComment extends CareyShop
     }
 
     /**
-     * 回复一条商品评价或追加评价
+     * 回复或追评一条商品评价
      * @access public
      * @param  array $data 外部数据
      * @return array/false
@@ -361,7 +361,7 @@ class GoodsComment extends CareyShop
     }
 
     /**
-     * 批量删除商品评价任意内容(主题,追加,回复)
+     * 批量删除任意商品评价(主评,主回,追评,追回)
      * @access public
      * @param  array $data 外部数据
      * @return bool
@@ -383,9 +383,10 @@ class GoodsComment extends CareyShop
             // 如果是主评价则需要减少商品评价数
             foreach ($result as $value) {
                 if ($value->getAttr('type') === self::COMMENT_TYPE_MAIN) {
-                    $value->save(['is_delete' => 1]);
                     Goods::where(['goods_id' => ['eq', $value->getAttr('goods_id')]])->setDec('comment_sum');
                 }
+
+                $value->save(['is_delete' => 1]);
             }
 
             return true;
@@ -395,7 +396,7 @@ class GoodsComment extends CareyShop
     }
 
     /**
-     * 点赞一条商品评价(包括回复评价)
+     * 点赞任意一条商品评价(主评,主回,追评,追回)
      * @access public
      * @param  array $data 外部数据
      * @return bool
@@ -510,7 +511,7 @@ class GoodsComment extends CareyShop
     }
 
     /**
-     * 批量设置是否置顶
+     * 批量设置评价是否置顶
      * @access public
      * @param  array $data 外部数据
      * @return bool
@@ -525,7 +526,7 @@ class GoodsComment extends CareyShop
     }
 
     /**
-     * 批量设置商品评价是否已读
+     * 批量设置评价是否已读
      * @access public
      * @param  array $data 外部数据
      * @return bool
@@ -568,6 +569,7 @@ class GoodsComment extends CareyShop
         $map['is_delete'] = ['eq', 0];
 
         $result['all_count'] = $this->where($map)->count();
+        // TODO 图片合集数量需要考虑到追加评价是否带有图,并且获取列表时也需要考虑如何过滤.
         $result['image_count'] = $this->where($map)->where(['is_image' => ['eq', 1]])->count();
         $result['poor_count'] = $this->where($map)->where(['score' => ['elt', 2]])->count();
         $result['general_count'] = $this->where($map)->where(['score' => ['between', '3,4']])->count();
@@ -581,7 +583,7 @@ class GoodsComment extends CareyShop
     }
 
     /**
-     * 获取某个主评价的明细("是否已读"不关联,关联不代表看完,所以需手动设置)
+     * 获取某个评价的明细("是否已读"不关联,关联不代表看完,所以需手动设置)
      * @access public
      * @param  array $data 外部数据
      * @return array/false
@@ -643,7 +645,7 @@ class GoodsComment extends CareyShop
     }
 
     /**
-     * 获取评价列表
+     * 获取商品评价列表
      * @access public
      * @param  array $data 外部数据
      * @return array/false
