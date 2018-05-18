@@ -122,6 +122,25 @@ class Spec extends CareyShop
     }
 
     /**
+     * 替换商品规格项
+     * @access private
+     * @param  array $data 待修改数据
+     * @return void
+     */
+    private function replaceSpecItem(&$data)
+    {
+        if (!isset($data['has_spec_item'])) {
+            return;
+        }
+
+        foreach ($data['has_spec_item'] as $value) {
+            $data['spec_item'][] = $value['item_name'];
+        }
+
+        unset($data['has_spec_item']);
+    }
+
+    /**
      * 获取一条商品规格
      * @access public
      * @param  array $data 外部数据
@@ -135,7 +154,14 @@ class Spec extends CareyShop
 
         $result = self::get($data['spec_id'], 'hasSpecItem');
         if (false !== $result) {
-            return is_null($result) ? null : $result->toArray();
+            if (is_null($result)) {
+                return null;
+            }
+
+            $result = $result->toArray();
+            $this->replaceSpecItem($result);
+
+            return $result;
         }
 
         return false;
@@ -163,7 +189,12 @@ class Spec extends CareyShop
         });
 
         if (false !== $result) {
-            return $result->toArray();
+            $result = $result->toArray();
+            foreach ($result as $key => $value) {
+                $this->replaceSpecItem($result[$key]);
+            }
+
+            return $result;
         }
 
         return false;
