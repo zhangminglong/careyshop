@@ -27,12 +27,12 @@ class Spec extends CareyShop
             'add.goods.spec.item'  => ['addSpecItem'],
             // 编辑一个商品规格
             'set.goods.spec.item'  => ['setSpecItem'],
-            // 批量删除商品规格
-            'del.goods.spec.list'  => ['delSpecList'],
             // 获取一条商品规格
             'get.goods.spec.item'  => ['getSpecItem'],
             // 获取商品规格列表
             'get.goods.spec.list'  => ['getSpecList'],
+            // 批量删除商品规格
+            'del.goods.spec.list'  => ['delSpecList'],
             // 批量设置商品规格检索
             'set.goods.spec.index' => ['setSpecIndex'],
             // 设置商品规格排序

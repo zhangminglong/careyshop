@@ -19,7 +19,7 @@ class Spec extends CareyShop
      */
     protected $readonly = [
         'spec_id',
-        'goods_type_id',
+        //'goods_type_id',
     ];
 
     /**
@@ -122,6 +122,54 @@ class Spec extends CareyShop
     }
 
     /**
+     * 获取一条商品规格
+     * @access public
+     * @param  array $data 外部数据
+     * @return array/false
+     */
+    public function getSpecItem($data)
+    {
+        if (!$this->validateData($data, 'Spec.item')) {
+            return false;
+        }
+
+        $result = self::get($data['spec_id'], 'hasSpecItem');
+        if (false !== $result) {
+            return is_null($result) ? null : $result->toArray();
+        }
+
+        return false;
+    }
+
+    /**
+     * 获取商品规格列表
+     * @access public
+     * @param  array $data 外部数据
+     * @return array/false
+     */
+    public function getSpecList($data)
+    {
+        if (!$this->validateData($data, 'Spec.list')) {
+            return false;
+        }
+
+        $result = self::all(function ($query) use ($data) {
+            $map['goods_type_id'] = ['eq', $data['goods_type_id']];
+
+            $order['sort'] = 'asc';
+            $order['spec_id'] = 'asc';
+
+            $query->with('hasSpecItem')->where($map)->order($order);
+        });
+
+        if (false !== $result) {
+            return $result->toArray();
+        }
+
+        return false;
+    }
+
+    /**
      * 批量删除商品规格
      * @access public
      * @param  array $data 外部数据
@@ -152,26 +200,6 @@ class Spec extends CareyShop
     }
 
     /**
-     * 获取一条商品规格
-     * @access public
-     * @param  array $data 外部数据
-     * @return array/false
-     */
-    public function getSpecItem($data)
-    {
-        if (!$this->validateData($data, 'Spec.item')) {
-            return false;
-        }
-
-        $result = self::get($data['spec_id'], 'hasSpecItem');
-        if (false !== $result) {
-            return is_null($result) ? null : $result->toArray();
-        }
-
-        return false;
-    }
-
-    /**
      * 批量设置商品规格检索
      * @access public
      * @param  array $data 外部数据
@@ -186,34 +214,6 @@ class Spec extends CareyShop
         $map['spec_id'] = ['in', $data['spec_id']];
         if (false !== $this->save(['spec_index' => $data['spec_index']], $map)) {
             return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * 获取商品规格列表
-     * @access public
-     * @param  array $data 外部数据
-     * @return array/false
-     */
-    public function getSpecList($data)
-    {
-        if (!$this->validateData($data, 'Spec.list')) {
-            return false;
-        }
-
-        $result = self::all(function ($query) use ($data) {
-            $map['goods_type_id'] = ['eq', $data['goods_type_id']];
-
-            $order['sort'] = 'asc';
-            $order['spec_id'] = 'asc';
-
-            $query->with('hasSpecItem')->where($map)->order($order);
-        });
-
-        if (false !== $result) {
-            return $result->toArray();
         }
 
         return false;
