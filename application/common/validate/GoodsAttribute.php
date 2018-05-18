@@ -26,7 +26,7 @@ class GoodsAttribute extends CareyShop
         'goods_type_id'      => 'require|integer|gt:0',
         'attr_index'         => 'in:0,1,2',
         'attr_input_type'    => 'require|in:0,1,2',
-        'attr_values'        => 'requireIf:attr_input_type,1|requireIf:attr_input_type,2',
+        'attr_values'        => 'requireIf:attr_input_type,1|requireIf:attr_input_type,2|arrayHasOnlyStrings',
         'is_important'       => 'in:0,1',
         'sort'               => 'integer|between:0,255',
         'attribute_all'      => 'in:0,1',
