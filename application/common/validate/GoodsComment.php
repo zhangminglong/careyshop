@@ -84,7 +84,7 @@ class GoodsComment extends CareyShop
             'image',
         ],
         'del'      => [
-            'goods_comment_id' => 'require|arrayHasOnlyInts',
+            'goods_comment_id' => 'require|integer|gt:0',
         ],
         'praise'   => [
             'goods_comment_id' => 'require|integer|gt:0',

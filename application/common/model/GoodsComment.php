@@ -264,8 +264,11 @@ class GoodsComment extends CareyShop
         self::startTrans();
 
         try {
-            // 设置主评价为未读
-            if (false === $result->save(['status' => 0])) {
+            // 设置主评价为未读,并且判断追评是否存在图片
+            $updata['status'] = 0;
+            empty($data['image']) ?: $updata['is_image'] = 1;
+
+            if (false === $result->save($updata)) {
                 throw new \Exception($this->getError());
             }
 
@@ -361,38 +364,43 @@ class GoodsComment extends CareyShop
     }
 
     /**
-     * 批量删除任意商品评价(主评,主回,追评,追回)
+     * 删除任意一条商品评价(主评,主回,追评,追回)
      * @access public
      * @param  array $data 外部数据
      * @return bool
      */
-    public function delCommentList($data)
+    public function delCommentItem($data)
     {
         if (!$this->validateData($data, 'GoodsComment.del')) {
             return false;
         }
 
-        $result = self::all(function ($query) use ($data) {
-            $map['goods_comment_id'] = ['in', $data['goods_comment_id']];
+        $result = self::get(function ($query) use ($data) {
+            $map['goods_comment_id'] = ['eq', $data['goods_comment_id']];
             $map['is_delete'] = ['eq', 0];
 
             $query->where($map);
         });
 
-        if (false !== $result) {
-            // 如果是主评价则需要减少商品评价数
-            foreach ($result as $value) {
-                if ($value->getAttr('type') === self::COMMENT_TYPE_MAIN) {
-                    Goods::where(['goods_id' => ['eq', $value->getAttr('goods_id')]])->setDec('comment_sum');
-                }
-
-                $value->save(['is_delete' => 1]);
-            }
-
-            return true;
+        if (!$result) {
+            return is_null($result) ? $this->setError('数据不存在') : false;
         }
 
-        return false;
+        // 软删除评价
+        $result->save(['is_delete' => 1]);
+
+        // 如果是追评需要处理主评是否有图
+        if ($result->getAttr('type') === self::COMMENT_TYPE_ADDITION && $result->getAttr('is_image') === 1) {
+            $map['goods_comment_id'] = ['eq', $result->getAttr('parent_id')];
+            $map['is_delete'] = ['eq', 0];
+
+            $mainResult = $this->where($map)->find();
+            if ($mainResult && empty($mainResult->getAttr('image'))) {
+                $mainResult->save(['is_image' => 0]);
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -569,6 +577,7 @@ class GoodsComment extends CareyShop
         $map['is_delete'] = ['eq', 0];
 
         $result['all_count'] = $this->where($map)->count();
+        $result['image_count'] = $this->where($map)->where(['is_image' => ['eq', 1]])->count();
         $result['poor_count'] = $this->where($map)->where(['score' => ['elt', 2]])->count();
         $result['general_count'] = $this->where($map)->where(['score' => ['between', '3,4']])->count();
         $result['good_count'] = $this->where($map)->where(['score' => ['eq', 5]])->count();
@@ -576,11 +585,6 @@ class GoodsComment extends CareyShop
         // 带有追加评论的
         $map['type'] = ['eq', self::COMMENT_TYPE_ADDITION];
         $result['addition_count'] = $this->where($map)->count();
-
-        // 带有图片的评论
-        $map['type'] = ['elt', self::COMMENT_TYPE_MAIN_REPLY];
-        $map['is_image'] = ['eq', 1];
-        $result['image_count'] = $this->where($map)->group('order_goods_id')->count();
 
         return $result;
     }
@@ -663,7 +667,7 @@ class GoodsComment extends CareyShop
         $map['goods_comment.type'] = ['eq', self::COMMENT_TYPE_MAIN];
         $map['goods_comment.is_delete'] = ['eq', 0];
 
-        empty($data['is_image']) ?: $map['goods_comment.is_show'] = ['eq', $data['is_image']];
+        empty($data['is_image']) ?: $map['goods_comment.is_image'] = ['eq', $data['is_image']];
         empty($data['goods_id']) ?: $map['goods_comment.goods_id'] = ['eq', $data['goods_id']];
         is_client_admin() ?: $map['goods_comment.is_show'] = ['eq', 1];
 

@@ -29,8 +29,8 @@ class GoodsComment extends CareyShop
             'add.goods.addition.item'  => ['addAdditionItem'],
             // 回复或追评一条商品评价
             'reply.goods.comment.item' => ['replyCommentItem'],
-            // 批量删除任意商品评价(主评,主回,追评,追回)
-            'del.goods.comment.list'   => ['delCommentList'],
+            // 删除任意一条商品评价(主评,主回,追评,追回)
+            'del.goods.comment.item'   => ['delCommentItem'],
             // 点赞任意一条商品评价(主评,主回,追评,追回)
             'add.goods.praise.item'    => ['addPraiseItem'],
             // 获取一个商品评价得分
