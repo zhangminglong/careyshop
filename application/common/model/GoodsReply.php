@@ -11,8 +11,6 @@
 
 namespace app\common\model;
 
-use \think\Db;
-
 class GoodsReply extends CareyShop
 {
     /**
