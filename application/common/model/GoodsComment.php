@@ -676,7 +676,7 @@ class GoodsComment extends CareyShop
             $map['goods_comment.type'] = ['eq', self::COMMENT_TYPE_ADDITION];
         }
 
-        // 处理"好中差"评价搜索(0=好评 1=中评 其他:差评)
+        // 处理"好中差"评价搜索(0=好评 1=中评 其他=差评)
         if (isset($data['score'])) {
             switch ($data['score']) {
                 case 0:
@@ -762,8 +762,12 @@ class GoodsComment extends CareyShop
             $order['goods_comment.' . $orderField] = $orderType;
             $order['goods_comment.goods_comment_id'] = $orderType;
 
+            // 过滤不需要返回的字段
+            $field = 'goods_id,order_goods_id,is_show,is_top';
+            is_client_admin() ?: $field .= ',status';
+
             $query
-                ->field('goods_id,order_goods_id,is_show,is_top,status', true)
+                ->field($field, true)
                 ->with($with)
                 ->where($map)
                 ->order($order)

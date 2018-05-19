@@ -33,7 +33,7 @@ class GoodsComment extends CareyShop
         'status'           => 'in:0,1',
         'account'          => 'max:60',
         'is_image'         => 'in:0,1',
-        'goods_spec'       => 'array',
+        'goods_spec'       => 'arrayHasOnlyStrings',
         'page_no'          => 'integer|gt:0',
         'page_size'        => 'integer|between:1,40',
         'order_type'       => 'in:asc,desc',
@@ -113,7 +113,7 @@ class GoodsComment extends CareyShop
         'list'     => [
             'goods_id' => 'integer|gt:0',
             'order_no' => 'max:50',
-            'type',
+            'type'     => 'integer|in:0,2',
             'account',
             'content',
             'score'    => 'integer|between:0,2',
