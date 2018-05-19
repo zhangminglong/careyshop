@@ -569,15 +569,18 @@ class GoodsComment extends CareyShop
         $map['is_delete'] = ['eq', 0];
 
         $result['all_count'] = $this->where($map)->count();
-        // TODO 图片合集数量需要考虑到追加评价是否带有图,并且获取列表时也需要考虑如何过滤.
-        $result['image_count'] = $this->where($map)->where(['is_image' => ['eq', 1]])->count();
         $result['poor_count'] = $this->where($map)->where(['score' => ['elt', 2]])->count();
         $result['general_count'] = $this->where($map)->where(['score' => ['between', '3,4']])->count();
         $result['good_count'] = $this->where($map)->where(['score' => ['eq', 5]])->count();
 
-        // 评价类型不同,所以最后处理
+        // 带有追加评论的
         $map['type'] = ['eq', self::COMMENT_TYPE_ADDITION];
         $result['addition_count'] = $this->where($map)->count();
+
+        // 带有图片的评论
+        $map['type'] = ['elt', self::COMMENT_TYPE_MAIN_REPLY];
+        $map['is_image'] = ['eq', 1];
+        $result['image_count'] = $this->where($map)->group('order_goods_id')->count();
 
         return $result;
     }
