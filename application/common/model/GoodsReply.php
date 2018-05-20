@@ -79,14 +79,9 @@ class GoodsReply extends CareyShop
 
         // 获取被回复者Id,如果"goods_reply_id"空则默认获取主评价者Id
         if (empty($data['goods_reply_id'])) {
-            $userId = $this
-                ->getComment()
-                ->where(['goods_comment_id' => ['eq', $data['goods_comment_id']]])
-                ->value('user_id');
+            $userId = GoodsComment::where(['goods_comment_id' => ['eq', $data['goods_comment_id']]])->value('user_id');
         } else {
-            $userId = $this
-                ->where(['goods_reply_id' => ['eq', $data['goods_reply_id']]])
-                ->value('user_id');
+            $userId = $this->where(['goods_reply_id' => ['eq', $data['goods_reply_id']]])->value('user_id');
         }
 
         // 避免无关字段及初始化数据
@@ -101,7 +96,7 @@ class GoodsReply extends CareyShop
         if (!empty($userId)) {
             $messageData = [
                 'type'    => 0,
-                'member'  => 0,
+                'member'  => 1,
                 'title'   => '您的商品评价收到了最新回复',
                 'content' => $data['nick_name'] . ' 对您的评价进行了回复：' . $data['content'],
             ];
@@ -110,11 +105,7 @@ class GoodsReply extends CareyShop
         }
 
         if (false !== $this->allowField(true)->save($data)) {
-            $this
-                ->getComment()
-                ->where(['goods_comment_id' => ['eq', $data['goods_comment_id']]])
-                ->setInc('reply_count');
-
+            GoodsComment::where(['goods_comment_id' => ['eq', $data['goods_comment_id']]])->setInc('reply_count');
             return $this->toArray();
         }
 
@@ -165,7 +156,7 @@ class GoodsReply extends CareyShop
         $map['is_delete'] = ['eq', 0];
         is_client_admin() ?: $map['is_show'] = ['eq', 1];
 
-        if ($this->getComment()->where($map)->count() <= 0) {
+        if (false === GoodsComment::checkUnique($map)) {
             return ['total_result' => 0];
         }
 
@@ -184,7 +175,10 @@ class GoodsReply extends CareyShop
             // 每页条数
             $pageSize = isset($data['page_size']) ? $data['page_size'] : config('paginate.list_rows');
 
-            $query->where($map)->order(['goods_reply_id' => 'desc'])->page($pageNo, $pageSize);
+            $query
+                ->where($map)
+                ->order(['goods_reply_id' => 'asc'])
+                ->page($pageNo, $pageSize);
         });
 
         if (false !== $result) {
