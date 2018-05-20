@@ -56,16 +56,6 @@ class GoodsReply extends CareyShop
     ];
 
     /**
-     * belongsTo cs_goods_comment
-     * @access public
-     * @return $this
-     */
-    public function getComment()
-    {
-        return $this->belongsTo('GoodsComment', 'goods_comment_id');
-    }
-
-    /**
      * 对商品评价添加一个回复(管理组不参与评价回复)
      * @access public
      * @param  array $data 外部数据
@@ -128,7 +118,7 @@ class GoodsReply extends CareyShop
         if (false !== $result) {
             foreach ($result as $value) {
                 $map['goods_comment_id'] = ['eq', $value->getAttr('goods_comment_id')];
-                $value->getComment()->where($map)->setDec('reply_count');
+                GoodsComment::where($map)->setDec('reply_count');
                 $value->delete();
             }
 
