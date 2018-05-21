@@ -44,7 +44,7 @@ class GoodsConsult extends CareyShop
         'goods_id'         => '商品编号',
         'is_anon'          => '是否匿名',
         'type'             => '商品咨询类型',
-        'content'          => '商品咨询内容',
+        'content'          => '内容',
         'is_show'          => '是否显示',
         'status'           => '是否回复',
         'is_answer'        => '是否显示完整问答列表',
