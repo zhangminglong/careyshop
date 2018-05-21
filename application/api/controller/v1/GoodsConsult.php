@@ -31,7 +31,7 @@ class GoodsConsult extends CareyShop
             'set.goods.consult.show'   => ['setConsultShow'],
             // 回复一个商品咨询
             'reply.goods.consult.item' => ['replyConsultItem'],
-            // 根据商品咨询主Id获取一个问答明细
+            // 获取一个商品咨询问答明细
             'get.goods.consult.item'   => ['getConsultItem'],
             // 获取商品咨询列表
             'get.goods.consult.list'   => ['getConsultList'],

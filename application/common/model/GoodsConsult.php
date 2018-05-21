@@ -209,7 +209,7 @@ class GoodsConsult extends CareyShop
     }
 
     /**
-     * 根据商品咨询主Id获取一个问答明细
+     * 获取一个商品咨询问答明细
      * @access public
      * @param  array $data 外部数据
      * @return array/false
