@@ -20,13 +20,13 @@ class Ask extends CareyShop
     const ASK_TYPT_THEME = 0;
 
     /**
-     * 咨询
+     * 提问
      * @var int
      */
     const ASK_TYPT_ASK = 1;
 
     /**
-     * 回复
+     * 回答
      * @var int
      */
     const ASK_TYPT_ANSWER = 2;
@@ -107,7 +107,7 @@ class Ask extends CareyShop
     }
 
     /**
-     * 添加一条提问
+     * 添加一个提问
      * @access public
      * @param  array $data 外部数据
      * @return bool
@@ -178,7 +178,7 @@ class Ask extends CareyShop
     }
 
     /**
-     * 在主题上提交一个咨询或回复
+     * 在主题上提交一个提问或回答
      * @access private
      * @param  array $data 提交数据
      * @param  bool  $isQa true:咨询 false:回复
@@ -229,7 +229,7 @@ class Ask extends CareyShop
     }
 
     /**
-     * 回复一个咨询
+     * 回答一个提问
      * @access public
      * @param  array $data 外部数据
      * @return array/false
@@ -249,7 +249,7 @@ class Ask extends CareyShop
     }
 
     /**
-     * 在主题上继续提交咨询
+     * 在提问上继续提问
      * @access public
      * @param  array $data 外部数据
      * @return array/false
@@ -269,7 +269,7 @@ class Ask extends CareyShop
     }
 
     /**
-     * 根据主题获取一个问答明细
+     * 获取一个问答明细
      * @access public
      * @param  array $data 外部数据
      * @return array/false
@@ -302,7 +302,7 @@ class Ask extends CareyShop
     }
 
     /**
-     * 获取咨询主题列表
+     * 获取问答主题列表
      * @access public
      * @param  array $data 外部数据
      * @return array/false

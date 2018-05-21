@@ -36,12 +36,12 @@ class Ask extends CareyShop
      * @var array
      */
     protected $field = [
-        'answer'      => '回复内容',
-        'ask_id'      => '咨询编号',
-        'ask_type'    => '咨询类型',
-        'status'      => '是否回复',
-        'title'       => '咨询标题',
-        'ask'         => '咨询内容',
+        'answer'      => '回答内容',
+        'ask_id'      => '问答编号',
+        'ask_type'    => '提问类型',
+        'status'      => '是否回答',
+        'title'       => '提问主题',
+        'ask'         => '提问内容',
         'account'     => '账号或昵称',
         'page_no'     => '页码',
         'page_size'   => '每页数量',
