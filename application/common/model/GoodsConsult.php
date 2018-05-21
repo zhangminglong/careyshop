@@ -85,7 +85,7 @@ class GoodsConsult extends CareyShop
     {
         return $this
             ->hasOne('Goods', 'goods_id', 'goods_id', [], 'left')
-            ->field('goods_id,name')
+            ->field('goods_id,name,attachment')
             ->setEagerlyType(0);
     }
 
@@ -265,14 +265,19 @@ class GoodsConsult extends CareyShop
                 $map['getUser.username|getUser.nickname'] = ['eq', $data['account']];
             }
         } else {
+            // 当goods_id为空,表示顾客组想要获取属于他自己的咨询列表
             if (empty($data['goods_id'])) {
                 $map['getUser.user_id'] = ['eq', get_client_id()];
+                unset($data['is_show']);
+            } else {
+                // 否则表示获取指定商品下的咨询列表,所以需要加上is_show为条件
+                $data['is_show'] = 1;
             }
         }
 
         !isset($data['type']) ?: $map['goods_consult.type'] = ['eq', $data['type']];
         !isset($data['status']) ?: $map['goods_consult.status'] = ['eq', $data['status']];
-        !isset($data['is_show']) ?: $map['goods_consult.is_show'] = ['eq', $data['is_show'] == 1 ?: 0];
+        !isset($data['is_show']) ?: $map['goods_consult.is_show'] = ['eq', $data['is_show']];
         empty($data['content']) ?: $map['goods_consult.content'] = ['like', '%' . $data['content'] . '%'];
 
         $totalResult = $this->with('getUser')->where($map)->count();
