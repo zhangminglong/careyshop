@@ -253,7 +253,7 @@ class Goods extends CareyShop
      */
     public function checkLeast($value, $rule, $data)
     {
-        if (isset($data[$rule]) && $value < $data[$rule]) {
+        if (isset($data[$rule]) && $value > $data[$rule]) {
             return $this->field['least_sum'] . '必须大于等于 ' . $this->field[$rule];
         }
 
