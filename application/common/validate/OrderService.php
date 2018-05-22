@@ -24,7 +24,7 @@ class OrderService extends CareyShop
         'qty'            => 'integer|gt:0',
         'reason'         => 'max:100',
         'description'    => 'max:255',
-        'image'          => 'array',
+        'image'          => 'arrayHasOnlyStrings',
         'result'         => 'max:100',
         'remark'         => 'max:255',
         'is_return'      => 'in:0,1',

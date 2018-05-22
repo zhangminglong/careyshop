@@ -96,8 +96,9 @@ class Payment extends CareyShop
             return false;
         }
 
-        // 避免无关字段
+        // 避免无关字段及数据初始化
         unset($data['payment_id']);
+        !empty($data['setting']) ?: $data['setting'] = [];
 
         if (false !== $this->allowField(true)->save($data)) {
             Cache::clear('Payment');
@@ -117,6 +118,10 @@ class Payment extends CareyShop
     {
         if (!$this->validateSetData($data, 'Payment.set')) {
             return false;
+        }
+
+        if (isset($data['setting']) && '' == $data['setting']) {
+            $data['setting'] = [];
         }
 
         $map['payment_id'] = ['eq', $data['payment_id']];

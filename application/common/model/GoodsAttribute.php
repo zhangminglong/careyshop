@@ -79,11 +79,6 @@ class GoodsAttribute extends CareyShop
             return false;
         }
 
-        //避免无关字段及初始化部分数据
-        unset($data['goods_attribute_id'], $data['parent_id'], $data['is_delete']);
-        $data['attr_input_type'] = 0;
-        $data['attr_values'] = [];
-
         $field = ['attr_name', 'description', 'icon', 'goods_type_id', 'sort'];
         if (false !== $this->allowField($field)->save($data)) {
             return $this->hidden(['attr_input_type', 'attr_values'])->toArray();
@@ -103,9 +98,6 @@ class GoodsAttribute extends CareyShop
         if (!$this->validateSetData($data, 'GoodsAttribute.bodyset')) {
             return false;
         }
-
-        // 避免无关字段
-        unset($data['is_delete']);
 
         $map['goods_attribute_id'] = ['eq', $data['goods_attribute_id']];
         $map['parent_id'] = ['eq', 0];
