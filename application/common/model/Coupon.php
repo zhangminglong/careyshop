@@ -89,6 +89,7 @@ class Coupon extends CareyShop
         unset($data['coupon_id'], $data['receive_num'], $data['use_num']);
         !empty($data['category']) ?: $data['category'] = [];
         !empty($data['exclude_category']) ?: $data['exclude_category'] = [];
+        !empty($data['level']) ?: $data['level'] = [];
 
         if (2 != $data['type']) {
             unset($data['give_code']);
@@ -115,8 +116,19 @@ class Coupon extends CareyShop
 
         // 避免不允许修改字段
         unset($data['type'], $data['give_code'], $data['receive_num'], $data['use_num']);
-        !empty($data['category']) ?: $data['category'] = [];
-        !empty($data['exclude_category']) ?: $data['exclude_category'] = [];
+
+        // 处理数组字段
+        if (isset($data['category']) && '' == $data['category']) {
+            $data['category'] = [];
+        }
+
+        if (isset($data['exclude_category']) && '' == $data['exclude_category']) {
+            $data['exclude_category'] = [];
+        }
+
+        if (isset($data['level']) && '' == $data['level']) {
+            $data['level'] = [];
+        }
 
         $map['coupon_id'] = ['eq', $data['coupon_id']];
         $map['is_delete'] = ['eq', 0];

@@ -51,6 +51,8 @@ class AuthRule extends CareyShop
 
         // 避免无关字段
         unset($data['rule_id']);
+        !empty($data['menu_auth']) ?: $data['menu_auth'] = [];
+        !empty($data['log_auth']) ?: $data['log_auth'] = [];
 
         $map['module'] = ['eq', $data['module']];
         $map['group_id'] = ['eq', $data['group_id']];
@@ -104,6 +106,16 @@ class AuthRule extends CareyShop
             return false;
         }
 
+        // 数组字段特殊处理
+        if (isset($data['menu_auth']) && '' == $data['menu_auth']) {
+            $data['menu_auth'] = [];
+        }
+
+        if (isset($data['log_auth']) && '' == $data['log_auth']) {
+            $data['log_auth'] = [];
+        }
+
+        // 获取原始数据
         $result = self::get($data['rule_id']);
         if (!$result) {
             return is_null($result) ? $this->setError('数据不存在') : false;

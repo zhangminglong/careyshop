@@ -82,6 +82,7 @@ class GoodsAttribute extends CareyShop
         //避免无关字段及初始化部分数据
         unset($data['goods_attribute_id'], $data['parent_id'], $data['is_delete']);
         $data['attr_input_type'] = 0;
+        $data['attr_values'] = [];
 
         $field = ['attr_name', 'description', 'icon', 'goods_type_id', 'sort'];
         if (false !== $this->allowField($field)->save($data)) {
@@ -192,7 +193,7 @@ class GoodsAttribute extends CareyShop
 
         // 当attr_input_type为手工填写(值=0)时需要清除attr_values
         if (0 == $data['attr_input_type']) {
-            unset($data['attr_values']);
+            $data['attr_values'] = [];
         }
 
         if (false !== $this->allowField(true)->save($data)) {
@@ -219,7 +220,7 @@ class GoodsAttribute extends CareyShop
 
         // 当attr_input_type为手工填写(值=0)时需要清除attr_values
         if (isset($data['attr_input_type']) && 0 == $data['attr_input_type']) {
-            $data['attr_values'] = null;
+            $data['attr_values'] = [];
         }
 
         $map['goods_attribute_id'] = ['eq', $data['goods_attribute_id']];

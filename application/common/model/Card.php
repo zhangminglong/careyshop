@@ -127,8 +127,15 @@ class Card extends CareyShop
 
         // 避免不允许修改字段
         unset($data['active_num'], $data['is_delete']);
-        !empty($data['category']) ?: $data['category'] = [];
-        !empty($data['exclude_category']) ?: $data['exclude_category'] = [];
+
+        // 数组字段特殊处理
+        if (isset($data['category']) && '' == $data['category']) {
+            $data['category'] = [];
+        }
+
+        if (isset($data['exclude_category']) && '' == $data['exclude_category']) {
+            $data['exclude_category'] = [];
+        }
 
         $map['card_id'] = ['eq', $data['card_id']];
         $map['is_delete'] = ['eq', 0];

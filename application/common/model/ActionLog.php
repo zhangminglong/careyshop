@@ -41,6 +41,8 @@ class ActionLog extends CareyShop
         'action_log_id' => 'integer',
         'client_type'   => 'integer',
         'user_id'       => 'integer',
+        'params'        => 'json',
+        'result'        => 'json',
         'status'        => 'integer',
     ];
 }

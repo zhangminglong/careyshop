@@ -119,8 +119,8 @@ class Auth extends CareyShop
             'username'    => get_client_name(),
             'path'        => $request->path(),
             'module'      => $class,
-            'params'      => json_encode($request->param(), JSON_UNESCAPED_UNICODE),
-            'result'      => json_encode(false === $result ? $error : $result, JSON_UNESCAPED_UNICODE),
+            'params'      => $request->param(),
+            'result'      => false === $result ? $error : $result,
             'ip'          => $request->ip(),
             'status'      => false === $result ? 1 : 0,
         ];

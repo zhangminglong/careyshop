@@ -63,6 +63,7 @@ class Ads extends CareyShop
 
         // 避免无关字段
         unset($data['ads_id'], $data['platform'], $data['type']);
+        isset($data['content']) ?: $data['content'] = '';
 
         // 获取广告位
         $result = AdsPosition::get(function ($query) use ($data) {

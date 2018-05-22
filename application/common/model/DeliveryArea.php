@@ -55,7 +55,7 @@ class DeliveryArea extends CareyShop
      */
     private function setRegionData(&$data, $areaId)
     {
-        if (isset($data['region'])) {
+        if (isset($data['region']) && is_array($data['region'])) {
             $data['region'] = array_unique($data['region']);
             if ($this->checkRegionUnique($data['region'], $data['delivery_id'], $areaId)) {
                 return false;
@@ -128,12 +128,13 @@ class DeliveryArea extends CareyShop
      */
     public function addAreaItem($data)
     {
-        // 避免无关字段
-        unset($data['delivery_area_id']);
-
         if (!$this->validateData($data, 'DeliveryArea') || !$this->setRegionData($data, 0)) {
             return false;
         }
+
+        // 避免无关字段,及数组字段特殊处理
+        unset($data['delivery_area_id']);
+        !empty($data['region']) ?: $data['region'] = [];
 
         if (false !== $this->allowField(true)->save($data)) {
             return $this->toArray();
@@ -154,11 +155,24 @@ class DeliveryArea extends CareyShop
             return false;
         }
 
+        // 搜索条件
+        $map['delivery_area_id'] = ['eq', $data['delivery_area_id']];
+
+        if (empty($data['delivery_id'])) {
+            $deliveryId = $this->where($map)->value('delivery_id');
+            is_null($deliveryId) ?: $data['delivery_id'] = $deliveryId;
+        }
+
+        // 验证所辖区域是否已存在,并且获取区域的组合数组
         if (!$this->setRegionData($data, $data['delivery_area_id'])) {
             return false;
         }
 
-        $map['delivery_area_id'] = ['eq', $data['delivery_area_id']];
+        // 数组字段特殊处理
+        if (isset($data['region']) && '' == $data['region']) {
+            $data['region'] = [];
+        }
+
         if (false !== $this->allowField(true)->save($data, $map)) {
             return $this->toArray();
         }

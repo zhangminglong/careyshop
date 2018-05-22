@@ -49,6 +49,7 @@ class AdsPosition extends CareyShop
 
         // 避免无关字段
         unset($data['ads_position_id']);
+        isset($data['content']) ?: $data['content'] = '';
 
         if (false !== $this->allowField(true)->save($data)) {
             return $this->toArray();
