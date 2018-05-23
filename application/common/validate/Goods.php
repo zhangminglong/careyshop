@@ -134,7 +134,6 @@ class Goods extends CareyShop
             'bar_code',
             'brand_id',
             'store_qty',
-            'measure',
             'is_postage',
             'measure',
             'measure_type',
