@@ -91,14 +91,23 @@ class CareyShop extends Validate
             return $args[4] . '必须是数组';
         }
 
-        if ($args[0] === array_filter($args[0], function ($value) {
-                return $this->filter($value, FILTER_VALIDATE_INT) && $value > 0;
+        $isZero = 'zero' == $args[1]; // 允许存在小于等于0的整数
+        if ($args[0] === array_filter($args[0], function ($value) use ($isZero) {
+                if ($this->filter($value, FILTER_VALIDATE_INT)) {
+                    if (false == $isZero && $value <= 0) {
+                        return false;
+                    }
+
+                    return true;
+                }
+
+                return false;
             })
         ) {
             return true;
         }
 
-        return $args[4] . '内的键值必须是大于零的整数';
+        return $args[4] . ($isZero ? '内的键值必须是合法的整数' : '内的键值必须是大于零的整数');
     }
 
     /**
