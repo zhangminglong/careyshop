@@ -559,7 +559,7 @@ class Goods extends CareyShop
         empty($data['goods_id']) ?: $map['goods_id'] = ['in', $data['goods_id']];
         empty($data['exclude_id']) ?: $map['goods_id'] = ['not in', $data['exclude_id']];
         !isset($data['goods_category_id']) ?: $map['goods_category_id'] = ['eq', $data['goods_category_id']];
-        empty($data['name']) ?: $map['name'] = ['like', '%' . $data['name'] . '%'];
+        empty($data['name']) ?: $map['name|short_name'] = ['like', '%' . $data['name'] . '%'];
         empty($data['goods_code']) ?: $map['goods_code|goods_spu|goods_sku|bar_code'] = ['eq', $data['goods_code']];
         !isset($data['brand_id']) ?: $map['brand_id'] = ['eq', $data['brand_id']];
         !isset($data['store_qty']) ?: $map['store_qty'] = ['between', $data['store_qty']];
@@ -569,10 +569,11 @@ class Goods extends CareyShop
         !isset($data['is_new']) ?: $map['is_new'] = ['eq', $data['is_new']];
         !isset($data['is_hot']) ?: $map['is_hot'] = ['eq', $data['is_hot']];
         !isset($data['status']) ?: $map['status'] = ['eq', $data['status']];
+        $map['is_delete'] = ['eq', 0];
 
         // 回收站中不存在"上下架"概念
-        if (isset($data['is_delete'])) {
-            $map['is_delete'] = ['eq', $data['is_delete']];
+        if (!empty($data['is_delete'])) {
+            $map['is_delete'] = ['eq', 1];
             unset($data['status']);
         }
 
@@ -594,7 +595,7 @@ class Goods extends CareyShop
             // 排序的字段
             $orderField = !empty($data['order_field']) ? $data['order_field'] : 'goods_id';
 
-            if (isset($data['is_goods_spec']) && 1 == $data['is_goods_spec']) {
+            if (!empty($data['is_goods_spec'])) {
                 $query->with('goodsSpecItem');
             }
 
@@ -1185,7 +1186,7 @@ class Goods extends CareyShop
 
         // 搜索条件
         $map['goods_category_id'] = ['in', $goodsCateList];
-        empty($data['keywords']) ?: $map['name'] = ['like', '%' . $data['keywords'] . '%'];
+        empty($data['keywords']) ?: $map['name|short_name'] = ['like', '%' . $data['keywords'] . '%'];
         !isset($data['is_postage']) ?: $map['is_postage'] = ['eq', $data['is_postage']];
         empty($data['is_integral']) ?: $map['is_integral'] = ['gt', 0];
         empty($data['bar_code']) ?: $map['bar_code'] = ['eq', $data['bar_code']];
