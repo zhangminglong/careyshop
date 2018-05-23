@@ -20,12 +20,12 @@ class CouponGive extends CareyShop
     protected $rule = [
         'coupon_give_id' => 'integer|gt:0',
         'coupon_id'      => 'require|integer|gt:0',
-        'username'       => 'array',
-        'user_level_id'  => 'array',
+        'username'       => 'arrayHasOnlyStrings',
+        'user_level_id'  => 'arrayHasOnlyInts:zero',
         'give_number'    => 'integer|gt:0',
         'give_code'      => 'max:10',
         'exchange_code'  => 'max:10',
-        'goods_id'       => 'array',
+        'goods_id'       => 'arrayHasOnlyInts',
         'pay_amount'     => 'float|gt:0|regex:^\d+(\.\d{1,2})?$',
         'type'           => 'in:normal,used,invalid,delete',
         'account'        => 'max:80',
@@ -86,13 +86,13 @@ class CouponGive extends CareyShop
             'coupon_id',
         ],
         'select' => [
-            'goods_id'   => 'require|array',
+            'goods_id'   => 'require|arrayHasOnlyInts',
             'pay_amount' => 'require|float|gt:0|regex:^\d+(\.\d{1,2})?$',
         ],
         'check'  => [
             'coupon_give_id',
             'exchange_code',
-            'goods_id'   => 'require|array',
+            'goods_id'   => 'require|arrayHasOnlyInts',
             'pay_amount' => 'require|float|gt:0|regex:^\d+(\.\d{1,2})?$',
         ],
         'use'    => [
