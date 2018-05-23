@@ -371,7 +371,7 @@ class Goods extends CareyShop
     }
 
     /**
-     * 批量开启或关闭商品可积分抵扣
+     * 批量设置或关闭商品可积分抵扣
      * @access public
      * @param  array $data 外部数据
      * @return bool
@@ -1299,7 +1299,7 @@ class Goods extends CareyShop
             return [];
         }
 
-        $url = 'https://suggest.taobao.com/sug?code=utf-8&q=' . $data['keywords'];
+        $url = 'https://suggest.taobao.com/sug?code=utf-8&q=' . urlencode($data['keywords']);
         $httpResult = json_decode(Http::httpGet($url), true);
 
         $result = [];
