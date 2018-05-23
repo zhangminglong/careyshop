@@ -91,10 +91,6 @@ class Coupon extends CareyShop
         !empty($data['exclude_category']) ?: $data['exclude_category'] = [];
         !empty($data['level']) ?: $data['level'] = [];
 
-        if (2 != $data['type']) {
-            unset($data['give_code']);
-        }
-
         if (false !== $this->allowField(true)->save($data)) {
             return $this->toArray();
         }
