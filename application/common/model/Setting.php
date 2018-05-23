@@ -203,7 +203,7 @@ class Setting extends CareyShop
                     case 'number_exclude':
                     case 'dec_exclude':
                         !empty($value) ?: $value = [];
-                        $this->setSettingItem($key, $value, 'delivery', 'Setting.array', true);
+                        $this->setSettingItem($key, $value, 'delivery', 'Setting.int_array', true);
                         break;
 
                     default:

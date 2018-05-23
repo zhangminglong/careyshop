@@ -98,7 +98,7 @@ class Brand extends CareyShop
             'order_field',
         ],
         'select' => [
-            'goods_category_id' => 'array',
+            'goods_category_id' => 'arrayHasOnlyInts:zero',
         ],
         'sort'   => [
             'brand_id' => 'require|integer|gt:0',

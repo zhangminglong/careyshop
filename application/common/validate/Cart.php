@@ -20,7 +20,7 @@ class Cart extends CareyShop
     protected $rule = [
         'cart_id'     => 'integer|gt:0',
         'goods_id'    => 'require|integer|gt:0',
-        'goods_spec'  => 'array',
+        'goods_spec'  => 'arrayHasOnlyInts',
         'goods_num'   => 'require|integer|gt:0',
         'is_selected' => 'in:0,1',
         'show_size'   => 'egt:0',

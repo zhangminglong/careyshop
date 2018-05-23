@@ -22,7 +22,7 @@ class DeliveryDist extends CareyShop
         'order_code'    => 'require|max:50',/*|unique:delivery_dist'*/
         'delivery_id'   => 'require|integer|gt:0',
         'logistic_code' => 'require|max:50',
-        'exclude_code'  => 'array',
+        'exclude_code'  => 'arrayHasOnlyStrings',
         'is_trace'      => 'in:0,1',
         'state'         => 'in:0,1,2,3,4,201',
         'is_sub'        => 'in:0,1',

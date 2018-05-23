@@ -45,7 +45,7 @@ class Order extends CareyShop
         'sellers_remark'       => 'max:255',
         'is_get_log'           => 'in:0,1',
         'is_recycle'           => 'in:0,1,2',
-        'order_goods_id'       => 'array',
+        'order_goods_id'       => 'arrayHasOnlyInts',
         'logistic_code'        => 'max:50',
         'is_export'            => 'in:0,1',
         'payment_code'         => 'integer|egt:0',
@@ -185,7 +185,7 @@ class Order extends CareyShop
         ],
         'delivery'     => [
             'order_no'       => 'require|max:50',
-            'order_goods_id' => 'require|array',
+            'order_goods_id' => 'require|arrayHasOnlyInts',
             'logistic_code',
             'delivery_id',
         ],

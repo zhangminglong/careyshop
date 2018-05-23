@@ -56,6 +56,9 @@ class Setting extends CareyShop
         'array'       => [
             'value' => 'array',
         ],
+        'int_array'   => [
+            'value' => 'arrayHasOnlyInts:zero',
+        ],
         'between'     => [
             'value' => 'require|between:0,100',
         ],

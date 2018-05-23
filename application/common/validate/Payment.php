@@ -32,7 +32,7 @@ class Payment extends CareyShop
         'status'       => 'in:0,1',
         'type'         => 'in:deposit,inpour,payment,refund',
         'is_select'    => 'in:0,1',
-        'exclude_code' => 'array',
+        'exclude_code' => 'arrayHasOnlyInts:zero',
     ];
 
     /**

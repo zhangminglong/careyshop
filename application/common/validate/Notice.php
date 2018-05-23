@@ -70,7 +70,7 @@ class Notice extends CareyShop
             'status'     => 'require|in:0,1',
         ],
         'status'    => [
-            'code'   => 'require|array',
+            'code'   => 'require|arrayHasOnlyStrings',
             'status' => 'require|in:0,1',
         ],
     ];
