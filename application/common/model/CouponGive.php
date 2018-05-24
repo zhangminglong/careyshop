@@ -55,7 +55,10 @@ class CouponGive extends CareyShop
      */
     public function getCoupon()
     {
-        return $this->belongsTo('Coupon', 'coupon_id')->setEagerlyType(0);
+        return $this
+            ->belongsTo('Coupon', 'coupon_id')
+            ->field('is_delete', true)
+            ->setEagerlyType(0);
     }
 
     /**
@@ -126,7 +129,7 @@ class CouponGive extends CareyShop
         $map['is_invalid'] = ['eq', 0];
         $map['is_delete'] = ['eq', 0];
 
-        $couponResult = $this->getCoupon()->where($map)->find();
+        $couponResult = Coupon::where($map)->find();
         if (!$couponResult) {
             return is_null($couponResult) ? $this->setError('优惠劵已失效') : false;
         }
@@ -187,8 +190,8 @@ class CouponGive extends CareyShop
             unset($map);
             $map['coupon_id'] = ['eq', $couponId];
 
-            if (!$this->getCoupon()->where($map)->setInc('receive_num', count($userId))) {
-                throw new \Exception($this->getError());
+            if (!$couponResult->where($map)->setInc('receive_num', count($userId))) {
+                throw new \Exception($couponResult->getError());
             }
 
             self::commit();
@@ -200,7 +203,7 @@ class CouponGive extends CareyShop
     }
 
     /**
-     * 指定用户发放优惠劵
+     * 向指定用户发放优惠劵
      * @access public
      * @param  array $data 外部数据
      * @return bool
@@ -267,7 +270,7 @@ class CouponGive extends CareyShop
             return false;
         }
 
-        $result = $this->getCoupon()->where(['give_code' => ['eq', $data['give_code']]])->find();
+        $result = Coupon::where(['give_code' => ['eq', $data['give_code']]])->find();
         if (!$result) {
             return is_null($result) ? $this->setError('优惠劵领取码无效') : false;
         }
@@ -365,6 +368,7 @@ class CouponGive extends CareyShop
             $pageSize = isset($data['page_size']) ? $data['page_size'] : config('paginate.list_rows');
 
             $query
+                ->field('is_delete', true)
                 ->with($with)
                 ->where($map)
                 ->where(function ($query) use ($mapOr) {
@@ -393,11 +397,24 @@ class CouponGive extends CareyShop
             return false;
         }
 
+        // 搜索条件
         $map['coupon_give_id'] = ['in', $data['coupon_give_id']];
-        is_client_admin() ?: $map['user_id'] = ['eq', get_client_id()];
 
-        if (false !== $this->save(['is_delete' => 1], $map)) {
-            return true;
+        if (is_client_admin()) {
+            // 未使用的进行物理删除
+            $map['use_time'] = ['eq', 0];
+            self::where($map)->delete();
+
+            // 已使用的放入回收站
+            $map['use_time'] = ['neq', 0];
+            if (false !== $this->save(['is_delete' => 1], $map)) {
+                return true;
+            }
+        } else {
+            $map['user_id'] = ['eq', get_client_id()];
+            if (false !== $this->save(['is_delete' => 1], $map)) {
+                return true;
+            }
         }
 
         return false;
