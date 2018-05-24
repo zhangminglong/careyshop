@@ -113,8 +113,8 @@ class Discount extends CareyShop
             }
 
             // 添加折扣商品
-            $discountGoodsDb = new DiscountGoods();
             $result = $this->toArray();
+            $discountGoodsDb = new DiscountGoods();
             $result['discount_goods'] = $discountGoodsDb->addDiscountGoods($data['discount_goods'], $this->getAttr('discount_id'));
 
             if (false === $result['discount_goods']) {
