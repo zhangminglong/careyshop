@@ -23,9 +23,7 @@ class CouponGive extends CareyShop
     protected static function initMethod()
     {
         return [
-            // 使用优惠劵
-            'use.coupon.item'        => ['useCouponItem'],
-            // 指定用户发放优惠劵
+            // 向指定用户发放优惠劵
             'give.coupon.user'       => ['giveCouponUser'],
             // 生成线下优惠劵
             'give.coupon.live'       => ['giveCouponLive'],
