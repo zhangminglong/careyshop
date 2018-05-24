@@ -152,7 +152,7 @@ class Coupon extends CareyShop
             $map['coupon_id'] = ['eq', $data['coupon_id']];
             $map['is_delete'] = ['eq', 0];
 
-            $query->where($map);
+            $query->field('is_delete', true)->where($map);
         });
 
         if (false !== $result) {
@@ -199,7 +199,11 @@ class Coupon extends CareyShop
             // 排序的字段
             $orderField = !empty($data['order_field']) ? $data['order_field'] : 'coupon_id';
 
-            $query->where($map)->order([$orderField => $orderType])->page($pageNo, $pageSize);
+            $query
+                ->field('is_delete', true)
+                ->where($map)
+                ->order([$orderField => $orderType])
+                ->page($pageNo, $pageSize);
         });
 
         if (false !== $result) {
