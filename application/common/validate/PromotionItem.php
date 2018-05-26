@@ -22,7 +22,7 @@ class PromotionItem extends CareyShop
         'quota'        => 'require|float|gt:0|regex:^\d+(\.\d{1,2})?$',
         'settings'     => 'require|array',
         'type'         => 'in:0,1,2,3,4',
-        'value'        => 'float|gt:0|regex:^\d+(\.\d{1,2})?$',
+        'value'        => 'float|egt:0|regex:^\d+(\.\d{1,2})?$',
     ];
 
     /**
@@ -49,7 +49,7 @@ class PromotionItem extends CareyShop
         ],
         'settings' => [
             'type'  => 'require|in:0,1,2,3,4',
-            'value' => 'require|float|gt:0|regex:^\d+(\.\d{1,2})?$',
+            'value' => 'require|float|egt:0|regex:^\d+(\.\d{1,2})?$',
         ],
     ];
 }

@@ -163,7 +163,7 @@ class Card extends CareyShop
             $map['card_id'] = ['eq', $data['card_id']];
             $map['is_delete'] = ['eq', 0];
 
-            $query->where($map);
+            $query->field('is_delete', true)->where($map);
         });
 
         if (false !== $result) {
@@ -253,6 +253,7 @@ class Card extends CareyShop
             $orderField = !empty($data['order_field']) ? $data['order_field'] : 'card_id';
 
             $query
+                ->field('is_delete', true)
                 ->where($map)
                 ->order([$orderField => $orderType])
                 ->page($pageNo, $pageSize);
