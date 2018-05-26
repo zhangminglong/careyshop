@@ -84,7 +84,7 @@ class DiscountGoods extends CareyShop
         $map['d.status'] = ['eq', 1];
 
         $result = self::all(function ($query) use ($map) {
-            $field = 'g.goods_id,g.discount,d.name,d.type,';
+            $field = 'd.name,d.type,g.goods_id,g.discount,';
             $field .= 'from_unixtime(d.begin_time) as begin_time,';
             $field .= 'from_unixtime(d.end_time) as end_time';
 
