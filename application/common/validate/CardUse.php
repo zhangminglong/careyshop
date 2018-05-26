@@ -83,7 +83,7 @@ class CardUse extends CareyShop
             'money',
         ],
         'list'       => [
-            'card_id',
+            'card_id' => 'integer|egt:0',
             'type',
             'account',
             'is_active',

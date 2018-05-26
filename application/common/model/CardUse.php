@@ -172,7 +172,9 @@ class CardUse extends CareyShop
         }
 
         $result = self::all(function ($query) use ($data) {
-            $query->field('card_id,user_id', true)->where(['card_id' => ['eq', $data['card_id']]]);
+            $query
+                ->field('card_id,user_id', true)
+                ->where(['card_id' => ['eq', $data['card_id']]]);
         });
 
         if ($result !== false) {
