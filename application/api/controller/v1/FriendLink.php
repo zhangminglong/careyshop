@@ -27,12 +27,12 @@ class FriendLink extends CareyShop
             'add.friendlink.item'   => ['addFriendLinkItem'],
             // 编辑一个友情链接
             'set.friendlink.item'   => ['setFriendLinkItem'],
-            // 批量删除友情链接
-            'del.friendlink.list'   => ['delFriendLinkList'],
             // 获取一个友情链接
             'get.friendlink.item'   => ['getFriendLinkItem'],
             // 获取友情链接列表
             'get.friendlink.list'   => ['getFriendLinkList'],
+            // 批量删除友情链接
+            'del.friendlink.list'   => ['delFriendLinkList'],
             // 批量设置友情链接状态
             'set.friendlink.status' => ['setFriendLinkStatus'],
             // 设置友情链接排序
