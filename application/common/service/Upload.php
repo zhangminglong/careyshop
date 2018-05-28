@@ -74,7 +74,12 @@ class Upload extends CareyShop
      */
     public function getUploadUrl()
     {
-        $ossObject = $this->createOssObject(Config::get('default.value', 'upload'));
+        $file = $this->getModuleName();
+        if (false === $file) {
+            return false;
+        }
+
+        $ossObject = $this->createOssObject($file);
         if (false === $ossObject) {
             return false;
         }
@@ -94,7 +99,12 @@ class Upload extends CareyShop
      */
     public function getUploadToken()
     {
-        $ossObject = $this->createOssObject(Config::get('default.value', 'upload'));
+        $file = $this->getModuleName();
+        if (false === $file) {
+            return false;
+        }
+
+        $ossObject = $this->createOssObject($file);
         if (false === $ossObject) {
             return false;
         }
@@ -105,6 +115,28 @@ class Upload extends CareyShop
         }
 
         return $result;
+    }
+
+    /**
+     * 当参数为空时获取默认上传模块名,否则验证指定模块名并返回
+     * @access public
+     * @return string/false
+     */
+    private function getModuleName()
+    {
+        $request = Request::instance();
+        $module = $request->param('module');
+
+        if (empty($module)) {
+            return Config::get('default.value', 'upload');
+        }
+
+        $moduleList = array_column($this->getUploadModule(), 'module');
+        if (!in_array($module, $moduleList)) {
+            return $this->setError('上传模块名 ' . $module . ' 不存在');
+        }
+
+        return $module;
     }
 
     /**
