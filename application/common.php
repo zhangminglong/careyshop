@@ -15,6 +15,18 @@ define('AUTH_ADMINISTRATOR', 2);
 define('AUTH_CLIENT', 3);
 define('AUTH_GUEST', 4);
 
+if (!function_exists('unique_and_delzero')) {
+    /**
+     * 获取版本号
+     * @return string
+     */
+    function get_version()
+    {
+        $product = config('careyshop.product');
+        return isset($product['product_version']) ? $product['product_version'] : '';
+    }
+}
+
 if (!function_exists('get_client_type')) {
     /**
      * 返回当前账号类型

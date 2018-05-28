@@ -18,7 +18,7 @@ class Index extends CareyShop
     /**
      * 调整最优状态(正式环境有效)
      * @access public
-     * @return array
+     * @return array/false
      */
     public static function setSystemOptimize()
     {
@@ -44,10 +44,20 @@ class Index extends CareyShop
     /**
      * 清空所有缓存
      * @access public
-     * @return array
+     * @return bool
      */
     public static function clearCacheAll()
     {
         return Cache::clear();
+    }
+
+    /**
+     * 获取系统版本号
+     * @access public
+     * @return bool
+     */
+    public static function getVersion()
+    {
+        return ['version' => get_version()];
     }
 }

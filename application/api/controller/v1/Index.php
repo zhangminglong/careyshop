@@ -30,6 +30,8 @@ class Index extends CareyShop
             'clear.cache.all'     => ['clearCacheAll', 'app\common\service\Index'],
             // 调整最优状态(正式环境有效)
             'set.system.optimize' => ['setSystemOptimize', 'app\common\service\Index'],
+            // 获取系统版本号
+            'get.system.version'  => ['getVersion', 'app\common\service\Index'],
         ];
     }
 
@@ -41,7 +43,6 @@ class Index extends CareyShop
      */
     protected function getIndexHost()
     {
-        $data['version'] = 'v1';
         $data['system'] = Config::get('careyshop.product');
         $data['verification'] = $this->getParams();
 
