@@ -346,14 +346,14 @@ class Upload extends UploadBase
                 return $this->setError($storageDb->getError());
             }
 
-            $ossResult = $result->hidden(['mime', 'path'])->setAttr('status', 200)->toArray();
+            $ossResult = $result->hidden(['mime'])->setAttr('status', 200)->toArray();
         } else {
             // 插入新记录
             if (false === $storageDb->isUpdate(false)->save($data)) {
                 return $this->setError($storageDb->getError());
             }
 
-            $ossResult = $storageDb->hidden(['mime', 'path'])->setAttr('status', 200)->toArray();
+            $ossResult = $storageDb->hidden(['mime'])->setAttr('status', 200)->toArray();
         }
 
         return [$ossResult];
