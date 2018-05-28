@@ -238,14 +238,14 @@ class Upload extends UploadBase
 
         $result = [
             'assumed_role_user' => [
-                'assumed_role_id' => $response->AssumedRoleUser->AssumedRoleId,
-                'arn'             => $response->AssumedRoleUser->Arn,
+                'assumed_role_id' => $response['AssumedRoleUser']['AssumedRoleId'],
+                'arn'             => $response['AssumedRoleUser']['Arn'],
             ],
             'credentials'       => [
-                'access_key_id'     => $response->Credentials->AccessKeyId,
-                'access_key_secret' => $response->Credentials->AccessKeySecret,
-                'security_token'    => $response->Credentials->SecurityToken,
-                'expiration'        => $response->Credentials->Expiration,
+                'access_key_id'     => $response['Credentials']['AccessKeyId'],
+                'access_key_secret' => $response['Credentials']['AccessKeySecret'],
+                'security_token'    => $response['Credentials']['SecurityToken'],
+                'expiration'        => $response['Credentials']['Expiration'],
             ],
             'policy'            => json_encode($policy, JSON_UNESCAPED_UNICODE),
             'bucket'            => $bucket,
