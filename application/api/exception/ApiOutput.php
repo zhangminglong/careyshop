@@ -25,7 +25,7 @@ class ApiOutput
      * X-Powered-By
      * @var array
      */
-    public static $poweredBy = ['X-Powered-By' => 'CareyShop'];
+    public static $poweredBy = ['X-Powered-By' => '基于CareyShop商城框架系统'];
 
     /**
      * 数据输出

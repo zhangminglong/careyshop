@@ -45,7 +45,9 @@ class Qrcode extends CareyShop
         // LOGO内部地址
         $logoPath = ROOT_PATH . 'public' . DS . 'static' . DS . 'api' . DS . 'images' . DS . 'qrcode_logo.png';
 
-        $data['text'] = isset($data['text']) ? urldecode($data['text']) : base64_decode('Q2FyZXlTaG9w54mI5p2D5omA5pyJ');
+        $data['text'] = base64_decode('5Z+65LqOQ2FyZXlTaG9w5ZWG5Z+O5qGG5p6257O757uf');
+        !isset($data['text']) ?: $data['text'] = urldecode($data['text']);
+
         $size = isset($data['size']) ? $data['size'] : 4;
         $logo = isset($data['logo']) ? urldecode($data['logo']) : $logoPath;
 
