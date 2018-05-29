@@ -77,7 +77,7 @@ class ArticleCat extends CareyShop
             'is_layer',
         ],
         'navi' => [
-            'article_cat_id' => 'require|integer|gt:0',
+            'article_cat_id' => 'integer|egt:0',
             'is_layer',
         ],
         'sort' => [

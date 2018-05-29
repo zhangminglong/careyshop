@@ -354,7 +354,7 @@ class Menu extends CareyShop
         $isLayer = isset($data['is_layer']) ? (bool)$data['is_layer'] : true;
         $filter['is_navi'] = 1;
         $filter['status'] = 1;
-        $filter['url'] = $data['url'];
+        $filter['url'] = isset($data['url']) ? $data['url'] : null;
 
         return self::getParentList(request()->module(), 0, $isLayer, $filter);
     }

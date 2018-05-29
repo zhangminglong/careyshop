@@ -108,7 +108,7 @@ class Storage extends CareyShop
             'storage_id' => 'require|integer|gt:0',
         ],
         'navi'           => [
-            'storage_id' => 'require|integer|gt:0',
+            'storage_id' => 'integer|egt:0',
             'is_layer',
         ],
     ];

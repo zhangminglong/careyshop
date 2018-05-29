@@ -99,11 +99,11 @@ class Menu extends CareyShop
             'status'  => 'require|in:0,1',
         ],
         'navi'   => [
-            'menu_id' => 'require|integer|gt:0',
+            'menu_id' => 'integer|egt:0',
             'is_layer',
         ],
         'url'    => [
-            'url' => 'require|max:100',
+            'url' => 'max:100',
             'is_layer',
         ],
         'nac'    => [
