@@ -228,7 +228,8 @@ class Upload extends CareyShop
             return $this->setError('type协议错误');
         }
 
-        if (false === $ossObject = $this->createOssObject($module)) {
+        $ossObject = $this->createOssObject($module);
+        if (false === $ossObject) {
             return false;
         }
 

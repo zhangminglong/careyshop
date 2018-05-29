@@ -276,10 +276,14 @@ class Upload extends UploadBase
      * @access private
      * @param  array  $param 请求参数
      * @param  string $path  资源路径
-     * @return string
+     * @return string/false
      */
     private function getFileSign($param, $path)
     {
+        if (!is_file($path)) {
+            return false;
+        }
+
         $sign = sha1_file($path);
         foreach ($param as $key => $value) {
             switch ($key) {
@@ -356,6 +360,10 @@ class Upload extends UploadBase
 
         // 检测缩略图是否已存在
         $fileSign = $this->getFileSign($param, $this->getNewUrl('', '', $fileInfo, null, null));
+        if (false === $fileSign) {
+            return $url . '?error=' . rawurlencode('资源文件不存在');
+        }
+
         if (is_file($this->getNewUrl($fileSign, $suffix, $fileInfo, null, 'path'))) {
             return $this->getNewUrl($fileSign, $suffix, $fileInfo, $urlArray);
         }
