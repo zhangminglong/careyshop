@@ -255,8 +255,8 @@ class Upload extends CareyShop
         }
 
         // 获取已存在资源数据
+        $map['storage_id'] = ['eq', $data['storage_id']];
         $map['type'] = ['neq', 2];
-        $map['hash'] = ['eq', $data['hash']];
 
         $storageDB = new Storage();
         $storageData = $storageDB->field('path,protocol')->where($map)->find();

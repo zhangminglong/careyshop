@@ -102,7 +102,7 @@ class Storage extends CareyShop
             'storage_id' => 'require|arrayHasOnlyInts',
         ],
         'replace'        => [
-            'hash' => 'require|max:40',
+            'storage_id' => 'require|integer|gt:0',
         ],
     ];
 }

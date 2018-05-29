@@ -33,8 +33,6 @@ class Upload extends CareyShop
             'add.upload.list'     => ['addUploadList', 'app\common\service\Upload'],
             // 接收第三方推送数据
             'put.upload.data'     => ['putUploadData', 'app\common\service\Upload'],
-            // 替换上传资源
-            'replace.upload.item' => ['replaceUploadItem', 'app\common\service\Upload'],
         ];
     }
 }
