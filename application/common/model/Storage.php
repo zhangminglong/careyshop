@@ -61,9 +61,9 @@ class Storage extends CareyShop
         $data['type'] = 2;
         $data['protocol'] = '';
 
-        if (false !== $this->allowField(['parent_id', 'name', 'type', 'protocol'])->save($data)) {
+        if (false !== $this->allowField(['parent_id', 'name', 'type', 'protocol', 'sort'])->save($data)) {
             Cache::clear('StorageDirectory');
-            return $this->toArray();
+            return $this->hidden(['protocol'])->toArray();
         }
 
         return false;
@@ -127,7 +127,7 @@ class Storage extends CareyShop
     }
 
     /**
-     * 将资源目录标记为默认选中
+     * 将资源目录标设为默认目录
      * @access public
      * @param  array $data 外部数据
      * @return bool
@@ -235,6 +235,49 @@ class Storage extends CareyShop
         }
 
         return false;
+    }
+
+    /**
+     * 获取导航数据
+     * @access public
+     * @param  array $data 外部数据
+     * @return array/false
+     */
+    public function getStorageNavi($data)
+    {
+        if (!$this->validateData($data, 'Storage.navi')) {
+            return false;
+        }
+
+        $map['type'] = ['eq', 2];
+        $list = self::cache('StorageNavi', null, 'StorageDirectory')->where($map)->column('storage_id,parent_id,name');
+
+        if ($list === false) {
+            Cache::clear('StorageDirectory');
+            return false;
+        }
+
+        $isLayer = isset($data['is_layer']) ? (bool)$data['is_layer'] : true;
+        if (!$isLayer && isset($list[$data['storage_id']])) {
+            $data['storage_id'] = $list[$data['storage_id']]['parent_id'];
+        }
+
+        $result = [];
+        while (true) {
+            if (!isset($list[$data['storage_id']])) {
+                break;
+            }
+
+            $result[] = $list[$data['storage_id']];
+
+            if ($list[$data['storage_id']]['parent_id'] <= 0) {
+                break;
+            }
+
+            $data['storage_id'] = $list[$data['storage_id']]['parent_id'];
+        }
+
+        return array_reverse($result);
     }
 
     /**

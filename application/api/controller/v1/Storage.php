@@ -29,12 +29,14 @@ class Storage extends CareyShop
             'set.storage.directory.item'    => ['setStorageDirectoryItem'],
             // 获取资源目录选择列表
             'get.storage.directory.select'  => ['getStorageDirectorySelect'],
-            // 将资源目录标记为默认选中
+            // 将资源目录标设为默认目录
             'set.storage.directory.default' => ['setStorageDirectoryDefault'],
             // 获取一个资源或资源目录
             'get.storage.item'              => ['getStorageItem'],
             // 获取资源列表
             'get.storage.list'              => ['getStorageList'],
+            // 获取导航数据
+            'get.storage.navi'              => ['getStorageNavi'],
             // 重命名一个资源
             'rename.storage.item'           => ['renameStorageItem'],
             // 将图片资源设为目录封面
