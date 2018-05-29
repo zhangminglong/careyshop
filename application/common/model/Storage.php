@@ -327,7 +327,7 @@ class Storage extends CareyShop
         $coverMap['storage_id'] = ['eq', $result->getAttr('parent_id')];
         $coverMap['type'] = ['eq', 2];
 
-        if (false !== $this->save(['cover' => $result->getAttr('path')], $coverMap)) {
+        if (false !== $this->save(['cover' => $result->getAttr('url')], $coverMap)) {
             Cache::clear('StorageDirectory');
             return true;
         }
@@ -409,12 +409,13 @@ class Storage extends CareyShop
      */
     public function moveStorageList($data)
     {
-        $data['storage_id'] = array_unique($data['storage_id']);
         if (!$this->validateData($data, 'Storage.move')) {
             return false;
         }
 
+        $data['storage_id'] = array_unique($data['storage_id']);
         $result = $this->isMoveStorage($data['storage_id'], $data['parent_id']);
+
         if (true !== $result) {
             return false;
         }
@@ -436,13 +437,14 @@ class Storage extends CareyShop
      */
     public function delStorageList($data)
     {
-        $data['storage_id'] = array_unique($data['storage_id']);
         if (!$this->validateData($data, 'Storage.del')) {
             return false;
         }
 
         // 数组转为字符串格式,用于SQL查询条件,为空直接返回
+        $data['storage_id'] = array_unique($data['storage_id']);
         $data['storage_id'] = implode(',', $data['storage_id']);
+
         if (empty($data['storage_id'])) {
             return true;
         }
@@ -464,23 +466,24 @@ class Storage extends CareyShop
         $ossObjectList = new \StdClass();
 
         foreach ($result as $value) {
+            // 如果是资源目录则加入待删除列表
             if ($value['type'] == 2) {
                 $delDirId[] = $value['storage_id'];
                 continue;
             }
 
             if ($value['type'] != 2 && !empty($value['protocol'])) {
-                if (!isset($ossObjectList->$value['protocol'])) {
+                if (!isset($ossObjectList->oss[$value['protocol']])) {
                     $ossObject = new Upload();
-                    $ossObjectList->$value['protocol'] = $ossObject->createOssObject($value['protocol']);
+                    $ossObjectList->oss[$value['protocol']] = $ossObject->createOssObject($value['protocol']);
 
-                    if (false === $ossObjectList->$value['protocol']) {
+                    if (false === $ossObjectList->oss[$value['protocol']]) {
                         return $this->setError($ossObject->getError());
                     }
                 }
 
-                $ossObjectList->$value['protocol']->addDelFile($value['path']);
-                $ossObjectList->$value['protocol']->addDelFileId($value['storage_id']);
+                $ossObjectList->oss[$value['protocol']]->addDelFile($value['path']);
+                $ossObjectList->oss[$value['protocol']]->addDelFileId($value['storage_id']);
             }
         }
 
@@ -488,14 +491,16 @@ class Storage extends CareyShop
         self::startTrans();
 
         try {
-            foreach ($ossObjectList as $item) {
-                // 删除OSS物理资源
-                if (false === $item->delFileList()) {
-                    throw new \Exception($item->getError());
-                }
+            if (isset($ossObjectList->oss)) {
+                foreach ($ossObjectList->oss as $item) {
+                    // 删除OSS物理资源
+                    if (false === $item->delFileList()) {
+                        throw new \Exception($item->getError());
+                    }
 
-                // 删除资源记录
-                $this->where(['storage_id' => ['in', $item->getDelFileIdList()]])->delete();
+                    // 删除资源记录
+                    $this->where(['storage_id' => ['in', $item->getDelFileIdList()]])->delete();
+                }
             }
 
             // 删除资源目录记录
