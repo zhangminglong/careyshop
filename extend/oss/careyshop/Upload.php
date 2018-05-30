@@ -435,7 +435,41 @@ class Upload extends UploadBase
     {
         foreach ($this->delFileList as $value) {
             $path = ROOT_PATH . 'public' . $value;
+            $path = str_replace(IS_WIN ? '/' : '\\', DS, $path);
+
+            $this->clearThumb($path);
             is_file($path) && unlink($path);
+        }
+
+        return true;
+    }
+
+    /**
+     * 清除缩略图文件夹
+     * @access private
+     * @return bool
+     */
+    private function clearThumb($path)
+    {
+        $thumb = mb_substr($path, 0, mb_strripos($path, '.', null, 'utf-8'), 'utf-8');
+
+        if (is_dir($thumb) && $this->checkImg($path)) {
+            $matches = glob($thumb . DS . '*');
+            is_array($matches) && array_map('unlink', $matches);
+            rmdir($thumb);
+        }
+    }
+
+    /**
+     * 验证是否为图片
+     * @access private
+     * @return bool
+     */
+    private function checkImg($path)
+    {
+        $info = @getimagesize($path);
+        if (false === $info || (IMAGETYPE_GIF === $info[2] && empty($info['bits']))) {
+            return false;
         }
 
         return true;
