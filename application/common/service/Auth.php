@@ -71,7 +71,7 @@ class Auth extends CareyShop
         }
 
         // 转为小写
-        $url = strtolower($url);
+        $url = mb_strtolower($url, 'utf-8');
 
         // 核心数据是否存在
         if (empty($this->menuAuth) || empty($this->menuList)) {
@@ -102,7 +102,7 @@ class Auth extends CareyShop
     public function saveLog($url, &$request, $result, $class, $error = '')
     {
         // 转为小写
-        $url = strtolower($url);
+        $url = mb_strtolower($url, 'utf-8');
 
         if (!isset($this->menuList[$url])) {
             return;

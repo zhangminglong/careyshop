@@ -107,9 +107,9 @@ if (!function_exists('get_order_no')) {
 
         $order_no = $prefix;
         $order_no .= $year_code[(intval(date('Y')) - 1970) % 10];
-        $order_no .= strtoupper(dechex(date('m')));
-        $order_no .= date('d') . substr(time(), -5);
-        $order_no .= substr(microtime(), 2, 5);
+        $order_no .= mb_strtoupper(dechex(date('m')), 'utf-8');
+        $order_no .= date('d') . mb_substr(time(), -5, null, 'utf-8');
+        $order_no .= mb_substr(microtime(), 2, 5, 'utf-8');
         $order_no .= sprintf('%02d%04d', mt_rand(0, 99), get_client_id());
 
         return $order_no;
@@ -130,7 +130,7 @@ if (!function_exists('rand_number')) {
         }
 
         $chars = str_shuffle($chars);
-        $number = substr($chars, 0, $len);
+        $number = mb_substr($chars, 0, $len, 'utf-8');
 
         return $number;
     }
@@ -145,8 +145,8 @@ if (!function_exists('rand_string')) {
      */
     function rand_string($len = 32, $lower = true)
     {
-        $string = mb_substr(md5(uniqid(rand(), true)), 0, $len, 'UTF-8');
-        return $lower ? $string : strtoupper($string);
+        $string = mb_substr(md5(uniqid(rand(), true)), 0, $len, 'utf-8');
+        return $lower ? $string : mb_strtoupper($string, 'utf-8');
     }
 }
 
@@ -217,7 +217,7 @@ if (!function_exists('string_to_byte')) {
     {
         preg_match('/(^[0-9\.]+)(\w+)/', $var, $info);
         $size = $info[1];
-        $suffix = strtoupper($info[2]);
+        $suffix = mb_strtoupper($info[2], 'utf-8');
 
         $a = array_flip(['B', 'KB', 'MB', 'GB', 'TB', 'PB']);
         $b = array_flip(['B', 'K', 'M', 'G', 'T', 'P']);

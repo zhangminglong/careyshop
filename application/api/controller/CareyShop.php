@@ -340,7 +340,7 @@ class CareyShop extends Controller
         ksort($params);
         $stringToBeSigned = $appSecret;
         foreach ($params as $k => $v) {
-            if (is_string($v) && '@' != substr($v, 0, 1)) {
+            if (is_string($v) && '@' != mb_substr($v, 0, 1, 'utf-8')) {
                 $stringToBeSigned .= "$k$v";
             }
         }

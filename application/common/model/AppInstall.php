@@ -47,7 +47,7 @@ class AppInstall extends CareyShop
      */
     protected function setUserAgentAttr($value)
     {
-        return strtolower($value);
+        return mb_strtolower($value, 'utf-8');
     }
 
     /**
@@ -201,7 +201,7 @@ class AppInstall extends CareyShop
         $agent = request()->server('HTTP_USER_AGENT');
 
         foreach ($result as $value) {
-            if (false !== stripos($agent, $value['user_agent'])) {
+            if (false !== mb_stripos($agent, $value['user_agent'], null, 'utf-8')) {
                 // 获取最新版本号的安装包
                 if (version_compare($value['ver'], $maxVersion, '>=')) {
                     $maxVersion = $value['ver'];
@@ -213,7 +213,7 @@ class AppInstall extends CareyShop
         // 后续处理数据
         if (!empty($data)) {
             // 如果是安卓微信,则返回自定义中间页
-            if (stripos($agent, 'Android') && stripos($agent, 'MicroMessenger')) {
+            if (mb_stripos($agent, 'Android', null, 'utf-8') && mb_stripos($agent, 'MicroMessenger', null, 'utf-8')) {
                 $data['url'] = Config::get('weixin_url.value', 'system_info');
             }
 

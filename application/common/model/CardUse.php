@@ -97,7 +97,7 @@ class CardUse extends CareyShop
         // 根据卡密查找购物卡使用
         while (!$result->isEmpty()) {
             $tmpResult = $result->shift();
-            if (hash_equals(strtolower($tmpResult->getAttr('password')), strtolower($data['password']))) {
+            if (hash_equals(mb_strtolower($tmpResult->getAttr('password')), mb_strtolower($data['password']))) {
                 $cardResult = $tmpResult;
                 break;
             }

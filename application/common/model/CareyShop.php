@@ -57,7 +57,7 @@ class CareyShop extends Model
      */
     public function validateSetData($data, $name, $scene = '')
     {
-        !strpos($name, '.') ?: list($name, $scene) = explode('.', $name);
+        !mb_strpos($name, '.', null, 'utf-8') ?: list($name, $scene) = explode('.', $name);
         $validate = validate($name);
 
         if (!$validate->hasScene($scene)) {

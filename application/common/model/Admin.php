@@ -221,7 +221,7 @@ class Admin extends CareyShop
         }
 
         // 初始化部分数据
-        $data['password'] = strtolower(get_randstr(8));
+        $data['password'] = mb_strtolower(get_randstr(8), 'utf-8');
         $map['admin_id'] = ['eq', $data['client_id']];
 
         if (false !== $this->save(['password' => $data['password']], $map)) {
