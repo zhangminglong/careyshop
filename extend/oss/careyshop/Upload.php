@@ -372,9 +372,9 @@ class Upload extends UploadBase
         list($sWidth, $sHeight) = @array_pad(isset($param['size']) ? $param['size'] : [], 2, 0);
         list($cWidth, $cHeight) = @array_pad(isset($param['crop']) ? $param['crop'] : [], 2, 0);
 
-        if (!$sWidth && !$sHeight) {
-            return $url;
-        }
+//        if (!$sWidth && !$sHeight) {
+//            return $url;
+//        }
 
         try {
             // 创建图片实例
@@ -384,14 +384,16 @@ class Upload extends UploadBase
             foreach ($param as $key => $value) {
                 switch ($key) {
                     case 'size':
-                        empty($sWidth) && $sWidth = $sHeight;
-                        empty($sHeight) && $sHeight = $sWidth;
+                        $sWidth <= 0 && $sWidth = $sHeight;
+                        $sHeight <= 0 && $sHeight = $sWidth;
                         $imageFile->thumb($sWidth, $sHeight, Image::THUMB_PAD);
                         break;
 
                     case 'crop':
                         $cWidth > $imageFile->width() && $cWidth = $imageFile->width();
                         $cHeight > $imageFile->height() && $cHeight = $imageFile->height();
+                        $cWidth <= 0 && $cWidth = $imageFile->width();
+                        $cHeight <= 0 && $cHeight = $imageFile->height();
                         $x = ($imageFile->width() - $cWidth) / 2;
                         $y = ($imageFile->height() - $cHeight) / 2;
                         $imageFile->crop($cWidth, $cHeight, $x, $y);

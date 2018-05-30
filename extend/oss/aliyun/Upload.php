@@ -422,9 +422,9 @@ class Upload extends UploadBase
 
         // 检测尺寸是否正确
         list($sWidth, $sHeight) = @array_pad(isset($param['size']) ? $param['size'] : [], 2, 0);
-        if (!$sWidth && !$sHeight) {
-            return $url;
-        }
+//        if (!$sWidth && !$sHeight) {
+//            return $url;
+//        }
 
         // 处理缩放尺寸、裁剪尺寸
         foreach ($param as $key => $value) {

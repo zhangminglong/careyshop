@@ -252,11 +252,14 @@ class Upload extends UploadBase
      */
     private function getExtentParam($width, $height)
     {
-        $options = 'extent/';
-        $options .= $width != 0 ? (int)$width : '';
-        $options .= 'x';
-        $options .= $height != 0 ? (int)$height : '';
-        $options .= '/background/d2hpdGU=/';
+        $options = '';
+        if ($width != 0 && $height != 0) {
+            $options = 'extent/';
+            $options .= $width != 0 ? (int)$width : '';
+            $options .= 'x';
+            $options .= $height != 0 ? (int)$height : '';
+            $options .= '/background/d2hpdGU=/';
+        }
 
         return $options;
     }
@@ -299,9 +302,9 @@ class Upload extends UploadBase
         list($sWidth, $sHeight) = @array_pad(isset($param['size']) ? $param['size'] : [], 2, 0);
         list($cWidth, $cHeight) = @array_pad(isset($param['crop']) ? $param['crop'] : [], 2, 0);
 
-        if (!$sWidth && !$sHeight) {
-            return $url;
-        }
+//        if (!$sWidth && !$sHeight) {
+//            return $url;
+//        }
 
         // 画布最后的尺寸初始化
         $last = 'size';
@@ -328,7 +331,7 @@ class Upload extends UploadBase
 
         // 决定图片画布最后的尺寸
         if ($last === 'crop') {
-            $extent[0] = $sWidth > $cWidth ? $cWidth : $sWidth;
+            $extent[0] = $sWidth > $cWidth && $cWidth > 0 ? $cWidth : $sWidth;
             $extent[1] = $sHeight > $cHeight ? $cHeight : $sHeight;
         }
 
