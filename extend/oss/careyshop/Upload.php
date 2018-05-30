@@ -358,12 +358,21 @@ class Upload extends UploadBase
             }
         }
 
-        // 检测缩略图是否已存在
-        $fileSign = $this->getFileSign($param, $this->getNewUrl('', '', $fileInfo, null, null));
+        // 获取源文件位置,并且生成缩略图文件名,验证源文件是否存在
+        $source = $this->getNewUrl('', '', $fileInfo, null, null);
+        $fileSign = $this->getFileSign($param, $source);
+
         if (false === $fileSign) {
             return $url . '?error=' . rawurlencode('资源文件不存在');
         }
 
+        // 修改文件信息并且获取缩略图文件夹路径
+        $fileInfo['dirname'] .= DS . $fileInfo['filename'];
+        $thumb = ROOT_PATH . 'public' . $fileInfo['dirname'];
+        $thumb = str_replace(IS_WIN ? '/' : '\\', DS, $thumb);
+        !is_dir($thumb) && mkdir($thumb, 0755, true);
+
+        // 如果缩略图已存在则直接返回
         if (is_file($this->getNewUrl($fileSign, $suffix, $fileInfo, null, 'path'))) {
             return $this->getNewUrl($fileSign, $suffix, $fileInfo, $urlArray);
         }
@@ -378,7 +387,7 @@ class Upload extends UploadBase
 
         try {
             // 创建图片实例
-            $imageFile = Image::open($this->getNewUrl('', '', $fileInfo, null, null));
+            $imageFile = Image::open($source);
 
             // 处理缩放尺寸、裁剪尺寸
             foreach ($param as $key => $value) {
