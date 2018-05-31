@@ -216,8 +216,9 @@ class Upload extends UploadBase
         list($width, $height) = @getimagesize($info->getPathname());
         $isImage = (int)$width > 0 && (int)$height > 0;
 
-        // 附件相对路径
+        // 附件相对路径,并统一斜杠为'/'
         $path = $filePath . $info->getSaveName();
+        $path = str_replace('\\', '/', $path);
 
         // 自定义附件名
         $filename = $this->request->param('x:filename');
@@ -232,7 +233,7 @@ class Upload extends UploadBase
             'pixel'     => $isImage ? ['width' => $width, 'height' => $height] : [],
             'hash'      => $info->hash('sha1'),
             'path'      => $path,
-            'url'       => $this->request->host() . str_replace('\\', '/', $path) . '?type=' . self::MODULE,
+            'url'       => $this->request->host() . $path . '?type=' . self::MODULE,
             'protocol'  => self::MODULE,
             'type'      => $isImage ? 0 : 1,
         ];
@@ -253,6 +254,14 @@ class Upload extends UploadBase
         }
 
         if (!is_null($result)) {
+            // 删除被替换资源的缩略图文件
+            if (0 === $result->getAttr('type')) {
+                $thumb = ROOT_PATH . 'public' . $data['path'];
+                $thumb = str_replace(IS_WIN ? '/' : '\\', DS, $thumb);
+
+                $this->clearThumb($thumb);
+            }
+
             // 替换资源进行更新
             if (false === $result->save($data)) {
                 return $this->setError($storageDb->getError());
@@ -437,7 +446,7 @@ class Upload extends UploadBase
             $path = str_replace(IS_WIN ? '/' : '\\', DS, $path);
 
             $this->clearThumb($path);
-            is_file($path) && unlink($path);
+            is_file($path) && @unlink($path);
         }
 
         return true;
@@ -446,16 +455,17 @@ class Upload extends UploadBase
     /**
      * 清除缩略图文件夹
      * @access private
-     * @return bool
+     * @return void
      */
     private function clearThumb($path)
     {
+        // 去掉后缀名,获得目录路径
         $thumb = mb_substr($path, 0, mb_strripos($path, '.', null, 'utf-8'), 'utf-8');
 
         if (is_dir($thumb) && $this->checkImg($path)) {
             $matches = glob($thumb . DS . '*');
-            is_array($matches) && array_map('unlink', $matches);
-            rmdir($thumb);
+            is_array($matches) && @array_map('unlink', $matches);
+            @rmdir($thumb);
         }
     }
 
