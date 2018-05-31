@@ -290,14 +290,14 @@ class Upload extends UploadBase
                 case 'size':
                 case 'crop':
                     if (is_array($value) && count($value) <= 2) {
-                        $sign .= implode('', $value);
+                        $sign .= ($key . implode('', $value));
                     }
                     break;
 
                 case 'format':
                 case 'quality':
                     if (is_string($value) || is_numeric($value)) {
-                        $sign .= $value;
+                        $sign .= ($key . $value);
                     }
                     break;
             }
