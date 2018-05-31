@@ -366,13 +366,8 @@ class Upload extends UploadBase
             return $url . '?error=' . rawurlencode('资源文件不存在');
         }
 
-        // 修改文件信息并且获取缩略图文件夹路径
+        // 如果缩略图已存在则直接返回(转成缩略图路径)
         $fileInfo['dirname'] .= DS . $fileInfo['filename'];
-        $thumb = ROOT_PATH . 'public' . $fileInfo['dirname'];
-        $thumb = str_replace(IS_WIN ? '/' : '\\', DS, $thumb);
-        !is_dir($thumb) && mkdir($thumb, 0755, true);
-
-        // 如果缩略图已存在则直接返回
         if (is_file($this->getNewUrl($fileSign, $suffix, $fileInfo, null, 'path'))) {
             return $this->getNewUrl($fileSign, $suffix, $fileInfo, $urlArray);
         }
@@ -386,8 +381,12 @@ class Upload extends UploadBase
 //        }
 
         try {
-            // 创建图片实例
+            // 创建图片实例(并且是图片才创建缩略图文件夹)
             $imageFile = Image::open($source);
+
+            $thumb = ROOT_PATH . 'public' . $fileInfo['dirname'];
+            $thumb = str_replace(IS_WIN ? '/' : '\\', DS, $thumb);
+            !is_dir($thumb) && mkdir($thumb, 0755, true);
 
             // 处理缩放尺寸、裁剪尺寸
             foreach ($param as $key => $value) {
