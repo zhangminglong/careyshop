@@ -44,7 +44,7 @@ class Geohash
 
         // build map from encoding char to 0 padded bitfield
         for ($i = 0; $i < 32; $i++) {
-            $this->codingMap[substr($this->coding, $i, 1)] = str_pad(decbin($i), 5, '0', STR_PAD_LEFT);
+            $this->codingMap[mb_substr($this->coding, $i, 1, 'utf-8')] = str_pad(decbin($i), 5, '0', STR_PAD_LEFT);
         }
     }
 
@@ -55,20 +55,20 @@ class Geohash
     {
         // decode hash into binary string
         $binary = '';
-        $hl = strlen($hash);
+        $hl = mb_strlen($hash);
         for ($i = 0; $i < $hl; $i++) {
-            $binary .= $this->codingMap[substr($hash, $i, 1)];
+            $binary .= $this->codingMap[mb_substr($hash, $i, 1, 'utf-8')];
         }
 
         // split the binary into lat and log binary strings
-        $bl = strlen($binary);
+        $bl = mb_strlen($binary);
         $blat = '';
         $blong = '';
         for ($i = 0; $i < $bl; $i++) {
             if ($i % 2) {
-                $blat = $blat . substr($binary, $i, 1);
+                $blat = $blat . mb_substr($binary, $i, 1, 'utf-8');
             } else {
-                $blong = $blong . substr($binary, $i, 1);
+                $blong = $blong . mb_substr($binary, $i, 1, 'utf-8');
             }
         }
 
@@ -77,8 +77,8 @@ class Geohash
         $long = $this->binDecode($blong, -180, 180);
 
         // figure out how precise the bit count makes this calculation
-        $latErr = $this->calcError(strlen($blat), -90, 90);
-        $longErr = $this->calcError(strlen($blong), -180, 180);
+        $latErr = $this->calcError(mb_strlen($blat), -90, 90);
+        $longErr = $this->calcError(mb_strlen($blong), -180, 180);
 
         // how many decimal places should we use? There's a little art to
         // this to ensure I get the same roundings as geohash.org
@@ -94,25 +94,25 @@ class Geohash
 
     private function calculateAdjacent($srcHash, $dir)
     {
-        if (!isset($srcHash[strlen($srcHash) - 1])) {
+        if (!isset($srcHash[mb_strlen($srcHash) - 1])) {
             return '';
         }
 
-        $srcHash = strtolower($srcHash);
-        $lastChr = $srcHash[strlen($srcHash) - 1];
-        $type = (strlen($srcHash) % 2) ? 'odd' : 'even';
-        $base = substr($srcHash, 0, strlen($srcHash) - 1);
+        $srcHash = mb_strtolower($srcHash, 'utf-8');
+        $lastChr = $srcHash[mb_strlen($srcHash) - 1];
+        $type = (mb_strlen($srcHash) % 2) ? 'odd' : 'even';
+        $base = mb_substr($srcHash, 0, mb_strlen($srcHash) - 1, 'utf-8');
 
-        if (strpos($this->borders[$dir][$type], $lastChr) !== false) {
+        if (mb_strpos($this->borders[$dir][$type], $lastChr, null, 'utf-8') !== false) {
             $base = $this->calculateAdjacent($base, $dir);
         }
 
-        return $base . $this->coding[strpos($this->neighbors[$dir][$type], $lastChr)];
+        return $base . $this->coding[mb_strpos($this->neighbors[$dir][$type], $lastChr, null, 'utf-8')];
     }
 
     public function neighbors($srcHash)
     {
-        //$geohashPrefix = substr($srcHash, 0, strlen($srcHash) - 1);
+        //$geohashPrefix = mb_substr($srcHash, 0, strlen($srcHash) - 1, 'utf-8');
 
         $neighbors['top'] = $this->calculateAdjacent($srcHash, 'top');
         $neighbors['bottom'] = $this->calculateAdjacent($srcHash, 'bottom');
@@ -172,21 +172,21 @@ class Geohash
         // merge lat and long together
         $binary = '';
         $uselong = 1;
-        while (strlen($blat) + strlen($blong)) {
+        while (mb_strlen($blat) + mb_strlen($blong)) {
             if ($uselong) {
-                $binary = $binary . substr($blong, 0, 1);
-                $blong = substr($blong, 1);
+                $binary = $binary . mb_substr($blong, 0, 1, 'utf-8');
+                $blong = mb_substr($blong, 1, null, 'utf-8');
             } else {
-                $binary = $binary . substr($blat, 0, 1);
-                $blat = substr($blat, 1);
+                $binary = $binary . mb_substr($blat, 0, 1, 'utf-8');
+                $blat = mb_substr($blat, 1, null, 'utf-8');
             }
             $uselong = !$uselong;
         }
 
         // convert binary string to hash
         $hash = '';
-        for ($i = 0; $i < strlen($binary); $i += 5) {
-            $n = bindec(substr($binary, $i, 5));
+        for ($i = 0; $i < mb_strlen($binary); $i += 5) {
+            $n = bindec(mb_substr($binary, $i, 5, 'utf-8'));
             $hash = $hash . $this->coding[$n];
         }
 
@@ -216,10 +216,10 @@ class Geohash
     private function precision($number)
     {
         $precision = 0;
-        $pt = strpos($number, '.');
+        $pt = mb_strpos($number, '.', null, 'utf-8');
 
         if ($pt !== false) {
-            $precision = -(strlen($number) - $pt - 1);
+            $precision = -(mb_strlen($number) - $pt - 1);
         }
 
         return pow(10, $precision) / 2;
@@ -256,12 +256,12 @@ class Geohash
     private function binDecode($binary, $min, $max)
     {
         $mid = ($min + $max) / 2;
-        if (strlen($binary) == 0) {
+        if (mb_strlen($binary) == 0) {
             return $mid;
         }
 
-        $bit = substr($binary, 0, 1);
-        $binary = substr($binary, 1);
+        $bit = mb_substr($binary, 0, 1, 'utf-8');
+        $binary = mb_substr($binary, 1, null, 'utf-8');
 
         if ($bit == 1) {
             return $this->binDecode($binary, $mid, $max);

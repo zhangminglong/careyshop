@@ -56,7 +56,7 @@ class Http
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
 
-        if(stripos($url,"https://")!==FALSE){
+        if (mb_stripos($url, 'https://', null, 'utf-8') !== false) {
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
         }
@@ -76,16 +76,16 @@ class Http
 
         switch ($type) {
             case 'text':
-                $header = 'text/text;charset=UTF-8';
+                $header = 'text/text;charset=utf-8';
                 break;
             case 'json':
-                $header = 'application/json;charset=UTF-8';
+                $header = 'application/json;charset=utf-8';
                 break;
             case 'xml':
-                $header = 'text/xml;charset=UTF-8';
+                $header = 'text/xml;charset=utf-8';
                 break;
             case 'html':
-                $header = 'text/html;charset=UTF-8';
+                $header = 'text/html;charset=utf-8';
                 break;
             default:
                 $header = 'application/x-www-form-urlencoded;charset=utf-8';

@@ -291,11 +291,12 @@ class Upload extends UploadBase
 
         // 拼接待签名字符串
         $path = $this->request->server('REQUEST_URI');
-        $pos = strpos($path, '?');
+        $pos = mb_strpos($path, '?', null, 'utf-8');
         if ($pos === false) {
             $authStr = urldecode($path) . "\n" . $body;
         } else {
-            $authStr = urldecode(substr($path, 0, $pos)) . substr($path, $pos, strlen($path) - $pos) . "\n" . $body;
+            $authStr = urldecode(mb_substr($path, 0, $pos, 'utf-8')) . mb_substr($path, $pos, mb_strlen($path, 'utf-8') - $pos, 'utf-8');
+            $authStr .= ("\n" . $body);
         }
 
         // 验证签名
@@ -315,7 +316,7 @@ class Upload extends UploadBase
             'parent_id' => (int)$params['parent_id'],
             'name'      => !empty($params['filename']) ? $params['filename'] : basename($params['path']),
             'mime'      => $params['mime'],
-            'ext'       => strtolower(pathinfo($params['path'], PATHINFO_EXTENSION)),
+            'ext'       => mb_strtolower(pathinfo($params['path'], PATHINFO_EXTENSION), 'utf-8'),
             'size'      => $params['size'],
             'pixel'     => $isImage ? ['width' => (int)$params['width'], 'height' => (int)$params['height']] : [],
             'hash'      => $params['hash'],
@@ -415,7 +416,7 @@ class Upload extends UploadBase
 
         // 带样式则直接返回
         if (!empty($param['style'])) {
-            $style = substr($param['style'], 0, 1);
+            $style = mb_substr($param['style'], 0, 1, 'utf-8');
             $url .= in_array($style, ['-', '_', '/', '!']) ? $param['style'] : '?x-oss-process=style/' . $param['style'];
             return $url;
         }

@@ -227,7 +227,7 @@ class Upload extends UploadBase
             'parent_id' => (int)$this->request->param('x:parent_id', 0),
             'name'      => !empty($filename) ? $filename : $file->getInfo('name'),
             'mime'      => $file->getInfo('type'),
-            'ext'       => strtolower($info->getExtension()),
+            'ext'       => mb_strtolower($info->getExtension(), 'utf-8'),
             'size'      => $info->getSize(),
             'pixel'     => $isImage ? ['width' => $width, 'height' => $height] : [],
             'hash'      => $info->hash('sha1'),

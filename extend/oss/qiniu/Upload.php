@@ -173,7 +173,7 @@ class Upload extends UploadBase
             'parent_id' => (int)$params['parent_id'],
             'name'      => !empty($params['filename']) ? $params['filename'] : $params['name'],
             'mime'      => $params['mime'],
-            'ext'       => strtolower(pathinfo($params['name'], PATHINFO_EXTENSION)),
+            'ext'       => mb_strtolower(pathinfo($params['name'], PATHINFO_EXTENSION), 'utf-8'),
             'size'      => $params['size'],
             'pixel'     => $isImage ? ['width' => (int)$params['width'], 'height' => (int)$params['height']] : [],
             'hash'      => $params['hash'],

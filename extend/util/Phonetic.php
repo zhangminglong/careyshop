@@ -52,16 +52,16 @@ class Phonetic
     public static function encode($utf8Data, $sRetFormat = 'head', $sSpace = '')
     {
         $aBuf = [];
-        $sGBK = iconv('UTF-8', 'GBK', $utf8Data);
+        $sGBK = iconv('utf-8', 'gbk', $utf8Data);
 
-        for ($i = 0, $iLoop = strlen($sGBK); $i < $iLoop; $i++) {
+        for ($i = 0, $iLoop = mb_strlen($sGBK, 'utf-8'); $i < $iLoop; $i++) {
             $iChr = ord($sGBK{$i});
             if ($iChr > 160) {
                 $iChr = ($iChr << 8) + ord($sGBK{++$i}) - 65536;
             }
 
             if ('head' === $sRetFormat) {
-                $aBuf[] = substr(self::zh2py($iChr), 0, 1);
+                $aBuf[] = mb_substr(self::zh2py($iChr), 0, 1, 'utf-8');
             } else {
                 $aBuf[] = self::zh2py($iChr);
             }
