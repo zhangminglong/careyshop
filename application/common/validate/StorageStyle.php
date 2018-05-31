@@ -82,7 +82,8 @@ class StorageStyle extends CareyShop
             'storage_style_id' => 'require|integer|gt:0',
         ],
         'code'   => [
-            'code' => 'require|max:16|alphaDash',
+            'code'     => 'require|max:16|alphaDash',
+            'platform' => 'integer|between:-128,127',
         ],
         'list'   => [
             'name'     => 'max:64',
