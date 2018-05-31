@@ -12,6 +12,7 @@
 namespace app\common\service;
 
 use app\common\model\Storage;
+use app\common\model\StorageStyle;
 use think\Config;
 use think\helper\Str;
 use think\Loader;
@@ -227,6 +228,16 @@ class Upload extends CareyShop
         if (!in_array($module, $pact)) {
             return $this->setError('type协议错误');
         }
+
+        // 是否定义资源样式
+//        if ($request->has('code', 'param', true)) {
+//            $styleDb = new StorageStyle();
+//            $styleResult = $styleDb->getStorageStyleCode(['code' => $request->param('code')]);
+//
+//            print_r($styleResult);exit;
+//            foreach ($styleResult as $key => $value) {
+//            }
+//        }
 
         $ossObject = $this->createOssObject($module);
         if (false === $ossObject) {
