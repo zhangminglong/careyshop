@@ -184,7 +184,7 @@ class Upload extends CareyShop
      * @access public
      * @return void
      */
-    public function getThumbnail()
+    public function getThumb()
     {
         $url = $this->getThumbUrl();
         if (false === $url || empty($url['url_prefix'])) {

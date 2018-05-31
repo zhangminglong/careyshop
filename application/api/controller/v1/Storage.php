@@ -46,7 +46,7 @@ class Storage extends CareyShop
             // 批量移动资源到指定目录
             'move.storage.list'             => ['moveStorageList'],
             // 获取资源缩略图
-            'get.storage.thumb'             => ['getThumbnail', 'app\common\service\Upload'],
+            'get.storage.thumb'             => ['getThumb', 'app\common\service\Upload'],
             // 获取资源缩略图实际路径
             'get.storage.thumb.url'         => ['getThumbUrl', 'app\common\service\Upload'],
             // 批量删除资源
