@@ -20,7 +20,7 @@ class StorageStyle extends CareyShop
     protected $rule = [
         'storage_style_id' => 'integer|gt:0',
         'name'             => 'require|max:64',
-        'code'             => 'require|max:16|alphaDash|unique:storage_style,code,0,storage_style_id',
+        'code'             => 'require|max:32|alphaDash|unique:storage_style,code,0,storage_style_id',
         'platform'         => 'require|integer|between:-128,127',
         'size'             => 'max:2|arrayHasOnlyInts:zero',
         'crop'             => 'max:2|arrayHasOnlyInts:zero',
@@ -63,7 +63,7 @@ class StorageStyle extends CareyShop
      */
     protected $scene = [
         'unique' => [
-            'code' => 'require|max:16|alphaDash',
+            'code' => 'require|max:32|alphaDash',
             'exclude_id',
         ],
         'set'    => [
@@ -82,12 +82,12 @@ class StorageStyle extends CareyShop
             'storage_style_id' => 'require|integer|gt:0',
         ],
         'code'   => [
-            'code'     => 'require|max:16|alphaDash',
+            'code'     => 'require|max:32|alphaDash',
             'platform' => 'integer|between:-128,127',
         ],
         'list'   => [
             'name'     => 'max:64',
-            'code'     => 'max:16',
+            'code'     => 'max:32',
             'platform' => 'integer|between:-128,127',
             'status',
             'page_no',
