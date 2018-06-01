@@ -180,9 +180,13 @@ class StorageStyle extends CareyShop
 
         $result = self::get(function ($query) use ($data) {
             $map['code'] = ['eq', $data['code']];
+            $map['status'] = ['eq', 1];
             !isset($data['platform']) ?: $map['platform'] = ['eq', $data['platform']];
 
-            $query->cache(true, null, 'StorageStyle')->where($map);
+            $query
+                ->cache(true, null, 'StorageStyle')
+                ->field('scale,quality,format,style')
+                ->where($map);
         });
 
         if (false !== $result) {
