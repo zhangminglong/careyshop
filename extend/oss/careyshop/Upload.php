@@ -376,7 +376,7 @@ class Upload extends UploadBase
         }
 
         // 如果缩略图已存在则直接返回(转成缩略图路径)
-        $fileInfo['dirname'] .= DS . $fileInfo['filename'];
+        $fileInfo['dirname'] .= '/' . $fileInfo['filename'];
         if (is_file($this->getNewUrl($fileSign, $suffix, $fileInfo, null, 'path'))) {
             return $this->getNewUrl($fileSign, $suffix, $fileInfo, $urlArray);
         }
