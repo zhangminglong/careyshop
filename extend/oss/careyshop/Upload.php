@@ -359,12 +359,12 @@ class Upload extends UploadBase
         $fileInfo = pathinfo($urlArray['path']);
         $suffix = $fileInfo['extension'];
         $param = $this->request->param();
+        $extension = ['jpg', 'png', 'svg', 'gif', 'bmp', 'tiff', 'webp'];
         $url = $this->getNewUrl($fileInfo['filename'], $fileInfo['extension'], $fileInfo, $urlArray);
 
-        if (!empty($param['format'])) {
-            if (in_array($param['format'], ['jpg', 'png', 'svg', 'gif', 'bmp', 'tiff', 'webp'])) {
-                $suffix = $param['format'];
-            }
+        // 非图片资源则直接返回
+        if (!in_array($fileInfo['extension'], $extension)) {
+            return $url;
         }
 
         // 获取源文件位置,并且生成缩略图文件名,验证源文件是否存在
@@ -373,6 +373,13 @@ class Upload extends UploadBase
 
         if (false === $fileSign) {
             return $url . '?error=' . rawurlencode('资源文件不存在');
+        }
+
+        // 处理输出格式
+        if (!empty($param['format'])) {
+            if (in_array($param['format'], $extension)) {
+                $suffix = $param['format'];
+            }
         }
 
         // 如果缩略图已存在则直接返回(转成缩略图路径)
