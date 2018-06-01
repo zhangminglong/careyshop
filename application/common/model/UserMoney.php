@@ -283,14 +283,8 @@ class UserMoney extends CareyShop
             return $this->setError('数值或账号编号错误');
         }
 
-        // 查询条件
-        $map['user_id'] = ['eq', $clientId];
-
         // 获取当前账号信息
-        $result = self::get(function ($query) use ($map) {
-            $query->where($map);
-        });
-
+        $result = $this->where(['user_id' => ['eq', $clientId]])->find();
         if (!$result) {
             return is_null($result) ? $this->setError('数据不存在') : false;
         }
@@ -316,14 +310,8 @@ class UserMoney extends CareyShop
             return $this->setError('数值或账号编号错误');
         }
 
-        // 查询条件
-        $map['user_id'] = ['eq', $clientId];
-
         // 获取当前账号信息
-        $result = self::get(function ($query) use ($map) {
-            $query->where($map);
-        });
-
+        $result = $this->where(['user_id' => ['eq', $clientId]])->find();
         if (!$result) {
             return is_null($result) ? $this->setError('数据不存在') : false;
         }

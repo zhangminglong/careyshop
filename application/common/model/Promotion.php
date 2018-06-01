@@ -58,10 +58,7 @@ class Promotion extends CareyShop
         $map['end_time'] = ['> time', $beginTime];
 
         // 获取相同时间范围内的促销
-        $result = self::get(function ($query) use ($map) {
-            $query->where($map);
-        });
-
+        $result = $this->where($map)->find();
         if (false === $result) {
             return false;
         }

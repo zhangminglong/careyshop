@@ -101,12 +101,7 @@ class AuthGroup extends CareyShop
             return false;
         }
 
-        $result = self::get(function ($query) use ($data) {
-            $map['group_id'] = ['eq', $data['group_id']];
-
-            $query->where($map);
-        });
-
+        $result = self::get($data['group_id']);
         if (false !== $result) {
             return is_null($result) ? null : $result->toArray();
         }

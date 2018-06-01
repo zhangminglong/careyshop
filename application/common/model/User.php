@@ -510,10 +510,7 @@ class User extends CareyShop
             return false;
         }
 
-        $result = self::get(function ($query) use ($data) {
-            $query->where(['username' => ['eq', $data['username']]]);
-        });
-
+        $result = self::get(['username' => $data['username']]);
         if (!$result) {
             return is_null($result) ? $this->setError('账号不存在') : false;
         }

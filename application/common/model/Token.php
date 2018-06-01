@@ -84,10 +84,7 @@ class Token extends CareyShop
         $map['client_type'] = ['eq', $type];
         $map['platform'] = ['eq', $platform];
 
-        $result = self::get(function ($query) use ($map) {
-            $query->where($map);
-        });
-
+        $result = $this->where($map)->find();
         if (false === $result) {
             return false;
         }
@@ -118,10 +115,7 @@ class Token extends CareyShop
         $map['client_type'] = ['eq', $type];
         $map['token'] = ['eq', $oldToken];
 
-        $result = self::get(function ($query) use ($map) {
-            $query->where($map);
-        });
-
+        $result = $this->where($map)->find();
         if (!$result) {
             return is_null($result) ? $this->setError('refresh不存在') : false;
         }

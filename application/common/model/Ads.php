@@ -66,10 +66,7 @@ class Ads extends CareyShop
         isset($data['content']) ?: $data['content'] = '';
 
         // 获取广告位
-        $result = AdsPosition::get(function ($query) use ($data) {
-            $query->where(['ads_position_id' => ['eq', $data['ads_position_id']]]);
-        });
-
+        $result = AdsPosition::get($data['ads_position_id']);
         if (!$result) {
             return is_null($result) ? $this->setError('广告位不存在') : false;
         }
@@ -106,10 +103,7 @@ class Ads extends CareyShop
             }
         }
 
-        $result = self::get(function ($query) use ($data) {
-            $query->where(['ads_id' => ['eq', $data['ads_id']]]);
-        });
-
+        $result = self::get($data['ads_id']);
         if (!$result) {
             return is_null($result) ? $this->setError('数据不存在') : false;
         }
@@ -201,10 +195,7 @@ class Ads extends CareyShop
             return false;
         }
 
-        $result = self::get(function ($query) use ($data) {
-            $query->where(['ads_id' => ['eq', $data['ads_id']]]);
-        });
-
+        $result = self::get($data['ads_id']);
         if (false !== $result) {
             return is_null($result) ? null : $result->toArray();
         }

@@ -836,10 +836,7 @@ class OrderService extends CareyShop
             return false;
         }
 
-        $result = self::get(function ($query) use ($data) {
-            $query->where(['service_no' => ['eq', $data['service_no']]]);
-        });
-
+        $result = self::get(['service_no' => $data['service_no']]);
         if (!$result) {
             return is_null($result) ? $this->setError('售后服务单不存在') : false;
         }
@@ -943,10 +940,7 @@ class OrderService extends CareyShop
             return false;
         }
 
-        $result = self::get(function ($query) use ($data) {
-            $query->where(['service_no' => ['eq', $data['service_no']]]);
-        });
-
+        $result = self::get(['service_no' => $data['service_no']]);
         if (!$result) {
             return is_null($result) ? $this->setError('售后服务单不存在') : false;
         }
@@ -1116,10 +1110,7 @@ class OrderService extends CareyShop
             return false;
         }
 
-        $result = self::get(function ($query) use ($data) {
-            $query->where(['service_no' => ['eq', $data['service_no']]]);
-        });
-
+        $result = self::get(['service_no' => $data['service_no']]);
         if (!$result) {
             return is_null($result) ? $this->setError('售后服务单不存在') : false;
         }
@@ -1631,10 +1622,7 @@ class OrderService extends CareyShop
             return false;
         }
 
-        $result = self::get(function ($query) use ($data) {
-            $query->where(['service_no' => ['eq', $data['service_no']]]);
-        });
-
+        $result = self::get(['service_no' => $data['service_no']]);
         if (!$result) {
             return is_null($result) ? $this->setError('售后服务单不存在') : false;
         }

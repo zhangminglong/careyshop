@@ -328,11 +328,7 @@ class Withdraw extends CareyShop
             return false;
         }
 
-        $result = self::get(function ($query) use ($data) {
-            $map['withdraw_no'] = ['eq', $data['withdraw_no']];
-            $query->where($map);
-        });
-
+        $result = self::get(['withdraw_no' => $data['withdraw_no']]);
         if (!$result) {
             return is_null($result) ? $this->setError('数据不存在') : false;
         }
@@ -360,11 +356,7 @@ class Withdraw extends CareyShop
             return false;
         }
 
-        $result = self::get(function ($query) use ($data) {
-            $map['withdraw_no'] = ['eq', $data['withdraw_no']];
-            $query->where($map);
-        });
-
+        $result = self::get(['withdraw_no' => $data['withdraw_no']]);
         if (!$result) {
             return is_null($result) ? $this->setError('数据不存在') : false;
         }
@@ -408,11 +400,7 @@ class Withdraw extends CareyShop
             return false;
         }
 
-        $result = self::get(function ($query) use ($data) {
-            $map['withdraw_no'] = ['eq', $data['withdraw_no']];
-            $query->where($map);
-        });
-
+        $result = self::get(['withdraw_no' => $data['withdraw_no']]);
         if (!$result) {
             return is_null($result) ? $this->setError('数据不存在') : false;
         }

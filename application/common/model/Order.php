@@ -1006,10 +1006,7 @@ class Order extends CareyShop
         is_client_admin() ?: $map['user_id'] = ['eq', 0];
 
         // 获取订单数据
-        $result = self::get(function ($query) use ($map) {
-            $query->where($map);
-        });
-
+        $result = $this->where($map)->find();
         if (!$result) {
             return is_null($result) ? $this->setError('订单不存在') : false;
         }

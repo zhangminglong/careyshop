@@ -79,10 +79,7 @@ class AdsPosition extends CareyShop
             }
         }
 
-        $result = self::get(function ($query) use ($data) {
-            $query->where(['ads_position_id' => ['eq', $data['ads_position_id']]]);
-        });
-
+        $result = self::get($data['ads_position_id']);
         if (!$result) {
             return is_null($result) ? $this->setError('数据不存在') : false;
         }

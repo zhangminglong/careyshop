@@ -549,10 +549,7 @@ class Payment extends CareyShop
         }
 
         // 获取支付日志信息
-        $paymentLogResult = PaymentLog::get(function ($query) use ($payment) {
-            $query->where(['payment_no' => ['eq', $payment->getPaymentNo()]]);
-        });
-
+        $paymentLogResult = PaymentLog::get(['payment_no' => $payment->getPaymentNo()]);
         if (!$paymentLogResult) {
             return $payment->getError('数据不存在');
         }
