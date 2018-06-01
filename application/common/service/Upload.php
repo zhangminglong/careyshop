@@ -230,14 +230,18 @@ class Upload extends CareyShop
         }
 
         // 是否定义资源样式
-//        if ($request->has('code', 'param', true)) {
-//            $styleDb = new StorageStyle();
-//            $styleResult = $styleDb->getStorageStyleCode(['code' => $request->param('code')]);
-//
-//            print_r($styleResult);exit;
-//            foreach ($styleResult as $key => $value) {
-//            }
-//        }
+        if ($request->has('code', 'param', true)) {
+            $styleResult = (new StorageStyle())->getStorageStyleCode(['code' => $request->param('code')]);
+            foreach ($styleResult as $key => $value) {
+                if (is_array($value)) {
+                    foreach ($value as $k => $v) {
+                        $request->get([$k => $v]);
+                    }
+                } else {
+                    $request->get([$key => $value]);
+                }
+            }
+        }
 
         $ossObject = $this->createOssObject($module);
         if (false === $ossObject) {
