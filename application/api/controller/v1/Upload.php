@@ -29,6 +29,8 @@ class Upload extends CareyShop
             'get.upload.url'      => ['getUploadUrl', 'app\common\service\Upload'],
             // 获取上传Token
             'get.upload.token'    => ['getUploadToken', 'app\common\service\Upload'],
+            // 替换上传资源
+            'replace.upload.item' => ['replaceUploadItem', 'app\common\service\Upload'],
             // 资源上传请求(第三方OSS只能单文件直传方式上传)
             'add.upload.list'     => ['addUploadList', 'app\common\service\Upload'],
             // 接收第三方推送数据

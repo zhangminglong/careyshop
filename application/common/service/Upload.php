@@ -119,6 +119,43 @@ class Upload extends CareyShop
     }
 
     /**
+     * 替换上传资源
+     * @access public
+     * @param  array $data 外部数据
+     * @return array
+     */
+    public function replaceUploadItem($data)
+    {
+        $validate = Loader::validate('Storage');
+        if (!$validate->scene('replace')->check($data)) {
+            return $this->setError($validate->getError());
+        }
+
+        // 获取已存在资源数据
+        $map['storage_id'] = ['eq', $data['storage_id']];
+        $map['type'] = ['neq', 2];
+
+        $storageDB = new Storage();
+        $storageData = $storageDB->field('path,protocol')->where($map)->find();
+
+        if (!$storageData) {
+            return $this->setError(is_null($storageData) ? '资源不存在' : $storageDB->getError());
+        }
+
+        $ossObject = $this->createOssObject($storageData->getAttr('protocol'));
+        if (false === $ossObject) {
+            return false;
+        }
+
+        $result = $ossObject->getToken($storageData->getAttr('path'));
+        if (false === $result) {
+            return $this->setError($ossObject->getError());
+        }
+
+        return $result;
+    }
+
+    /**
      * 当参数为空时获取默认上传模块名,否则验证指定模块名并返回
      * @access public
      * @return string/false
@@ -255,42 +292,5 @@ class Upload extends CareyShop
             'url'        => $notPrefix,
             'url_prefix' => strval($url),
         ];
-    }
-
-    /**
-     * 替换上传资源
-     * @access public
-     * @param  array $data 外部数据
-     * @return array
-     */
-    public function replaceUploadItem($data)
-    {
-        $validate = Loader::validate('Storage');
-        if (!$validate->scene('replace')->check($data)) {
-            return $this->setError($validate->getError());
-        }
-
-        // 获取已存在资源数据
-        $map['storage_id'] = ['eq', $data['storage_id']];
-        $map['type'] = ['neq', 2];
-
-        $storageDB = new Storage();
-        $storageData = $storageDB->field('path,protocol')->where($map)->find();
-
-        if (!$storageData) {
-            return $this->setError(is_null($storageData) ? '资源不存在' : $storageDB->getError());
-        }
-
-        $ossObject = $this->createOssObject($storageData->getAttr('protocol'));
-        if (false === $ossObject) {
-            return false;
-        }
-
-        $result = $ossObject->getToken($storageData->getAttr('path'));
-        if (false === $result) {
-            return $this->setError($ossObject->getError());
-        }
-
-        return $result;
     }
 }
