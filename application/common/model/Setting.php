@@ -407,6 +407,7 @@ class Setting extends CareyShop
                         $this->setSettingItem($key, $value, 'upload', 'Setting.string');
                         break;
 
+                    case 'oss':
                     case 'image_ext':
                     case 'file_ext':
                     case 'qiniu_access_key':

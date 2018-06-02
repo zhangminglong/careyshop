@@ -357,6 +357,7 @@ class Upload extends UploadBase
             $ossResult = $storageDb->hidden(['mime'])->setAttr('status', 200)->toArray();
         }
 
+        $ossResult['oss'] = Config::get('oss.value', 'upload');
         return [$ossResult];
     }
 
