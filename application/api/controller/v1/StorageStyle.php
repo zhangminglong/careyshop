@@ -31,8 +31,6 @@ class StorageStyle extends CareyShop
             'set.storage.style.item'    => ['setStorageStyleItem'],
             // 获取一个资源样式
             'get.storage.style.item'    => ['getStorageStyleItem'],
-            // 根据编码获取资源样式
-            'get.storage.style.code'    => ['getStorageStyleCode'],
             // 获取资源样式列表
             'get.storage.style.list'    => ['getStorageStyleList'],
             // 批量删除资源样式
