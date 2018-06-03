@@ -450,9 +450,9 @@ class Upload extends UploadBase
         }
 
         // 处理输出格式
-        if (!empty($param['format'])) {
-            if (in_array($param['format'], ['jpg', 'png', 'bmp', 'webp', 'gif', 'tiff'])) {
-                $options .= 'format,' . $param['format'] . '/';
+        if (!empty($param['type'])) {
+            if (in_array($param['type'], ['jpg', 'png', 'bmp', 'webp', 'gif', 'tiff'])) {
+                $options .= 'format,' . $param['type'] . '/';
             }
         }
 

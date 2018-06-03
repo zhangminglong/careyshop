@@ -377,9 +377,9 @@ class Upload extends UploadBase
         }
 
         // 处理输出格式
-        if (!empty($param['format'])) {
-            if (in_array($param['format'], $extension)) {
-                $suffix = $param['format'];
+        if (!empty($param['type'])) {
+            if (in_array($param['type'], $extension)) {
+                $suffix = $param['type'];
             }
         }
 
