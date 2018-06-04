@@ -64,15 +64,12 @@ class Payment extends CareyShop
     protected $scene = [
         'set'    => [
             'payment_id' => 'require|integer|gt:0',
-            'name',
-            'code',
             'image',
             'is_deposit',
             'is_inpour',
             'is_payment',
             'is_refund',
             'setting',
-            'model',
             'sort',
             'status',
         ],

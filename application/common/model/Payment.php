@@ -236,7 +236,7 @@ class Payment extends CareyShop
 
         $field = 'payment_id,name,code,image,is_deposit,is_inpour,is_payment,is_refund,model,sort,status';
         if (!empty($data['is_select'])) {
-            $field = 'name,code';
+            $field = 'name,code,image';
             $map['status'] = ['eq', 1];
         }
 
@@ -259,7 +259,7 @@ class Payment extends CareyShop
      * 设置支付配置排序
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return bool
      */
     public function setPaymentSort($data)
     {
@@ -270,7 +270,7 @@ class Payment extends CareyShop
         $map['payment_id'] = ['eq', $data['payment_id']];
         if (false !== $this->save(['sort' => $data['sort']], $map)) {
             Cache::clear('Payment');
-            return $this->toArray();
+            return true;
         }
 
         return false;
