@@ -523,16 +523,16 @@ class User extends CareyShop
             return $this->setError('手机号码错误');
         }
 
-        // 验证验证码
-        $verifyDb = new Verification();
-        if (!$verifyDb->verVerification($data['mobile'], $data['code'])) {
-            return $this->setError($verifyDb->getError());
-        }
+//        // 验证验证码
+//        $verifyDb = new Verification();
+//        if (!$verifyDb->verVerification($data['mobile'], $data['code'])) {
+//            return $this->setError($verifyDb->getError());
+//        }
 
         if (false !== $result->save(['password' => $data['password']])) {
             Cache::clear('token:user_' . $result->getAttr('user_id'));
             $this->hasToken()->where(['client_id' => $result->getAttr('user_id'), 'client_type' => 0])->delete();
-            $verifyDb->useVerificationItem(['number' => $data['mobile']]);
+            //$verifyDb->useVerificationItem(['number' => $data['mobile']]);
             return true;
         }
 
