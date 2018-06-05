@@ -21,8 +21,9 @@ class NoticeTpl extends CareyShop
         'notice_tpl_id' => 'integer|gt:0',
         'name'          => 'max:30',
         'code'          => 'in:sms,email',
-        'type'          => 'integer|between:0,8',
+        'type'          => 'integer|between:0,6',
         'sms_code'      => 'max:20',
+        'sms_sign'      => 'length:2,12',
         'title'         => 'max:255',
         'template'      => 'min:0',
         'status'        => 'in:0,1',
@@ -38,6 +39,7 @@ class NoticeTpl extends CareyShop
         'code'          => '通知系统编码',
         'type'          => '通知类型',
         'sms_code'      => '阿里云短信模板编号',
+        'sms_sign'      => '阿里云短信签名',
         'title'         => '通知系统标题',
         'template'      => '通知系统模板',
         'status'        => '模板是否启用',
@@ -50,24 +52,21 @@ class NoticeTpl extends CareyShop
     protected $scene = [
         'item'      => [
             'notice_tpl_id' => 'require|integer|gt:0',
-            'code'          => 'require|in:sms,email',
         ],
         'list'      => [
             'code' => 'require|in:sms,email',
         ],
         'set_sms'   => [
             'sms_code' => 'require|max:20',
+            'sms_sign' => 'require|length:2,12',
             'template' => 'require',
-            'status'   => 'require|in:0,1',
         ],
         'set_email' => [
             'title'    => 'require|max:255',
             'template' => 'require',
-            'status'   => 'require|in:0,1',
         ],
         'status'    => [
             'notice_tpl_id' => 'require|arrayHasOnlyInts',
-            'code'          => 'require|in:sms,email',
             'status'        => 'require|in:0,1',
         ],
     ];

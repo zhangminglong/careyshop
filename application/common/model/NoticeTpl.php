@@ -113,7 +113,6 @@ class NoticeTpl extends CareyShop
 
         // 搜索条件
         $map['notice_tpl_id'] = ['eq', $data['notice_tpl_id']];
-        $map['code'] = ['eq', $data['code']];
 
         // 获取数据
         $result = self::get(function ($query) use ($map) {
@@ -121,7 +120,10 @@ class NoticeTpl extends CareyShop
                 $query->cache(true, null, 'NoticeTpl');
             };
 
-            $query->cache(true, null, 'NoticeTpl')->with($with)->where($map);
+            $query
+                ->cache(true, null, 'NoticeTpl')
+                ->with($with)
+                ->where($map);
         });
 
         if (false !== $result) {
@@ -167,16 +169,25 @@ class NoticeTpl extends CareyShop
             return false;
         }
 
-        if (!$this->validateSetData($data, 'NoticeTpl.set_' . $data['code'])) {
+        $result = self::get($data['notice_tpl_id']);
+        if (!$result) {
+            return is_null($result) ? $this->setError('数据不存在') : false;
+        }
+
+        // 再次验证数据是否规范
+        $code = $result->getAttr('code');
+        if (!$this->validateData($data, 'NoticeTpl.set_' . $code)) {
             return false;
         }
 
-        $map['notice_tpl_id'] = ['eq', $data['notice_tpl_id']];
-        $map['code'] = ['eq', $data['code']];
+        if ('sms' === $code) {
+            $data['title'] = $data['sms_sign'];
+            unset($data['sms_sign']);
+        }
 
-        if (false !== $this->allowField(true)->save($data, $map)) {
+        if (false !== $result->allowField(true)->save($data)) {
             Cache::clear('NoticeTpl');
-            return $this->toArray();
+            return $result->toArray();
         }
 
         return false;
@@ -195,8 +206,6 @@ class NoticeTpl extends CareyShop
         }
 
         $map['notice_tpl_id'] = ['in', $data['notice_tpl_id']];
-        $map['code'] = ['eq', $data['code']];
-
         if (false !== $this->save(['status' => $data['status']], $map)) {
             Cache::clear('NoticeTpl');
             return true;
