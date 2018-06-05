@@ -20,7 +20,6 @@ class Verification extends CareyShop
     protected $rule = [
         'mobile' => 'number|length:7,15',
         'email'  => 'email|max:60',
-        'type'   => 'in:1,7,8',
         'code'   => 'integer|max:6',
         'number' => 'max:60',
     ];
@@ -32,9 +31,8 @@ class Verification extends CareyShop
     protected $field = [
         'mobile' => '手机号',
         'email'  => '邮箱地址',
-        'type'   => '通知类型',
         'code'   => '验证码',
-        'number' => '验证号',
+        'number' => '验证号码',
     ];
 
     /**
@@ -44,11 +42,9 @@ class Verification extends CareyShop
     protected $scene = [
         'sms'       => [
             'mobile' => 'require|number|length:7,15',
-            'type'   => 'require|in:1,7,8',
         ],
         'email'     => [
             'email' => 'require|email|max:60',
-            'type'  => 'require|in:1,7,8',
         ],
         'ver_sms'   => [
             'mobile' => 'require|number|length:7,15',

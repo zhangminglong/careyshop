@@ -18,46 +18,46 @@ use think\Loader;
 class Notice extends CareyShop
 {
     /**
-     * 注册验证
+     * 通用验证
      * @var int
      */
-    const NOTICE_CAPTCHA = 'captcha';
+    const CAPTCHA = 0;
 
     /**
      * 注册成功
      * @var int
      */
-    const NOTICE_REGISTER = 'register';
+    const REGISTER = 1;
 
     /**
      * 充值成功
      * @var int
      */
-    const NOTICE_RECHARGE = 'recharge';
+    const RECHARGE = 2;
 
     /**
      * 确认订单
      * @var int
      */
-    const NOTICE_CONFIRM_ORDER = 'confirm_order';
+    const CONFIRM_ORDER = 3;
 
     /**
      * 付款成功
      * @var int
      */
-    const NOTICE_PAY_ORDER = 'pay_order';
+    const PAY_ORDER = 4;
 
     /**
      * 下单成功
      * @var int
      */
-    const NOTICE_PICKING_ORDER = 'picking_order';
+    const PICKING_ORDER = 5;
 
     /**
      * 订单发货
      * @var int
      */
-    const NOTICE_DELIVERY_ORDER = 'delivery_order';
+    const DELIVERY_ORDER = 6;
 
     /**
      * 当前模型名称

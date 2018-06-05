@@ -38,11 +38,10 @@ class Verification extends CareyShop
      * 发送验证码
      * @access public
      * @param  string $code   通知编码 sms或email
-     * @param  int    $type   通知类型
      * @param  string $number 手机号或邮箱地址
      * @return bool
      */
-    private function sendNotice($code, $type, $number)
+    private function sendNotice($code, $number)
     {
         $result = self::get(function ($query) use ($number) {
             $query->where(['number' => ['eq', $number]])->order(['verification_id' => 'desc']);
@@ -59,8 +58,9 @@ class Verification extends CareyShop
         }
 
         $notice = new NoticeTpl();
-        $data = ['number' => rand_number(6), 'user_name' => get_client_name()];
-        if (!$notice->sendNotice($number, $number, $type, $code, $data)) {
+        $data['number'] = rand_number(6);
+
+        if (!$notice->sendNotice($number, $number, Notice::CAPTCHA, $code, $data)) {
             return $this->setError($notice->getError());
         }
 
@@ -99,7 +99,7 @@ class Verification extends CareyShop
             return false;
         }
 
-        return $this->sendNotice('sms', $data['type'], $data['mobile']);
+        return $this->sendNotice('sms', $data['mobile']);
     }
 
     /**
@@ -114,7 +114,7 @@ class Verification extends CareyShop
             return false;
         }
 
-        return $this->sendNotice('email', $data['type'], $data['email']);
+        return $this->sendNotice('email', $data['email']);
     }
 
     /**
