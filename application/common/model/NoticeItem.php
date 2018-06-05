@@ -40,5 +40,6 @@ class NoticeItem extends CareyShop
     protected $type = [
         'notice_item_id' => 'integer',
         'type'           => 'integer',
+        'status'         => 'integer',
     ];
 }

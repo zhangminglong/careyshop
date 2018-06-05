@@ -22,7 +22,6 @@ class Notice extends CareyShop
         'status'     => 'in:0,1',
         'key_id'     => 'max:255',
         'key_secret' => 'max:255',
-        'sms_sign'   => 'max:255',
         'email_host' => 'max:255',
         'email_port' => 'max:255',
         'email_addr' => 'max:255',
@@ -39,7 +38,6 @@ class Notice extends CareyShop
         'status'     => '状态',
         'key_id'     => 'Access Key ID',
         'key_secret' => 'Access Key Secret',
-        'sms_sign'   => '短信签名',
         'email_host' => 'SMTP服务器',
         'email_port' => 'SMTP端口',
         'email_addr' => '发信人邮箱地址',
@@ -58,7 +56,6 @@ class Notice extends CareyShop
         'set_sms'   => [
             'key_id'     => 'require|max:255',
             'key_secret' => 'require|max:255',
-            'sms_sign'   => 'require|max:255',
             'status'     => 'require|in:0,1',
         ],
         'set_email' => [

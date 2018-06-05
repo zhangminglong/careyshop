@@ -18,58 +18,46 @@ use think\Loader;
 class Notice extends CareyShop
 {
     /**
-     * 注册成功
-     * @var int
-     */
-    const AFTER_REGISTER = 0;
-
-    /**
      * 注册验证
      * @var int
      */
-    const REGISTER_VALIDATE = 1;
+    const NOTICE_CAPTCHA = 'captcha';
+
+    /**
+     * 注册成功
+     * @var int
+     */
+    const NOTICE_REGISTER = 'register';
 
     /**
      * 充值成功
      * @var int
      */
-    const RECHARGE_SUCCESS = 2;
+    const NOTICE_RECHARGE = 'recharge';
 
     /**
      * 确认订单
      * @var int
      */
-    const CONFIRM_ORDER = 3;
+    const NOTICE_CONFIRM_ORDER = 'confirm_order';
 
     /**
      * 付款成功
      * @var int
      */
-    const PAY_SUCCESS = 4;
+    const NOTICE_PAY_ORDER = 'pay_order';
 
     /**
      * 下单成功
      * @var int
      */
-    const CREATE_ORDER = 5;
+    const NOTICE_PICKING_ORDER = 'picking_order';
 
     /**
      * 订单发货
      * @var int
      */
-    const ORDER_DELIVER = 6;
-
-    /**
-     * 找回密码
-     * @var int
-     */
-    const FORGOT_PASSWORD = 7;
-
-    /**
-     * 绑定(手机或邮箱)
-     * @var int
-     */
-    const BIND_NUMBER = 8;
+    const NOTICE_DELIVERY_ORDER = 'delivery_order';
 
     /**
      * 当前模型名称
@@ -162,10 +150,6 @@ class Notice extends CareyShop
                 'key_secret' => [
                     'name'  => 'Access Key Secret',
                     'value' => $data['key_secret'],
-                ],
-                'sms_sign'   => [
-                    'name'  => '短信签名',
-                    'value' => $data['sms_sign'],
                 ],
                 'status'     => [
                     'name'  => '启用状态',
