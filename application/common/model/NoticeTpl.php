@@ -257,7 +257,7 @@ class NoticeTpl extends CareyShop
             }
         }
 
-        // 获取模板配置参数
+        // 获取通知系统模板数据
         $tplResult = $this->getNoticeTplData($type, $code);
         if (false === $tplResult) {
             return false;
@@ -296,11 +296,11 @@ class NoticeTpl extends CareyShop
         }
 
         // 根据通知类型获取可用变量(缓存)
+        $error = '';
         $this->noticeItem = NoticeItem::cache()
             ->where(['type' => ['eq', $type]])
             ->column('item_name,replace_name', 'item_name');
 
-        $error = '';
         if (!empty($mobile) && !$isSmsClose && isset($this->smsSetting) && 1 == $this->smsSetting['status']) {
             if (!$this->snedNoticeSms($mobile, $data)) {
                 $error .= $this->getError();
@@ -329,7 +329,6 @@ class NoticeTpl extends CareyShop
             $value = '';
             switch ($item_name) {
                 case '{验证码}':
-                    //$value = rand_number(6);
                     !isset($data['number']) ?: $value = $data['number'];
                     break;
 
@@ -337,8 +336,12 @@ class NoticeTpl extends CareyShop
                     $value = Config::get('shop_name.value', 'system_info');
                     break;
 
-                case '{账号}':
+                case '{用户账号}':
                     !isset($data['user_name']) ?: $value = auto_hid_substr($data['user_name']);
+                    break;
+
+                case '{用户昵称}':
+                    !isset($data['nick_name']) ?: $value = auto_hid_substr($data['nick_name']);
                     break;
 
                 case '{充值金额}':
@@ -361,11 +364,7 @@ class NoticeTpl extends CareyShop
                     !isset($data['goods_name']) ?: $value = $data['goods_name'];
                     break;
 
-                case '{商品规格}':
-                    !isset($data['goods_spec']) ?: $value = $data['goods_spec'];
-                    break;
-
-                case '{物流公司}':
+                case '{快递公司}':
                     !isset($data['delivery_name']) ?: $value = $data['delivery_name'];
                     break;
 
@@ -465,14 +464,17 @@ class NoticeTpl extends CareyShop
         $request->setPhoneNumbers($mobile);
 
         // 设置签名名称
-        $request->setSignName($this->setting['sms']['value']['sms_sign']['value']);
+        $request->setSignName($this->smsSetting['title']);
 
         // 设置模板CODE
         $request->setTemplateCode($this->smsSetting['sms_code']);
 
         // 设置模板参数
-        if (!empty($templateData = $this->templateToSendContent('sms', $data))) {
+        $templateData = $this->templateToSendContent('sms', $data);
+        if (!empty($templateData)) {
             $request->setTemplateParam($templateData);
+        } else {
+            return $this->setError('短信发送内容不能为空');
         }
 
         // 发起访问请求
@@ -506,7 +508,7 @@ class NoticeTpl extends CareyShop
         $mail->CharSet = 'UTF-8';
 
         // 设置使用SMTP服务
-        $mail->IsSMTP();
+        $mail->isSMTP();
 
         // SMTP调试功能 0=关闭 1=错误和消息 2=消息
         $mail->SMTPDebug = 0;
@@ -530,29 +532,31 @@ class NoticeTpl extends CareyShop
         $mail->Password = $this->setting['email']['value']['email_pass']['value'];
 
         $name = Config::get('shop_name.value', 'system_info');
-        $mail->SetFrom($this->setting['email']['value']['email_addr']['value'], $name);
-        $mail->AddReplyTo($this->setting['email']['value']['email_addr']['value'], $name);
-
-        // 设置邮件主题
-        $mail->Subject = $subject;
-
-        // 设置邮件内容
-        if (!empty($templateData = $this->templateToSendContent('email', $data))) {
-            $mail->MsgHTML($templateData);
-        }
+        $mail->setFrom($this->setting['email']['value']['email_addr']['value'], $name);
+        $mail->addReplyTo($this->setting['email']['value']['email_addr']['value'], $name);
 
         // 设置收件人
-        $mail->AddAddress($email);
+        $mail->addAddress($email);
+
+        // 设置邮件内容
+        $templateData = $this->templateToSendContent('email', $data);
+        if (!empty($templateData)) {
+            $mail->isHTML(true);
+            $mail->Subject = $subject;
+            $mail->Body = $templateData;
+        } else {
+            return $this->setError('邮件发送内容不能为空');
+        }
 
         // 添加附件
         if (is_array($attachment)) {
             foreach ($attachment as $file) {
-                is_file($file) && $mail->AddAttachment($file);
+                is_file($file) && $mail->addAttachment($file);
             }
         }
 
         try {
-            if ($mail->Send()) {
+            if ($mail->send()) {
                 return true;
             }
         } catch (\Exception $e) {
