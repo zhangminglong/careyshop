@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "63daa5c5e219573aa050ca288d421e2e",
@@ -160,16 +160,16 @@
         },
         {
             "name": "qiniu/php-sdk",
-            "version": "v7.2.5",
+            "version": "v7.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/qiniu/php-sdk.git",
-                "reference": "0a6e6c75cbc0429fac69ba9aaadb1f5d6c676fb0"
+                "reference": "305ce1c1c0c71f794661fe45a96facf61ef96c5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/qiniu/php-sdk/0a6e6c75cbc0429fac69ba9aaadb1f5d6c676fb0.zip",
-                "reference": "0a6e6c75cbc0429fac69ba9aaadb1f5d6c676fb0",
+                "url": "https://files.phpcomposer.com/files/qiniu/php-sdk/305ce1c1c0c71f794661fe45a96facf61ef96c5d.zip",
+                "reference": "305ce1c1c0c71f794661fe45a96facf61ef96c5d",
                 "shasum": ""
             },
             "require": {
@@ -207,7 +207,7 @@
                 "sdk",
                 "storage"
             ],
-            "time": "2018-05-10T09:26:30+00:00"
+            "time": "2018-05-18T04:37:29+00:00"
         },
         {
             "name": "topthink/framework",
