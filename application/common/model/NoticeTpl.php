@@ -271,6 +271,7 @@ class NoticeTpl extends CareyShop
 
             if ('email' == $value['code'] && !$isEmailClose) {
                 $this->emailSetting = $value;
+                $this->emailSetting['template'] = htmlspecialchars_decode($value['template']);
                 continue;
             }
         }
@@ -505,7 +506,7 @@ class NoticeTpl extends CareyShop
         $mail = new PHPMailer();
 
         // 设置邮件编码
-        $mail->CharSet = 'UTF-8';
+        $mail->CharSet = 'utf-8';
 
         // 设置邮件语言
         $mail->setLanguage('zh_cn');
@@ -516,7 +517,10 @@ class NoticeTpl extends CareyShop
         // SMTP调试功能 0=关闭 1=错误和消息 2=消息
         $mail->SMTPDebug = 0;
 
-        // 启用 SMTP 验证功能
+        // 编码格式
+        $mail->Encoding = 'base64';
+
+        // 启用SMTP验证功能
         $mail->SMTPAuth = true;
 
         // 使用安全协议
@@ -543,6 +547,7 @@ class NoticeTpl extends CareyShop
 
         // 设置邮件内容
         $templateData = $this->templateToSendContent('email', $data);
+
         if (!empty($templateData)) {
             $mail->isHTML(true);
             $mail->Subject = $subject;
