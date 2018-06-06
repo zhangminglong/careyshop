@@ -333,7 +333,7 @@ class NoticeTpl extends CareyShop
                     break;
 
                 case '{商城名称}':
-                    $value = Config::get('shop_name.value', 'system_info');
+                    $value = Config::get('name.value', 'system_info');
                     break;
 
                 case '{用户账号}':
@@ -507,11 +507,11 @@ class NoticeTpl extends CareyShop
         // 设置邮件编码
         $mail->CharSet = 'UTF-8';
 
-        // 设置使用SMTP服务
-        $mail->isSMTP();
-
         // 设置邮件语言
         $mail->setLanguage('zh_cn');
+
+        // 设置使用SMTP服务
+        $mail->isSMTP();
 
         // SMTP调试功能 0=关闭 1=错误和消息 2=消息
         $mail->SMTPDebug = 0;
@@ -534,7 +534,7 @@ class NoticeTpl extends CareyShop
         // SMTP服务器密码
         $mail->Password = $this->setting['email']['value']['email_pass']['value'];
 
-        $name = Config::get('shop_name.value', 'system_info');
+        $name = Config::get('name.value', 'system_info');
         $mail->setFrom($this->setting['email']['value']['email_addr']['value'], $name);
         $mail->addReplyTo($this->setting['email']['value']['email_addr']['value'], $name);
 

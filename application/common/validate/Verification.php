@@ -32,7 +32,7 @@ class Verification extends CareyShop
         'mobile' => '手机号',
         'email'  => '邮箱地址',
         'code'   => '验证码',
-        'number' => '验证号码',
+        'number' => '手机号或邮箱地址',
     ];
 
     /**
