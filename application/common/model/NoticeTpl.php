@@ -524,7 +524,7 @@ class NoticeTpl extends CareyShop
         $mail->SMTPAuth = true;
 
         // 使用安全协议
-        $mail->SMTPSecure = $this->setting['email']['value']['email_host']['value'] == 0 ? 'tls' : 'ssl';
+        $mail->SMTPSecure = $this->setting['email']['value']['email_ssl']['value'] == 0 ? 'tls' : 'ssl';
 
         // SMTP服务器
         $mail->Host = $this->setting['email']['value']['email_host']['value'];
