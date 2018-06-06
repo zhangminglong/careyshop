@@ -27,6 +27,7 @@ class Notice extends CareyShop
         'email_addr' => 'max:255',
         'email_id'   => 'max:255',
         'email_pass' => 'max:255',
+        'email_ssl'  => 'in:0,1',
     ];
 
     /**
@@ -43,6 +44,7 @@ class Notice extends CareyShop
         'email_addr' => '发信人邮箱地址',
         'email_id'   => 'SMTP身份验证用户名',
         'email_pass' => 'SMTP身份验证码',
+        'email_ssl'  => '是否使用安全链接',
     ];
 
     /**
@@ -64,6 +66,7 @@ class Notice extends CareyShop
             'email_addr' => 'require|max:255',
             'email_id'   => 'require|max:255',
             'email_pass' => 'require|max:255',
+            'email_ssl'  => 'require|in:0,1',
             'status'     => 'require|in:0,1',
         ],
         'status'    => [

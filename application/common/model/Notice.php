@@ -178,6 +178,10 @@ class Notice extends CareyShop
                     'name'  => 'SMTP身份验证码',
                     'value' => $data['email_pass'],
                 ],
+                'email_ssl'  => [
+                    'name'  => '是否使用安全链接',
+                    'value' => $data['email_ssl'],
+                ],
                 'status'     => [
                     'name'  => '启用状态',
                     'value' => $data['status'],

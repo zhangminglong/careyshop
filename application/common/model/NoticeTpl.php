@@ -474,7 +474,7 @@ class NoticeTpl extends CareyShop
         if (!empty($templateData)) {
             $request->setTemplateParam($templateData);
         } else {
-            return $this->setError('短信发送内容不能为空');
+            return $this->setError('短信正文不能为空');
         }
 
         // 发起访问请求
@@ -510,6 +510,9 @@ class NoticeTpl extends CareyShop
         // 设置使用SMTP服务
         $mail->isSMTP();
 
+        // 设置邮件语言
+        $mail->setLanguage('zh_cn');
+
         // SMTP调试功能 0=关闭 1=错误和消息 2=消息
         $mail->SMTPDebug = 0;
 
@@ -517,7 +520,7 @@ class NoticeTpl extends CareyShop
         $mail->SMTPAuth = true;
 
         // 使用安全协议
-        $mail->SMTPSecure = 'ssl';
+        $mail->SMTPSecure = $this->setting['email']['value']['email_host']['value'] == 0 ? 'tls' : 'ssl';
 
         // SMTP服务器
         $mail->Host = $this->setting['email']['value']['email_host']['value'];
@@ -545,7 +548,7 @@ class NoticeTpl extends CareyShop
             $mail->Subject = $subject;
             $mail->Body = $templateData;
         } else {
-            return $this->setError('邮件发送内容不能为空');
+            return $this->setError('邮件正文不能为空');
         }
 
         // 添加附件
