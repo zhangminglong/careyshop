@@ -23,10 +23,20 @@ class Qrcode extends CareyShop
     protected static function initMethod()
     {
         return [
-            // 生成一个二维码
-            'get.qrcode.item'    => ['getQrcodeItem', 'app\common\service\Qrcode'],
+            // 动态生成一个二维码
+            'get.qrcode.item'    => ['getQrcodeItem'],
             // 获取二维码调用地址
             'get.qrcode.callurl' => ['getQrcodeCallurl', 'app\common\service\Qrcode'],
+            // 添加一个二维码
+            'add.qrcode.item'    => ['addQrcodeItem'],
+            // 编辑一个二维码
+            'set.qrcode.item'    => ['setQrcodeItem'],
+            // 获取一个二维码
+            'get.qrcode.config'  => ['getQrcodeConfig'],
+            // 获取二维码列表
+            'get.qrcode.list'    => ['getQrcodeList'],
+            // 批量删除二维码
+            'del.qrcode.list'    => ['delQrcodeList'],
         ];
     }
 }

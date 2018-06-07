@@ -24,62 +24,50 @@ class Qrcode extends CareyShop
     public function getQrcodeCallurl()
     {
         $vars = ['method' => 'get.qrcode.item'];
-        $data['call_url'] = Url::bUild('/api/v1/qrcode', $vars, true, true);
+        $data['call_url'] = Url::bUild('/api/v1/qrcode', $vars, false, true);
 
         return $data;
     }
 
     /**
      * 判断本地资源或网络资源,最终将返回实际需要的路径
-     * @access private
+     * @access public
      * @param  string $path 路径
      * @return string
      */
-    private function getQrcodeLogoPath($path)
+    private static function getQrcodeLogoPath($path)
     {
         // 如果是网络文件直接返回
         if (filter_var($path, FILTER_VALIDATE_URL)) {
+            return urldecode($path);
+        }
+
+        $path = ROOT_PATH . 'public' . DS . $path;
+        $path = str_replace(IS_WIN ? '/' : '\\', DS, $path);
+
+        if (is_file($path)) {
             return $path;
         }
 
-
+        $path = ROOT_PATH . 'public' . DS . 'static' . DS . 'api' . DS . 'images' . DS . 'qrcode_logo.png';
+        return $path;
     }
 
     /**
-     * 生成一个二维码
+     * 动态生成一个二维码
      * @access public
      * @param  array $data 外部数据
      * @return mixed
      */
-    public function getQrcodeItem($data)
+    public static function getQrcodeItem($data)
     {
-        $validate = Loader::validate('Qrcode');
-        if (!$validate->check($data)) {
-            return $this->setError($validate->getError());
-        }
-
-        // LOGO内部地址
-        $isUrl = false;
-        $logoPath = ROOT_PATH;
-
-        $config = config('qrcode_logo.value', null, 'system_info');
-        if (!empty($config) && filter_var($config, FILTER_VALIDATE_URL)) {
-            $logoPath = $config;
-            $isUrl = true;
-        } else {
-            $logoPath .= $config;
-            $logoPath = str_replace(IS_WIN ? '/' : '\\', DS, $logoPath);
-        }
-
-        if (!$isUrl && !is_file($logoPath)) {
-            $logoPath = ROOT_PATH . 'public' . DS . 'static' . DS . 'api' . DS . 'images' . DS . 'qrcode_logo.png';
-        }
-
+        // 参数值处理
         $data['text'] = base64_decode('5Z+65LqOQ2FyZXlTaG9w5ZWG5Z+O5qGG5p6257O757uf');
         !isset($data['text']) ?: $data['text'] = urldecode($data['text']);
 
-        $size = isset($data['size']) ? $data['size'] : 4;
-        $logo = isset($data['logo']) ? urldecode($data['logo']) : $logoPath;
+        $size = !empty($data['size']) ? $data['size'] : 3;
+        $logo = isset($data['logo']) ? urldecode($data['logo']) : config('qrcode_logo.value', null, 'system_info');
+        $logo = self::getQrcodeLogoPath($logo);
 
         ob_start();
         \PHPQRCode\QRcode::png($data['text'], false, 'M', $size, 1);
