@@ -66,7 +66,7 @@ class AppInstall extends CareyShop
         unset($data['app_install_id'], $data['count']);
 
         if (false !== $this->allowField(true)->save($data)) {
-            Cache::rm('AppInstall');
+            Cache::clear('AppInstall');
             return $this->toArray();
         }
 
@@ -89,7 +89,7 @@ class AppInstall extends CareyShop
         $map['app_install_id'] = ['eq', $data['app_install_id']];
 
         if (false !== $this->allowField($field)->save($data, $map)) {
-            Cache::rm('AppInstall');
+            Cache::clear('AppInstall');
             return $this->toArray();
         }
 
@@ -129,7 +129,7 @@ class AppInstall extends CareyShop
         }
 
         self::destroy($data['app_install_id']);
-        Cache::rm('AppInstall');
+        Cache::clear('AppInstall');
 
         return true;
     }
@@ -190,9 +190,9 @@ class AppInstall extends CareyShop
     public function requestAppInstallItem()
     {
         // 获取所有安装包列表
-        $result = self::cache('AppInstall')->column('user_agent,ver,url', 'app_install_id');
+        $result = self::cache(true, null, 'AppInstall')->column('user_agent,ver,url', 'app_install_id');
         if (false === $result) {
-            Cache::rm('AppInstall');
+            Cache::clear('AppInstall');
             return false;
         }
 
@@ -222,5 +222,33 @@ class AppInstall extends CareyShop
         }
 
         return $data;
+    }
+
+    /**
+     * 根据条件查询是否有更新
+     * @access public
+     * @param  array $data 外部数据
+     * @return bool
+     */
+    public function queryAppInstallUpdated($data)
+    {
+        if (!$this->validateData($data, 'AppInstall.updated')) {
+            return false;
+        }
+
+        $result = self::all(function ($query) use ($data) {
+            $query
+                ->cache(true, null, 'AppInstall')
+                ->field('ver')
+                ->where(['user_agent' => ['eq', $data['user_agent']]]);
+        });
+
+        foreach ($result as $value) {
+            if (version_compare($value->getAttr('ver'), $data['ver'], '>')) {
+                return true;
+            }
+        }
+
+        return $this->setError('当前应用版本已是最新');
     }
 }

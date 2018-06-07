@@ -50,26 +50,30 @@ class AppInstall extends CareyShop
      * @var array
      */
     protected $scene = [
-        'set'  => [
+        'set'     => [
             'app_install_id' => 'require|integer|gt:0',
             'user_agent',
             'name',
             'ver',
             'url',
         ],
-        'item' => [
+        'item'    => [
             'app_install_id' => 'require|integer|gt:0',
         ],
-        'del'  => [
+        'del'     => [
             'app_install_id' => 'require|arrayHasOnlyInts',
         ],
-        'list' => [
+        'list'    => [
             'user_agent' => 'max:64',
             'name'       => 'max:32',
             'page_no',
             'page_size',
             'order_type',
             'order_field',
+        ],
+        'updated' => [
+            'user_agent',
+            'ver',
         ],
     ];
 }
