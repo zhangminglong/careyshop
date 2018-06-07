@@ -183,6 +183,38 @@ class AppInstall extends CareyShop
     }
 
     /**
+     * 根据条件查询是否有更新
+     * @access public
+     * @param  array $data 外部数据
+     * @return bool
+     */
+    public function queryAppInstallUpdated($data)
+    {
+        if (!$this->validateData($data, 'AppInstall.updated')) {
+            return false;
+        }
+
+        $result = self::all(function ($query) use ($data) {
+            $query
+                ->cache(true, null, 'AppInstall')
+                ->field('ver')
+                ->where(['user_agent' => ['eq', $data['user_agent']]]);
+        });
+
+        if ($result->isEmpty()) {
+            return $this->setError('不存在标识为 ' . $data['user_agent'] . ' 的应用安装包');
+        }
+
+        foreach ($result as $value) {
+            if (version_compare($value->getAttr('ver'), $data['ver'], '>')) {
+                return true;
+            }
+        }
+
+        return $this->setError('当前应用版本已是最新');
+    }
+
+    /**
      * 根据请求获取一个应用安装包
      * @access public
      * @return array/false
@@ -222,37 +254,5 @@ class AppInstall extends CareyShop
         }
 
         return $data;
-    }
-
-    /**
-     * 根据条件查询是否有更新
-     * @access public
-     * @param  array $data 外部数据
-     * @return bool
-     */
-    public function queryAppInstallUpdated($data)
-    {
-        if (!$this->validateData($data, 'AppInstall.updated')) {
-            return false;
-        }
-
-        $result = self::all(function ($query) use ($data) {
-            $query
-                ->cache(true, null, 'AppInstall')
-                ->field('ver')
-                ->where(['user_agent' => ['eq', $data['user_agent']]]);
-        });
-
-        if ($result->isEmpty()) {
-            return $this->setError('不存在标识为 ' . $data['user_agent'] . ' 的应用安装包');
-        }
-
-        foreach ($result as $value) {
-            if (version_compare($value->getAttr('ver'), $data['ver'], '>')) {
-                return true;
-            }
-        }
-
-        return $this->setError('当前应用版本已是最新');
     }
 }

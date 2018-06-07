@@ -33,10 +33,10 @@ class AppInstall extends CareyShop
             'del.app.install.list'      => ['delAppInstallList'],
             // 获取应用安装包列表
             'get.app.install.list'      => ['getAppInstallList'],
-            // 根据请求获取一个应用安装包
-            'request.app.install.item'  => ['requestAppInstallItem'],
             // 根据条件查询是否有更新
             'query.app.install.updated' => ['queryAppInstallUpdated'],
+            // 根据请求获取一个应用安装包
+            'request.app.install.item'  => ['requestAppInstallItem'],
         ];
     }
 }
