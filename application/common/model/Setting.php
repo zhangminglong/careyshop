@@ -354,10 +354,8 @@ class Setting extends CareyShop
                     case 'beian_url':
                     case 'beian_ico':
                     case 'weixin_url':
-                        $this->setSettingItem($key, $value, 'system_info', 'Setting.string');
-                        break;
-
                     case 'third_count':
+                    case 'qrcode_logo':
                         $this->setSettingItem($key, $value, 'system_info', 'Setting.string');
                         break;
 
