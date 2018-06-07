@@ -11,7 +11,6 @@
 
 namespace app\common\service;
 
-use think\Loader;
 use think\Url;
 
 class Qrcode extends CareyShop
@@ -24,7 +23,7 @@ class Qrcode extends CareyShop
     public function getQrcodeCallurl()
     {
         $vars = ['method' => 'get.qrcode.item'];
-        $data['call_url'] = Url::bUild('/api/v1/qrcode', $vars, false, true);
+        $data['call_url'] = Url::bUild('/api/v1/qrcode', $vars, true, true);
 
         return $data;
     }
@@ -62,20 +61,18 @@ class Qrcode extends CareyShop
     public static function getQrcodeItem($data)
     {
         // 参数值处理
-        $data['text'] = base64_decode('5Z+65LqOQ2FyZXlTaG9w5ZWG5Z+O5qGG5p6257O757uf');
-        !isset($data['text']) ?: $data['text'] = urldecode($data['text']);
-
-        $size = !empty($data['size']) ? $data['size'] : 3;
-        $logo = isset($data['logo']) ? urldecode($data['logo']) : config('qrcode_logo.value', null, 'system_info');
+        isset($data['text']) ?: $data['text'] = base64_decode('5Z+65LqOQ2FyZXlTaG9w5ZWG5Z+O5qGG5p6257O757uf');
+        $size = !empty($data['size']) ? (int)$data['size'] : 3;
+        $logo = isset($data['logo']) ? $data['logo'] : config('qrcode_logo.value', null, 'system_info');
         $logo = self::getQrcodeLogoPath($logo);
 
         ob_start();
-        \PHPQRCode\QRcode::png($data['text'], false, 'M', $size, 1);
+        \PHPQRCode\QRcode::png(urldecode($data['text']), false, 'M', $size, 1);
         $imageData = ob_get_contents();
         ob_end_clean();
 
         $qr = imagecreatefromstring($imageData);
-        $logo = imagecreatefromstring(file_get_contents($logo));
+        $logo = imagecreatefromstring(file_get_contents(urldecode($logo)));
 
         $qrWidth = imagesx($qr);
         $logoWidth = imagesx($logo);
