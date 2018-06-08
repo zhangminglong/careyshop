@@ -176,9 +176,8 @@ class Navigation extends CareyShop
             // 后台管理搜索
             if (is_client_admin()) {
                 unset($map['status']);
-                !isset($data['status']) ?: $map['status'] = ['eq', $data['status']];
-                empty($data['target']) ?: $map['target'] = ['eq', $data['target']];
                 empty($data['name']) ?: $map['name'] = ['like', '%' . $data['name'] . '%'];
+                !isset($data['status']) ?: $map['status'] = ['eq', $data['status']];
             }
 
             // 排序方式

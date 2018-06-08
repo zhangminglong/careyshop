@@ -64,7 +64,6 @@ class Navigation extends CareyShop
         ],
         'list'   => [
             'name' => 'max:100',
-            'target',
             'status',
             'order_type',
             'order_field',
