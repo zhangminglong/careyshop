@@ -62,7 +62,7 @@ class WithdrawUser extends CareyShop
      * 添加一个提现账号
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addWithdrawUserItem($data)
     {
@@ -86,7 +86,7 @@ class WithdrawUser extends CareyShop
      * 编辑一个提现账号
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setWithdrawUserItem($data)
     {
@@ -135,7 +135,7 @@ class WithdrawUser extends CareyShop
      * 获取指定账号的一个提现账号
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getWithdrawUserItem($data)
     {
@@ -161,7 +161,7 @@ class WithdrawUser extends CareyShop
      * 获取指定账号的提现账号列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getWithdrawUserList($data)
     {

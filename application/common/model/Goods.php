@@ -220,7 +220,7 @@ class Goods extends CareyShop
      * 添加一个商品
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addGoodsItem($data)
     {
@@ -259,7 +259,7 @@ class Goods extends CareyShop
      * 编辑一个商品
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setGoodsItem($data)
     {
@@ -325,7 +325,7 @@ class Goods extends CareyShop
      * 获取一个商品
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getGoodsItem($data)
     {
@@ -474,7 +474,7 @@ class Goods extends CareyShop
      * 获取指定商品的属性列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getGoodsAttrList($data)
     {
@@ -500,7 +500,7 @@ class Goods extends CareyShop
      * 获取指定商品的规格列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getGoodsSpecList($data)
     {
@@ -523,7 +523,7 @@ class Goods extends CareyShop
      * 获取指定商品的规格图
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getGoodsSpecImage($data)
     {
@@ -546,7 +546,7 @@ class Goods extends CareyShop
      * 获取管理后台商品列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getGoodsAdminList($data)
     {
@@ -613,7 +613,7 @@ class Goods extends CareyShop
      * 根据商品分类获取指定类型的商品(推荐,热卖,新品,积分,同品牌,同价位)
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getGoodsIndexType($data)
     {
@@ -1170,7 +1170,7 @@ class Goods extends CareyShop
      * 根据商品分类获取前台商品列表页
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getGoodsIndexList($data)
     {
@@ -1315,7 +1315,7 @@ class Goods extends CareyShop
      * 复制一个商品
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function copyGoodsItem($data)
     {

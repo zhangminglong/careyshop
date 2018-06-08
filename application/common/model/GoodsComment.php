@@ -165,7 +165,7 @@ class GoodsComment extends CareyShop
      * 添加一条新的商品评价
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addCommentItem($data)
     {
@@ -229,7 +229,7 @@ class GoodsComment extends CareyShop
      * 追加一条商品评价
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addAdditionItem($data)
     {
@@ -313,7 +313,7 @@ class GoodsComment extends CareyShop
      * 回复或追评一条商品评价
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function replyCommentItem($data)
     {
@@ -440,7 +440,7 @@ class GoodsComment extends CareyShop
      * 获取一个商品评价得分
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getCommentScore($data)
     {
@@ -552,7 +552,7 @@ class GoodsComment extends CareyShop
      * 获取一个商品"全部"、"晒图"、"追评"、"好评"、"中评"、差评"的数量
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getCommentCount($data)
     {
@@ -593,7 +593,7 @@ class GoodsComment extends CareyShop
      * 获取某个评价的明细("是否已读"不关联,关联不代表看完,所以需手动设置)
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getCommentItem($data)
     {
@@ -655,7 +655,7 @@ class GoodsComment extends CareyShop
      * 获取商品评价列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getCommentList($data)
     {

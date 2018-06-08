@@ -50,6 +50,12 @@ class Qrcode extends CareyShop
      * @var array
      */
     protected $scene = [
+        'add'    => [
+            'name' => 'require|max:64',
+            'text',
+            'size',
+            'logo',
+        ],
         'set'    => [
             'qrcode_id' => 'require|integer|gt:0',
             'name',

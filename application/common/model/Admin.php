@@ -99,7 +99,7 @@ class Admin extends CareyShop
      * 添加一个账号
      * @access public
      * @param  array $data 外部数据
-     * @return array/bool
+     * @return array|bool
      */
     public function addAdminItem($data)
     {
@@ -119,7 +119,7 @@ class Admin extends CareyShop
      * 编辑一个账号
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setAdminItem($data)
     {
@@ -212,7 +212,7 @@ class Admin extends CareyShop
      * 重置一个账号密码
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function resetAdminItem($data)
     {
@@ -263,7 +263,7 @@ class Admin extends CareyShop
      * 获取一个账号
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getAdminItem($data)
     {
@@ -283,7 +283,7 @@ class Admin extends CareyShop
      * 获取账号列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getAdminList($data)
     {
@@ -356,7 +356,7 @@ class Admin extends CareyShop
      * @access public
      * @param  array $data       外部数据
      * @param  bool  $isGetToken 是否需要返回Token
-     * @return array/false
+     * @return array|false
      */
     public function loginAdmin($data, $isGetToken = true)
     {
@@ -405,7 +405,7 @@ class Admin extends CareyShop
      * 刷新Token
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function refreshToken($data)
     {

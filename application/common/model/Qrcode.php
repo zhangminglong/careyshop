@@ -34,7 +34,7 @@ class Qrcode extends CareyShop
      * 获取一个二维码
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getQrcodeItem($data = [])
     {
@@ -58,11 +58,11 @@ class Qrcode extends CareyShop
      * 添加一个二维码
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addQrcodeItem($data)
     {
-        if (!$this->validateData($data, 'Qrcode')) {
+        if (!$this->validateData($data, 'Qrcode.add')) {
             return false;
         }
 
@@ -80,7 +80,7 @@ class Qrcode extends CareyShop
      * 编辑一个应用
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setQrcodeItem($data)
     {
@@ -100,7 +100,7 @@ class Qrcode extends CareyShop
      * 获取一个二维码
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getQrcodeConfig($data)
     {
@@ -137,7 +137,7 @@ class Qrcode extends CareyShop
      * 获取二维码列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getQrcodeList($data)
     {

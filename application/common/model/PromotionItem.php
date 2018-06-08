@@ -36,7 +36,7 @@ class PromotionItem extends CareyShop
      * @access public
      * @param  array $settings    促销方式配置参数
      * @param  int   $promotionId 促销编号
-     * @return array/false
+     * @return array|false
      */
     public function addPromotionItem($settings, $promotionId)
     {

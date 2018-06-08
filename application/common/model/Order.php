@@ -197,7 +197,7 @@ class Order extends CareyShop
      * 获取订单确认或提交订单
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function confirmOrderList($data)
     {
@@ -957,7 +957,7 @@ class Order extends CareyShop
      * 检测订单是否可设置为已支付状态
      * @access public
      * @param  array $data 外部数据
-     * @return object/false
+     * @return object|false
      */
     public function isPaymentStatus($data)
     {
@@ -1319,7 +1319,7 @@ class Order extends CareyShop
      * 添加或编辑卖家备注
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function remarkOrderItem($data)
     {
@@ -1342,7 +1342,7 @@ class Order extends CareyShop
      * 编辑一个订单
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function setOrderItem($data)
     {
@@ -1391,7 +1391,7 @@ class Order extends CareyShop
      * 获取一个订单
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function getOrderItem($data)
     {
@@ -1937,7 +1937,7 @@ class Order extends CareyShop
      * 获取订单列表
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function getOrderList($data)
     {

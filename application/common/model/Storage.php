@@ -49,7 +49,7 @@ class Storage extends CareyShop
      * 添加一个资源目录
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addStorageDirectoryItem($data)
     {
@@ -73,7 +73,7 @@ class Storage extends CareyShop
      * 编辑一个资源目录
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setStorageDirectoryItem($data)
     {
@@ -97,7 +97,7 @@ class Storage extends CareyShop
      * @access public
      * @param  array $data  外部数据
      * @param  bool  $isKey 是否以键名为索引
-     * @return array/false
+     * @return array|false
      */
     public function getStorageDirectorySelect($data, $isKey = false)
     {
@@ -156,7 +156,7 @@ class Storage extends CareyShop
      * 获取一个资源或资源目录
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getStorageItem($data)
     {
@@ -176,7 +176,7 @@ class Storage extends CareyShop
      * 获取资源列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getStorageList($data)
     {
@@ -237,7 +237,7 @@ class Storage extends CareyShop
      * 获取导航数据
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getStorageNavi($data)
     {
@@ -280,7 +280,7 @@ class Storage extends CareyShop
      * 重命名一个资源
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function renameStorageItem($data)
     {

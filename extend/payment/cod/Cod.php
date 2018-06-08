@@ -46,7 +46,7 @@ class Cod extends Payment
     /**
      * 返回支付模块请求结果
      * @access public
-     * @return array/false
+     * @return array|false
      */
     public function payRequest()
     {

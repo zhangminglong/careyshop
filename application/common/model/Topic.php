@@ -40,7 +40,7 @@ class Topic extends CareyShop
      * 添加一个专题
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addTopicItem($data)
     {
@@ -62,7 +62,7 @@ class Topic extends CareyShop
      * 编辑一个专题
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setTopicItem($data)
     {
@@ -99,7 +99,7 @@ class Topic extends CareyShop
      * 获取一个专题
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getTopicItem($data)
     {
@@ -125,7 +125,7 @@ class Topic extends CareyShop
      * 获取专题列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getTopicList($data)
     {

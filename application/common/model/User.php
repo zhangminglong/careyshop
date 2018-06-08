@@ -122,7 +122,7 @@ class User extends CareyShop
      * 注册一个新账号
      * @access public
      * @param  array $data 外部数据
-     * @return array/bool
+     * @return array|bool
      */
     public function addUserItem($data)
     {
@@ -163,7 +163,7 @@ class User extends CareyShop
      * 编辑一个账号
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setUserItem($data)
     {
@@ -303,7 +303,7 @@ class User extends CareyShop
      * 获取一个账号
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getUserItem($data)
     {
@@ -325,7 +325,7 @@ class User extends CareyShop
      * 获取账号列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getUserList($data)
     {
@@ -427,7 +427,7 @@ class User extends CareyShop
      * @access public
      * @param  array $data       外部数据
      * @param  bool  $isGetToken 是否需要返回Token
-     * @return array/false
+     * @return array|false
      */
     public function loginUser($data, $isGetToken = true)
     {
@@ -476,7 +476,7 @@ class User extends CareyShop
      * 刷新Token
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function refreshToken($data)
     {

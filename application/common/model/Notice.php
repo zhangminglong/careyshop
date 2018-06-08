@@ -69,7 +69,7 @@ class Notice extends CareyShop
      * 获取一个通知系统
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getNoticeItem($data)
     {

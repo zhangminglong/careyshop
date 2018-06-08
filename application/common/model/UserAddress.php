@@ -65,7 +65,7 @@ class UserAddress extends CareyShop
      * 获取指定账号的收货地址列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getAddressList($data)
     {
@@ -88,7 +88,7 @@ class UserAddress extends CareyShop
      * 获取指定账号的一个收货地址
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getAddressItem($data)
     {
@@ -114,7 +114,7 @@ class UserAddress extends CareyShop
      * 获取指定账号的默认收货地址信息
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getAddressDefault($data)
     {
@@ -141,7 +141,7 @@ class UserAddress extends CareyShop
      * 添加一个收货地址
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addAddressItem($data)
     {
@@ -169,7 +169,7 @@ class UserAddress extends CareyShop
      * 编辑一个收货地址
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setAddressItem($data)
     {

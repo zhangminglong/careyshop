@@ -71,7 +71,7 @@ class GoodsAttribute extends CareyShop
      * 添加一个商品属性主体
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addAttributeBodyItem($data)
     {
@@ -91,7 +91,7 @@ class GoodsAttribute extends CareyShop
      * 编辑一个商品属性主体
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setAttributeBodyItem($data)
     {
@@ -115,7 +115,7 @@ class GoodsAttribute extends CareyShop
      * 获取一个商品属性主体
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getAttributeBodyItem($data)
     {
@@ -140,7 +140,7 @@ class GoodsAttribute extends CareyShop
      * 获取商品属性主体列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getAttributeBodyList($data)
     {
@@ -172,7 +172,7 @@ class GoodsAttribute extends CareyShop
      * 添加一个商品属性
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addAttributeItem($data)
     {
@@ -199,7 +199,7 @@ class GoodsAttribute extends CareyShop
      * 编辑一个商品属性
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setAttributeItem($data)
     {
@@ -230,7 +230,7 @@ class GoodsAttribute extends CareyShop
      * 获取一个商品属性
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getAttributeItem($data)
     {
@@ -253,7 +253,7 @@ class GoodsAttribute extends CareyShop
      * 获取商品属性列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getAttributeList($data)
     {

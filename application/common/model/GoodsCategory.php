@@ -48,7 +48,7 @@ class GoodsCategory extends CareyShop
      * 添加一个商品分类
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addCategoryItem($data)
     {
@@ -83,7 +83,7 @@ class GoodsCategory extends CareyShop
      * 编辑一个商品分类
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setCategoryItem($data)
     {
@@ -179,7 +179,7 @@ class GoodsCategory extends CareyShop
      * 获取一个商品分类
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getCategoryItem($data)
     {
@@ -199,7 +199,7 @@ class GoodsCategory extends CareyShop
      * 获取分类导航数据
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getCategoryNavi($data)
     {
@@ -332,7 +332,7 @@ class GoodsCategory extends CareyShop
      * @param  bool $isGoodsTotal 是否获取关联商品数
      * @param  bool $isLayer      是否返回本级分类
      * @param  int  $level        分类深度
-     * @return false/array
+     * @return false|array
      */
     public static function getCategoryList($catId = 0, $isGoodsTotal = false, $isLayer = false, $level = null)
     {

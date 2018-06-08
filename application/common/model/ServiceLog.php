@@ -48,7 +48,7 @@ class ServiceLog extends CareyShop
      * 添加售后操作日志
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function addServiceLogItem($data)
     {

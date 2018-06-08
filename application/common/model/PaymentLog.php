@@ -80,7 +80,7 @@ class PaymentLog extends CareyShop
      * 添加一笔交易日志
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addPaymentLogItem($data)
     {
@@ -141,7 +141,7 @@ class PaymentLog extends CareyShop
      * 获取一笔充值记录
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getPaymentLogItem($data)
     {
@@ -169,7 +169,7 @@ class PaymentLog extends CareyShop
      * 获取充值记录列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getPaymentLogList($data)
     {
@@ -235,7 +235,7 @@ class PaymentLog extends CareyShop
      * 获取一笔订单成功付款的具体金额
      * @access public
      * @param  string $paymentNo 交易流水号
-     * @return float/int
+     * @return float|int
      */
     public static function getPaymentLogValue($paymentNo)
     {

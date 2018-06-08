@@ -75,7 +75,7 @@ class Delivery extends CareyShop
      * 添加一个配送方式
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addDeliveryItem($data)
     {
@@ -97,7 +97,7 @@ class Delivery extends CareyShop
      * 编辑一个配送方式
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setDeliveryItem($data)
     {
@@ -143,7 +143,7 @@ class Delivery extends CareyShop
      * 获取一个配送方式
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getDeliveryItems($data)
     {
@@ -163,7 +163,7 @@ class Delivery extends CareyShop
      * 获取配送方式列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getDeliveryList($data)
     {
@@ -239,7 +239,7 @@ class Delivery extends CareyShop
      * 根据配送方式获取运费
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getDeliveryFreight($data)
     {

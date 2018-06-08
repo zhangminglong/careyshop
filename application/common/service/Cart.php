@@ -19,7 +19,7 @@ class Cart extends CareyShop
      * @param  array $goodsData  商品数据(附带商品规格)
      * @param  bool  $isCheckout 结算调用(创建订单)
      * @param  bool  $isConcise  是否返回简洁数据
-     * @return false/array
+     * @return false|array
      */
     public function checkCartGoodsList($goodsData, $isCheckout, $isConcise = false)
     {

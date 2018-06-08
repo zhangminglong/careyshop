@@ -51,7 +51,7 @@ class OrderLog extends CareyShop
      * 添加订单操作日志
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function addOrderItem($data)
     {

@@ -93,7 +93,7 @@ class GoodsConsult extends CareyShop
      * 添加一个新的商品咨询
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addConsultItem($data)
     {
@@ -163,7 +163,7 @@ class GoodsConsult extends CareyShop
      * 回复一个商品咨询
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function replyConsultItem($data)
     {
@@ -212,7 +212,7 @@ class GoodsConsult extends CareyShop
      * 获取一个商品咨询问答明细
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getConsultItem($data)
     {
@@ -242,7 +242,7 @@ class GoodsConsult extends CareyShop
      * 获取商品咨询列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getConsultList($data)
     {

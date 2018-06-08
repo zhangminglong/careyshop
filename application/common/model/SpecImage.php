@@ -35,7 +35,7 @@ class SpecImage extends CareyShop
      * @access public
      * @param  int   $goodsId 商品编号
      * @param  array $data    外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addSpecImage($goodsId, $data)
     {

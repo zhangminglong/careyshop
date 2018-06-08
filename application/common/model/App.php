@@ -72,7 +72,7 @@ class App extends CareyShop
      * 添加一个应用
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addAppItem($data)
     {
@@ -96,7 +96,7 @@ class App extends CareyShop
      * 编辑一个应用
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setAppItem($data)
     {
@@ -128,7 +128,7 @@ class App extends CareyShop
      * 获取一个应用
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getAppItem($data)
     {
@@ -148,7 +148,7 @@ class App extends CareyShop
      * 获取应用列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getAppList($data)
     {
@@ -219,7 +219,7 @@ class App extends CareyShop
      * 更换应用Secret
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function replaceAppSecret($data)
     {

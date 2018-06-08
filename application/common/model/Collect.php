@@ -160,7 +160,7 @@ class Collect extends CareyShop
      * 获取商品收藏列表
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function getCollectList($data)
     {

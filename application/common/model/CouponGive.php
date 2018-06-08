@@ -119,7 +119,7 @@ class CouponGive extends CareyShop
      * @param  int   $couponId 优惠劵编号
      * @param  array $userId   发放用户(等同于发放数量)
      * @param  int   $type     优惠劵类型
-     * @return false/object
+     * @return false|object
      */
     private function addCouponGive($couponId, $userId, $type)
     {
@@ -287,7 +287,7 @@ class CouponGive extends CareyShop
      * @access public
      * @param  int $couponId 优惠劵编号
      * @param  int $userId   发放账号Id
-     * @return false/array
+     * @return false|array
      */
     public function giveCouponOrder($couponId, $userId)
     {
@@ -303,7 +303,7 @@ class CouponGive extends CareyShop
      * 获取已领取优惠劵列表
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function getCouponGiveList($data)
     {
@@ -446,7 +446,7 @@ class CouponGive extends CareyShop
      * 导出线下生成的优惠劵
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function getCouponGiveExport($data)
     {
@@ -471,7 +471,7 @@ class CouponGive extends CareyShop
      * 根据商品Id列出可使用的优惠劵
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function getCouponGiveSelect($data)
     {

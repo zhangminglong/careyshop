@@ -33,7 +33,7 @@ class GoodsType extends CareyShop
      * 添加一个商品模型
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addTypeItem($data)
     {
@@ -55,7 +55,7 @@ class GoodsType extends CareyShop
      * 编辑一个商品模型
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setTypeItem($data)
     {
@@ -106,7 +106,7 @@ class GoodsType extends CareyShop
      * 获取一个商品模型
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getTypeItem($data)
     {
@@ -125,7 +125,7 @@ class GoodsType extends CareyShop
     /**
      * 获取商品模型选择列表
      * @access public
-     * @return array/false
+     * @return array|false
      */
     public function getTypeSelect()
     {
@@ -142,7 +142,7 @@ class GoodsType extends CareyShop
      * 获取商品模型列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getTypeList($data)
     {

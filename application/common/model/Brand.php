@@ -40,7 +40,7 @@ class Brand extends CareyShop
      * 添加一个品牌
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addBrandItem($data)
     {
@@ -69,7 +69,7 @@ class Brand extends CareyShop
      * 编辑一个品牌
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setBrandItem($data)
     {
@@ -166,7 +166,7 @@ class Brand extends CareyShop
      * 获取一个品牌
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getBrandItem($data)
     {
@@ -192,7 +192,7 @@ class Brand extends CareyShop
      * 获取品牌列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getBrandList($data)
     {
@@ -259,7 +259,7 @@ class Brand extends CareyShop
      * 获取品牌选择列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getBrandSelect($data)
     {

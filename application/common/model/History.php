@@ -148,7 +148,7 @@ class History extends CareyShop
      * 获取我的足迹列表
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function getHistoryList($data)
     {

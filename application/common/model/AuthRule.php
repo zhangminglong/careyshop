@@ -41,7 +41,7 @@ class AuthRule extends CareyShop
      * 添加一条规则
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addAuthRuleItem($data)
     {
@@ -73,7 +73,7 @@ class AuthRule extends CareyShop
      * 获取一条规则
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getAuthRuleItem($data)
     {
@@ -93,7 +93,7 @@ class AuthRule extends CareyShop
      * 编辑一条规则
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setAuthRuleItem($data)
     {
@@ -155,7 +155,7 @@ class AuthRule extends CareyShop
      * 获取规则列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getAuthRuleList($data)
     {
@@ -241,7 +241,7 @@ class AuthRule extends CareyShop
      * @access public
      * @param  string $module  对应模块
      * @param  int    $groupId 用户组编号
-     * @return array/false
+     * @return array|false
      */
     public static function getMenuAuthRule($module, $groupId)
     {

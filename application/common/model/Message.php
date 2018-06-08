@@ -64,7 +64,7 @@ class Message extends CareyShop
      * 添加一条消息
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addMessageItem($data)
     {
@@ -137,7 +137,7 @@ class Message extends CareyShop
      * 编辑一条消息
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setMessageItem($data)
     {
@@ -219,7 +219,7 @@ class Message extends CareyShop
      * 获取一条消息(后台)
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getMessageItem($data)
     {
@@ -246,7 +246,7 @@ class Message extends CareyShop
      * 用户获取一条消息
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getMessageUserItem($data)
     {
@@ -302,7 +302,7 @@ class Message extends CareyShop
      * 获取消息列表(后台)
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getMessageList($data)
     {
@@ -353,7 +353,7 @@ class Message extends CareyShop
      * 用户获取未读消息数
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function getMessageUserUnread($data)
     {
@@ -369,7 +369,7 @@ class Message extends CareyShop
      * @access public
      * @param  array $data       外部数据
      * @param  bool  $isGetTotal 是否只获取数量
-     * @return array/false
+     * @return array|false
      */
     public function getMessageUserList($data, $isGetTotal = false)
     {

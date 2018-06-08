@@ -61,7 +61,7 @@ class Auth extends CareyShop
      * 验证权限
      * @access public
      * @param  string $url Url(模块/控制器/操作名)
-     * @return bool/this
+     * @return bool
      */
     public function check($url)
     {

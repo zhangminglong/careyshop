@@ -58,7 +58,7 @@ class Region extends CareyShop
     /**
      * 获取区域缓存列表
      * @access public
-     * @return array/false
+     * @return array|false
      */
     public static function getRegionCacheList()
     {
@@ -72,7 +72,7 @@ class Region extends CareyShop
      * 添加一个区域
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addRegionItem($data)
     {
@@ -92,7 +92,7 @@ class Region extends CareyShop
      * 编辑一个区域
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setRegionItem($data)
     {
@@ -134,7 +134,7 @@ class Region extends CareyShop
      * 获取指定区域
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getRegionItem($data)
     {
@@ -157,7 +157,7 @@ class Region extends CareyShop
      * 获取指定Id下的子节点(不包含本身)
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getRegionList($data)
     {
@@ -181,7 +181,7 @@ class Region extends CareyShop
      * 获取指定Id下的所有子节点(包含本身)
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getRegionSonList($data)
     {

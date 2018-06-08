@@ -89,7 +89,7 @@ class Cart extends CareyShop
      * @access public
      * @param  array $data     外部数据
      * @param  bool  $isBuyNow 是否立即购买
-     * @return false/array
+     * @return false|array
      */
     public function setCartItem($data, $isBuyNow = false)
     {
@@ -160,7 +160,7 @@ class Cart extends CareyShop
      * 验证是否允许添加或编辑购物车
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function checkCartGoods($data)
     {
@@ -293,7 +293,7 @@ class Cart extends CareyShop
      * 获取购物车列表
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function getCartList($data)
     {
@@ -323,7 +323,7 @@ class Cart extends CareyShop
      * 获取购物车商品数量
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public static function getCartCount($data)
     {

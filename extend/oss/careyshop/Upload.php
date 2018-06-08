@@ -179,7 +179,7 @@ class Upload extends UploadBase
     /**
      * 保存资源并写入库
      * @access private
-     * @return array/string
+     * @return array|string
      */
     private function saveFile($file)
     {
@@ -286,7 +286,7 @@ class Upload extends UploadBase
      * @access private
      * @param  array  $param 请求参数
      * @param  string $path  资源路径
-     * @return string/false
+     * @return string|false
      */
     private function getFileSign($param, $path)
     {

@@ -35,7 +35,7 @@ class Support extends CareyShop
      * 添加一名客服
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addSupportItem($data)
     {
@@ -57,7 +57,7 @@ class Support extends CareyShop
      * 编辑一名客服
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setSupportItem($data)
     {
@@ -94,7 +94,7 @@ class Support extends CareyShop
      * 获取一名客服
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getSupportItem($data)
     {
@@ -120,7 +120,7 @@ class Support extends CareyShop
      * 获取客服列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getSupportList($data)
     {

@@ -67,7 +67,7 @@ class Transaction extends CareyShop
      * 添加一条交易结算
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addTransactionItem($data)
     {
@@ -95,7 +95,7 @@ class Transaction extends CareyShop
      * 获取交易结算列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getTransactionList($data)
     {

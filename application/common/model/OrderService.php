@@ -262,7 +262,7 @@ class OrderService extends CareyShop
      * @param  array  $data         外部数据
      * @param  object $orderGoodsDb 订单商品模型对象
      * @param  bool   $isRefundFee  是否返回退款结构
-     * @return false/array
+     * @return false|array
      */
     public function getOrderServiceGoods($data, &$orderGoodsDb = null, $isRefundFee = false)
     {
@@ -378,7 +378,7 @@ class OrderService extends CareyShop
      * 获取一个售后服务单
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function getOrderServiceItem($data)
     {
@@ -418,7 +418,7 @@ class OrderService extends CareyShop
      * 获取售后服务单列表
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function getOrderServiceList($data)
     {
@@ -585,7 +585,7 @@ class OrderService extends CareyShop
      * @access private
      * @param  array  $data 外部数据
      * @param  string $type 售后类型 maintain或exchange
-     * @return false/array
+     * @return false|array
      */
     private function addMaintainOfExchange(&$data, $type)
     {
@@ -664,7 +664,7 @@ class OrderService extends CareyShop
      * 添加一个维修售后服务单
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function addOrderServiceMaintain($data)
     {
@@ -675,7 +675,7 @@ class OrderService extends CareyShop
      * 添加一个换货售后服务单
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function addOrderServiceExchange($data)
     {
@@ -687,7 +687,7 @@ class OrderService extends CareyShop
      * @access private
      * @param  array  $data 外部数据
      * @param  string $type 售后类型 refund或refund_refunds
-     * @return false/array
+     * @return false|array
      */
     private function addServiceRefund(&$data, $type)
     {
@@ -774,7 +774,7 @@ class OrderService extends CareyShop
      * 添加一个仅退款售后服务单
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function addOrderServiceRefund($data)
     {
@@ -785,7 +785,7 @@ class OrderService extends CareyShop
      * 添加一个退款退货售后服务单
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function addOrderServiceRefunds($data)
     {

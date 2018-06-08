@@ -323,7 +323,7 @@ class CareyShop extends Controller
     /*
      * 验证Sign是否合法
      * @access private
-     * @return string/true
+     * @return string|true
      */
     private function checkSign()
     {
@@ -357,7 +357,7 @@ class CareyShop extends Controller
     /**
      * 验证Token是否合法
      * @access private
-     * @return string/true
+     * @return string|true
      */
     private function checkToken()
     {
@@ -410,7 +410,7 @@ class CareyShop extends Controller
     /**
      * 验证Auth
      * @access private
-     * @return string/true
+     * @return string|true
      */
     private function checkAuth()
     {

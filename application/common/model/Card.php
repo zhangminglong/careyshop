@@ -67,7 +67,7 @@ class Card extends CareyShop
      * 添加一条购物卡
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addCardItem($data)
     {
@@ -117,7 +117,7 @@ class Card extends CareyShop
      * 编辑一条购物卡
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function setCardItem($data)
     {
@@ -151,7 +151,7 @@ class Card extends CareyShop
      * 获取一条购物卡
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function getCardItem($data)
     {
@@ -221,7 +221,7 @@ class Card extends CareyShop
      * 获取购物卡列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getCardList($data)
     {

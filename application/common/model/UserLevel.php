@@ -35,7 +35,7 @@ class UserLevel extends CareyShop
      * 获取一个账号等级
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getLevelItem($data)
     {
@@ -54,7 +54,7 @@ class UserLevel extends CareyShop
     /**
      * 获取账号等级列表
      * @access public
-     * @return array/false
+     * @return array|false
      */
     public function getLevelList()
     {
@@ -70,7 +70,7 @@ class UserLevel extends CareyShop
      * 添加一个账号等级
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addLevelItem($data)
     {
@@ -92,7 +92,7 @@ class UserLevel extends CareyShop
      * 编辑一个账号等级
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setLevelItem($data)
     {

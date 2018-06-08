@@ -113,7 +113,7 @@ class Withdraw extends CareyShop
      * 获取一个提现请求
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getWithdrawItem($data)
     {
@@ -139,7 +139,7 @@ class Withdraw extends CareyShop
      * 获取提现请求列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getWithdrawList($data)
     {
@@ -203,7 +203,7 @@ class Withdraw extends CareyShop
      * 申请一个提现请求
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addWithdrawItem($data)
     {

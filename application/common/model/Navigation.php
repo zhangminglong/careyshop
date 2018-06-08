@@ -37,7 +37,7 @@ class Navigation extends CareyShop
      * 添加一个导航
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addNavigationItem($data)
     {
@@ -60,7 +60,7 @@ class Navigation extends CareyShop
      * 编辑一个导航
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setNavigationItem($data)
     {
@@ -99,7 +99,7 @@ class Navigation extends CareyShop
      * 获取一个导航
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getNavigationItem($data)
     {
@@ -161,7 +161,7 @@ class Navigation extends CareyShop
      * 获取导航列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getNavigationList($data)
     {

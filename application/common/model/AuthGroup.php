@@ -49,7 +49,7 @@ class AuthGroup extends CareyShop
      * 添加一个用户组
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addAuthGroupItem($data)
     {
@@ -72,7 +72,7 @@ class AuthGroup extends CareyShop
      * 编辑一个用户组
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setAuthGroupItem($data)
     {
@@ -93,7 +93,7 @@ class AuthGroup extends CareyShop
      * 获取一个用户组
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getAuthGroupItem($data)
     {
@@ -151,7 +151,7 @@ class AuthGroup extends CareyShop
      * 获取用户组列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getAuthGroupList($data)
     {

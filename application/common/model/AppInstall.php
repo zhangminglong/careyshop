@@ -54,7 +54,7 @@ class AppInstall extends CareyShop
      * 添加一个应用安装包
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addAppInstallItem($data)
     {
@@ -77,7 +77,7 @@ class AppInstall extends CareyShop
      * 编辑一个应用安装包
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setAppInstallItem($data)
     {
@@ -100,7 +100,7 @@ class AppInstall extends CareyShop
      * 获取一个应用安装包
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getAppInstallItem($data)
     {
@@ -138,7 +138,7 @@ class AppInstall extends CareyShop
      * 获取应用安装包列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getAppInstallList($data)
     {
@@ -217,7 +217,7 @@ class AppInstall extends CareyShop
     /**
      * 根据请求获取一个应用安装包
      * @access public
-     * @return array/false
+     * @return array|false
      */
     public function requestAppInstallItem()
     {

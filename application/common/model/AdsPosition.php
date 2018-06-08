@@ -39,7 +39,7 @@ class AdsPosition extends CareyShop
      * 添加一个广告位
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addPositionItem($data)
     {
@@ -62,7 +62,7 @@ class AdsPosition extends CareyShop
      * 编辑一个广告位
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setPositionItem($data)
     {
@@ -184,7 +184,7 @@ class AdsPosition extends CareyShop
      * 获取一个广告位
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getPositionItem($data)
     {
@@ -204,7 +204,7 @@ class AdsPosition extends CareyShop
      * 获取广告位置列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getPositionList($data)
     {
@@ -254,7 +254,7 @@ class AdsPosition extends CareyShop
      * 获取广告位选择列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getPositionSelect($data)
     {
@@ -284,7 +284,7 @@ class AdsPosition extends CareyShop
      * 根据广告位编码获取广告
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getPositionCode($data)
     {

@@ -59,7 +59,7 @@ class GoodsReply extends CareyShop
      * 对商品评价添加一个回复(管理组不参与评价回复)
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addReplyItem($data)
     {
@@ -132,7 +132,7 @@ class GoodsReply extends CareyShop
      * 获取商品评价回复列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getReplyList($data)
     {

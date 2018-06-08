@@ -53,7 +53,7 @@ class Ads extends CareyShop
      * 添加一个广告
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addAdsItem($data)
     {
@@ -86,7 +86,7 @@ class Ads extends CareyShop
      * 编辑一个广告
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setAdsItem($data)
     {
@@ -187,7 +187,7 @@ class Ads extends CareyShop
      * 获取一个广告
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getAdsItem($data)
     {
@@ -207,7 +207,7 @@ class Ads extends CareyShop
      * 获取广告列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getAdsList($data)
     {
@@ -267,7 +267,7 @@ class Ads extends CareyShop
      * 根据编码获取广告
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getAdsCode($data)
     {

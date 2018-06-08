@@ -124,7 +124,7 @@ class DeliveryArea extends CareyShop
      * 添加一个配送区域
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function addAreaItem($data)
     {
@@ -147,7 +147,7 @@ class DeliveryArea extends CareyShop
      * 编辑一个配送区域
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function setAreaItem($data)
     {
@@ -201,7 +201,7 @@ class DeliveryArea extends CareyShop
      * 获取一个配送区域
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function getAreaItem($data)
     {
@@ -221,7 +221,7 @@ class DeliveryArea extends CareyShop
      * 获取配送区域列表
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function getAreaList($data)
     {

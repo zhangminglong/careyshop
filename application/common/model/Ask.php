@@ -182,7 +182,7 @@ class Ask extends CareyShop
      * @access private
      * @param  array $data 提交数据
      * @param  bool  $isQa true:咨询 false:回复
-     * @return false/array
+     * @return false|array
      */
     private function addAskOrAnswer($data, $isQa)
     {
@@ -232,7 +232,7 @@ class Ask extends CareyShop
      * 回答一个提问
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function replyAskItem($data)
     {
@@ -252,7 +252,7 @@ class Ask extends CareyShop
      * 在提问上继续提问
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function continueAskItem($data)
     {
@@ -272,7 +272,7 @@ class Ask extends CareyShop
      * 获取一个问答明细
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getAskItem($data)
     {
@@ -305,7 +305,7 @@ class Ask extends CareyShop
      * 获取问答主题列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getAskList($data)
     {

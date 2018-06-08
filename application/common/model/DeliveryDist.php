@@ -94,7 +94,7 @@ class DeliveryDist extends CareyShop
      * 添加一条配送记录
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function addDeliveryDistItem($data)
     {
@@ -179,7 +179,7 @@ class DeliveryDist extends CareyShop
      * 接收推送过来的配送轨迹
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function putDeliveryDistData($data)
     {
@@ -233,7 +233,7 @@ class DeliveryDist extends CareyShop
      * @access private
      * @param  string $deliveryCode 快递公司编码
      * @param  string $logisticCode 快递单号
-     * @return false/array
+     * @return false|array
      */
     private function getOrderTracesByJson($deliveryCode, $logisticCode)
     {
@@ -267,7 +267,7 @@ class DeliveryDist extends CareyShop
      * 根据流水号获取配送记录
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function getDeliveryDistCode($data)
     {
@@ -326,7 +326,7 @@ class DeliveryDist extends CareyShop
      * 获取配送记录列表
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function getDeliveryDistList($data)
     {

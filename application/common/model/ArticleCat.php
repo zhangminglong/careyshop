@@ -39,7 +39,7 @@ class ArticleCat extends CareyShop
      * 添加一个文章分类
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addArticleCatItem($data)
     {
@@ -62,7 +62,7 @@ class ArticleCat extends CareyShop
      * 编辑一个文章分类
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setArticleCatItem($data)
     {
@@ -148,7 +148,7 @@ class ArticleCat extends CareyShop
      * 获取一个文章分类
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getArticleCatItem($data)
     {
@@ -170,7 +170,7 @@ class ArticleCat extends CareyShop
      * @param  int  $catId   分类Id
      * @param  bool $isLayer 是否返回本级分类
      * @param  int  $level   分类深度
-     * @return array/false
+     * @return array|false
      */
     public static function getArticleCatList($catId = 0, $isLayer = false, $level = null)
     {
@@ -263,7 +263,7 @@ class ArticleCat extends CareyShop
      * 获取分类导航数据
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getArticleCatNavi($data)
     {

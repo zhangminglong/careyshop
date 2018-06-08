@@ -48,7 +48,7 @@ class Upload extends CareyShop
      * @access public
      * @param  string $file  目录
      * @param  string $model 模块
-     * @return object/false
+     * @return object|false
      */
     public function createOssObject($file, $model = 'Upload')
     {
@@ -158,7 +158,7 @@ class Upload extends CareyShop
     /**
      * 当参数为空时获取默认上传模块名,否则验证指定模块名并返回
      * @access public
-     * @return string/false
+     * @return string|false
      */
     private function getModuleName()
     {

@@ -66,7 +66,7 @@ class Menu extends CareyShop
      * 添加一个菜单
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addMenuItem($data)
     {
@@ -100,7 +100,7 @@ class Menu extends CareyShop
      * 获取一个菜单
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getMenuItem($data)
     {
@@ -120,7 +120,7 @@ class Menu extends CareyShop
      * 编辑一个菜单
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setMenuItem($data)
     {
@@ -183,7 +183,7 @@ class Menu extends CareyShop
      * @param  bool   $isLayer 是否返回本级菜单
      * @param  int    $level   菜单深度
      * @param  array  $filter  过滤'is_navi'与'status'
-     * @return array/false
+     * @return array|false
      */
     public static function getMenuListData($module, $menuId = 0, $isLayer = false, $level = null, $filter = null)
     {
@@ -295,7 +295,7 @@ class Menu extends CareyShop
      * 删除一个菜单(影响下级子菜单)
      * @access public
      * @param  array $data 外部数据
-     * @return false/array
+     * @return false|array
      */
     public function delMenuItem($data)
     {
@@ -324,7 +324,7 @@ class Menu extends CareyShop
      * 根据Id获取导航数据
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getMenuIdNavi($data)
     {
@@ -343,7 +343,7 @@ class Menu extends CareyShop
      * 根据Url获取导航数据
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getMenuUrlNavi($data)
     {
@@ -408,7 +408,7 @@ class Menu extends CareyShop
      * @param  int    $menuId  菜单编号
      * @param  bool   $isLayer 是否返回本级
      * @param  array  $filter  过滤'is_navi'与'status'
-     * @return array/false
+     * @return array|false
      */
     public static function getParentList($module, $menuId, $isLayer = false, $filter = null)
     {
@@ -466,7 +466,7 @@ class Menu extends CareyShop
      * 设置菜单状态(影响上下级菜单)
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setMenuStatus($data)
     {
@@ -519,7 +519,7 @@ class Menu extends CareyShop
      * 获取菜单列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getMenuList($data)
     {
@@ -538,7 +538,7 @@ class Menu extends CareyShop
      * 根据权限获取菜单列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getMenuAuthList($data)
     {

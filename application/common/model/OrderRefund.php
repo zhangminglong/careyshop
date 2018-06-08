@@ -209,7 +209,7 @@ class OrderRefund extends CareyShop
      * 查询一笔退款记录
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function queryRefundItem($data)
     {
@@ -252,7 +252,7 @@ class OrderRefund extends CareyShop
      * 获取退款记录列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getRefundList($data)
     {

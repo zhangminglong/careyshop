@@ -346,7 +346,7 @@ class UserMoney extends CareyShop
      * 获取指定账号资金信息
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getUserMoneyInfo($data)
     {

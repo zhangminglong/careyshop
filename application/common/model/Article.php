@@ -56,7 +56,7 @@ class Article extends CareyShop
      * 添加一篇文章
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addArticleItem($data)
     {
@@ -78,7 +78,7 @@ class Article extends CareyShop
      * 编辑一篇文章
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setArticleItem($data)
     {
@@ -115,7 +115,7 @@ class Article extends CareyShop
      * 获取一篇文章
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getArticleItem($data)
     {
@@ -142,7 +142,7 @@ class Article extends CareyShop
      * 获取文章列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getArticleList($data)
     {

@@ -86,7 +86,7 @@ class Discount extends CareyShop
      * 添加一个商品折扣
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function addDiscountItem($data)
     {
@@ -133,7 +133,7 @@ class Discount extends CareyShop
      * 编辑一个商品折扣
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function setDiscountItem($data)
     {
@@ -183,7 +183,7 @@ class Discount extends CareyShop
      * 获取一个商品折扣
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getDiscountItem($data)
     {
@@ -248,7 +248,7 @@ class Discount extends CareyShop
      * 获取商品折扣列表
      * @access public
      * @param  array $data 外部数据
-     * @return array/false
+     * @return array|false
      */
     public function getDiscountList($data)
     {
