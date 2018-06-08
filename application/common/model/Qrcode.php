@@ -145,12 +145,17 @@ class Qrcode extends CareyShop
             return false;
         }
 
-        $result = self::all(function ($query) use ($data) {
-            // 搜索条件
-            $map = [];
-            empty($data['name']) ?: $map['name'] = ['like', '%' . $data['name'] . '%'];
-            !isset($data['size']) ?: $map['size'] = ['eq', $data['size']];
+        // 搜索条件
+        $map = [];
+        empty($data['name']) ?: $map['name'] = ['like', '%' . $data['name'] . '%'];
+        !isset($data['size']) ?: $map['size'] = ['eq', $data['size']];
 
+        $totalResult = $this->where($map)->count();
+        if ($totalResult <= 0) {
+            return ['total_result' => 0];
+        }
+
+        $result = self::all(function ($query) use ($data, $map) {
             // 翻页页数
             $pageNo = isset($data['page_no']) ? $data['page_no'] : 1;
 
@@ -165,12 +170,12 @@ class Qrcode extends CareyShop
 
             $query
                 ->where($map)
-                ->order([$orderType => $orderField])
+                ->order([$orderField => $orderType])
                 ->page($pageNo, $pageSize);
         });
 
         if (false !== $result) {
-            return $result->toArray();
+            return ['items' => $result->toArray(), 'total_result' => $totalResult];
         }
 
         return false;
