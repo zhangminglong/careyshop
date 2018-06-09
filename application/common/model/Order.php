@@ -100,6 +100,7 @@ class Order extends CareyShop
         'create_user_id'  => 'integer',
         'is_give'         => 'integer',
         'adjustment'      => 'float',
+        'integral_type'   => 'integer',
         'give_integral'   => 'integer',
         'give_coupon'     => 'array',
         'payment_time'    => 'timestamp',
