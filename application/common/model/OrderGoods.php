@@ -36,7 +36,6 @@ class OrderGoods extends CareyShop
         'user_id'        => 'integer',
         'market_price'   => 'float',
         'shop_price'     => 'float',
-        'give_integral'  => 'integer',
         'qty'            => 'integer',
         'is_comment'     => 'integer',
         'is_service'     => 'integer',

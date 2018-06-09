@@ -68,7 +68,7 @@ class Cart extends CareyShop
             'goods_id', 'name', 'goods_code', 'goods_sku', 'bar_code', 'store_qty',
             'measure', 'measure_type', 'is_postage', 'market_price', 'shop_price',
             'shop_price', 'purchase_sum', 'attachment', 'status', 'is_delete',
-            'give_integral', 'is_integral',
+            'integral_type', 'give_integral', 'is_integral',
         ];
 
         return $this->hasOne('Goods', 'goods_id', 'goods_id')->field($field);

@@ -711,21 +711,20 @@ class Order extends CareyShop
 
         foreach ($this->cartData['goods_list'] as $value) {
             $goodsData[] = [
-                'order_id'      => $orderId,
-                'order_no'      => $orderNo,
-                'user_id'       => $userId,
-                'goods_name'    => $value['goods']['name'],
-                'goods_id'      => $value['goods']['goods_id'],
-                'goods_image'   => $value['goods']['goods_image'],
-                'goods_code'    => $value['goods']['goods_code'],
-                'goods_sku'     => $value['goods']['goods_sku'],
-                'bar_code'      => $value['goods']['bar_code'],
-                'key_name'      => $value['key_name'],
-                'key_value'     => $value['key_value'],
-                'market_price'  => $value['goods']['market_price'],
-                'shop_price'    => $value['goods']['shop_price'],
-                'give_integral' => $value['goods']['give_integral'],
-                'qty'           => $value['goods_num'],
+                'order_id'     => $orderId,
+                'order_no'     => $orderNo,
+                'user_id'      => $userId,
+                'goods_name'   => $value['goods']['name'],
+                'goods_id'     => $value['goods']['goods_id'],
+                'goods_image'  => $value['goods']['goods_image'],
+                'goods_code'   => $value['goods']['goods_code'],
+                'goods_sku'    => $value['goods']['goods_sku'],
+                'bar_code'     => $value['goods']['bar_code'],
+                'key_name'     => $value['key_name'],
+                'key_value'    => $value['key_value'],
+                'market_price' => $value['goods']['market_price'],
+                'shop_price'   => $value['goods']['shop_price'],
+                'qty'          => $value['goods_num'],
             ];
         }
 
