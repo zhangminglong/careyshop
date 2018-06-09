@@ -246,7 +246,6 @@ class Setting extends CareyShop
                         break;
 
                     case 'is_country':
-                    case 'integral_type':
                         $this->setSettingItem($key, $value, 'system_shopping', 'Setting.status');
                         break;
 
