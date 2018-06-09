@@ -67,6 +67,7 @@ class Goods extends CareyShop
         'is_postage'        => 'integer',
         'market_price'      => 'float',
         'shop_price'        => 'float',
+        'integral_type'     => 'integer',
         'give_integral'     => 'float',
         'is_integral'       => 'integer',
         'least_sum'         => 'integer',

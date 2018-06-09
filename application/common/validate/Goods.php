@@ -31,7 +31,8 @@ class Goods extends CareyShop
         'store_qty'         => 'integer|egt:0',
         'market_price'      => 'require|float|gt:0|regex:^\d+(\.\d{1,2})?$',
         'shop_price'        => 'require|float|gt:0|regex:^\d+(\.\d{1,2})?$',
-        'give_integral'     => 'checkIntegral',
+        'integral_type'     => 'in:0,1',
+        'give_integral'     => 'checkIntegral:integral_type',
         'is_integral'       => 'integer|egt:0',
         'least_sum'         => 'integer|egt:0|checkLeast:purchase_sum',
         'purchase_sum'      => 'integer|egt:0',
@@ -81,6 +82,7 @@ class Goods extends CareyShop
         'store_qty'         => '商品库存',
         'market_price'      => '商品市场价',
         'shop_price'        => '商品本店价',
+        'integral_type'     => '赠送积分结算方式',
         'give_integral'     => '商品赠送积分',
         'is_integral'       => '积分可抵扣额',
         'least_sum'         => '最少起订量',
@@ -141,6 +143,7 @@ class Goods extends CareyShop
             'purchase_sum',
             'market_price',
             'shop_price',
+            'integral_type',
             'give_integral',
             'is_integral',
             'keywords',
@@ -263,22 +266,26 @@ class Goods extends CareyShop
      * 验证商品积分
      * @access public
      * @param  mixed $value 验证数据
+     * @param  mixed $rule  验证规则(integral_type)
+     * @param  array $data  全部数据
      * @return mixed
      */
-    public function checkIntegral($value)
+    public function checkIntegral($value, $rule, $data)
     {
-        $data['integral'] = $value;
-        $rule = 'integral|商品赠送积分';
+        if (!$this->check($data, [$rule => 'require|in:0,1'])) {
+            return $this->getError();
+        }
 
-        switch (config('integral_type.value', null, 'system_shopping')) {
+        $integral = ['give_integral' => $value];
+        switch ($data[$rule]) {
             case 0:
-                if ($this->check($data, [$rule => 'integer|egt:0'])) {
+                if ($this->check($integral, ['give_integral' => 'float|between:0,100|regex:^\d+(\.\d{1,2})?$'])) {
                     return true;
                 }
                 break;
 
             case 1:
-                if ($this->check($data, [$rule => 'float|between:0,100|regex:^\d+(\.\d{1,2})?$'])) {
+                if ($this->check($integral, ['give_integral' => 'integer|egt:0'])) {
                     return true;
                 }
                 break;
