@@ -31,7 +31,7 @@ class Goods extends CareyShop
         'store_qty'         => 'integer|egt:0',
         'market_price'      => 'require|float|gt:0|regex:^\d+(\.\d{1,2})?$',
         'shop_price'        => 'require|float|gt:0|regex:^\d+(\.\d{1,2})?$',
-        'give_integral'     => 'integer|egt:0',
+        'give_integral'     => 'checkIntegral',
         'is_integral'       => 'integer|egt:0',
         'least_sum'         => 'integer|egt:0|checkLeast:purchase_sum',
         'purchase_sum'      => 'integer|egt:0',
@@ -257,5 +257,33 @@ class Goods extends CareyShop
         }
 
         return true;
+    }
+
+    /**
+     * 验证商品积分
+     * @access public
+     * @param  mixed $value 验证数据
+     * @return mixed
+     */
+    public function checkIntegral($value)
+    {
+        $data['integral'] = $value;
+        $rule = 'integral|商品赠送积分';
+
+        switch (config('integral_type.value', null, 'system_shopping')) {
+            case 0:
+                if ($this->check($data, [$rule => 'integer|egt:0'])) {
+                    return true;
+                }
+                break;
+
+            case 1:
+                if ($this->check($data, [$rule => 'float|between:0,100|regex:^\d+(\.\d{1,2})?$'])) {
+                    return true;
+                }
+                break;
+        }
+
+        return $this->getError();
     }
 }
