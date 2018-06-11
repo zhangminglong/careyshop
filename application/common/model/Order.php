@@ -100,7 +100,6 @@ class Order extends CareyShop
         'create_user_id'  => 'integer',
         'is_give'         => 'integer',
         'adjustment'      => 'float',
-        'integral_type'   => 'integer',
         'give_integral'   => 'integer',
         'give_coupon'     => 'array',
         'payment_time'    => 'timestamp',
@@ -294,6 +293,7 @@ class Order extends CareyShop
     {
         // 部分数据需要初始化
         $goodsNum = 0;
+        $integral = [];                                 // 积分百分比记录
         $isWeight = $isItem = $isVolume = false;        // 某一个计量是否包邮
         $weightTotal = $itemTotal = $volumeTotal = 0;   // 所有计量总合数值
         $goodsIdList = array_unique(array_column($this->cartData['goods_list'], 'goods_id'));
@@ -318,9 +318,18 @@ class Order extends CareyShop
             $discountPrice = $this->calculateDiscountGoods($value['goods_id'], $shopPrice);
             $this->cartData['order_price']['use_discount'] += $value['goods_num'] * $discountPrice;
 
-            // 计算累计可抵扣积分与赠送积分
+            // 计算累计可抵扣积分
             $this->cartData['integral']['usable'] += $value['goods']['is_integral'];
-            $this->cartData['integral']['give'] += $value['goods']['give_integral'];
+
+            // 计算固定值赠送积分
+            if (1 == $value['goods']['integral_type']) {
+                $this->cartData['integral']['give'] += $value['goods']['give_integral'];
+            }
+
+            // 记录百分比赠送积分
+            if (0 == $value['goods']['integral_type'] && $value['goods']['give_integral'] > 0) {
+                $integral[] = $value['goods']['give_integral'];
+            }
 
             // 是否包邮区分,并且累计各个计量数值
             if (!$isWeight && 0 == $value['goods']['measure_type']) {
@@ -583,6 +592,18 @@ class Order extends CareyShop
 
         // 设置实际应付金额
         $this->cartData['order_price']['total_amount'] = $totalAmount;
+
+        // 积分百分比计算
+        if (!empty($integral)) {
+            // 累计实际付款金额
+            $moneyTotal = 0;
+            $moneyTotal += $this->cartData['order_price']['use_money'];
+            $moneyTotal += $this->cartData['order_price']['use_card'];
+            $moneyTotal += $this->cartData['order_price']['total_amount'];
+
+            $average = (array_sum($integral) / count($integral)) / 100;
+            $this->cartData['integral']['give'] += (int)($moneyTotal * $average);
+        }
 
         // 对所有数值进行四舍五入
         foreach ($this->cartData['order_price'] as &$value) {
