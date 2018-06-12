@@ -1504,7 +1504,7 @@ class Order extends CareyShop
         }
 
         if ($result->getAttr('trade_status') !== 3 && $result->getAttr('trade_status') !== 4) {
-            return $this->setError('该订单不允许放入回收站');
+            return $this->setError('该订单不允许此操作');
         }
 
         // 开启事务
