@@ -2121,9 +2121,14 @@ class Order extends CareyShop
             'not_comment' => 0, // 待评价
         ];
 
+        if (!is_client_admin() && get_client_id() == 0) {
+            return $result;
+        }
+
         // 获取未评价订单商品
         is_client_admin() ?: $mapGoods['user_id'] = ['eq', get_client_id()];
         $mapGoods['is_comment'] = ['eq', 0];
+        $mapGoods['status'] = ['eq', 2];
         $orderId = OrderGoods::where($mapGoods)->column('order_id');
 
         is_client_admin() ?: $map['user_id'] = ['eq', get_client_id()];
@@ -2154,6 +2159,7 @@ class Order extends CareyShop
         $result['cancel'] = $this->where($mapCancel)->where($map)->count();
 
         $mapNotComment['order_id'] = ['in', $orderId];
+        $mapNotComment['trade_status'] = ['eq', 3];
         $result['not_comment'] = $this->where($mapNotComment)->where($map)->count();
 
         return $result;
