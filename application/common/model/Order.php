@@ -1426,7 +1426,7 @@ class Order extends CareyShop
 
         if (false !== $result->allowField($field)->save($data)) {
             $this->addOrderLog($result->toArray(), '订单部分信息已修改', '修改订单');
-            return $result->toArray();
+            return $result->hidden(['order_id','is_give'])->toArray();
         }
 
         return false;
