@@ -85,6 +85,7 @@ class Order extends CareyShop
         'use_integral'    => 'float',
         'use_coupon'      => 'float',
         'use_discount'    => 'float',
+        'use_promotion'   => 'float',
         'use_card'        => 'float',
         'integral_pct'    => 'float',
         'delivery_id'     => 'integer',
@@ -96,7 +97,6 @@ class Order extends CareyShop
         'trade_status'    => 'integer',
         'delivery_status' => 'integer',
         'payment_status'  => 'integer',
-        'payment_code'    => 'integer',
         'create_user_id'  => 'integer',
         'is_give'         => 'integer',
         'adjustment'      => 'float',
@@ -1463,6 +1463,7 @@ class Order extends CareyShop
             // 隐藏不需要输出的字段
             $hidden = [
                 'order_id',
+                'is_give',
                 'get_order_goods.order_id',
                 'get_order_goods.order_no',
                 'get_order_goods.user_id',
@@ -1992,7 +1993,6 @@ class Order extends CareyShop
 
         // 搜索条件
         is_client_admin() ?: $map['user_id'] = ['eq', get_client_id()];
-        empty($data['order_no']) ?: $map['order_no'] = ['eq', $data['order_no']];
         empty($data['consignee']) ?: $map['consignee'] = ['eq', $data['consignee']];
         empty($data['mobile']) ?: $map['mobile'] = ['eq', $data['mobile']];
         !isset($data['payment_code']) ?: $map['payment_code'] = ['eq', $data['payment_code']];
@@ -2089,6 +2089,7 @@ class Order extends CareyShop
             // 隐藏不需要输出的字段
             $hidden = [
                 'order_id',
+                'is_give',
                 'get_order_goods.order_id',
                 'get_order_goods.order_no',
                 'get_order_goods.user_id',
