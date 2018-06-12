@@ -701,19 +701,43 @@ class Order extends CareyShop
         ];
 
         // 发票数据处理
-        if (!empty($this->dataParams['invoice_type'])) {
-            if (empty($this->dataParams['invoice_title'])) {
-                return $this->setError('发票抬头必须填写');
-            }
-
-            $orderData['invoice_title'] = $this->dataParams['invoice_title'];
-            if (2 == $this->dataParams['invoice_type']) {
-                $orderData['tax_number'] = $this->dataParams['tax_number'];
-            }
+        if (!$this->setInvoiceData($orderData)) {
+            return false;
         }
 
         if (!$this->allowField(true)->isUpdate(false)->save($orderData)) {
             return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * 验证并处理发票数据
+     * @access private
+     * @param  array $invoiceData 订单完整数据
+     * @return bool
+     */
+    private function setInvoiceData(&$invoiceData)
+    {
+        $invoiceType = isset($invoiceData['invoice_type']) ? $invoiceData['invoice_type'] : 0;
+        if (2 == $invoiceType && empty($invoiceData['invoice_title'])) {
+            return $this->setError('发票抬头必须填写');
+        }
+
+        switch ($invoiceType) {
+            case 1:
+                $invoiceData['invoice_title'] = '个人';
+                $invoiceData['tax_number'] = '';
+                break;
+
+            case 2:
+                $invoiceData['invoice_title'] = $this->dataParams['invoice_title'];
+                $invoiceData['tax_number'] = $this->dataParams['tax_number'];
+                break;
+
+            default:
+                unset($invoiceData['invoice_title'], $invoiceData['tax_number']);
         }
 
         return true;
