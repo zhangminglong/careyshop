@@ -494,7 +494,7 @@ class OrderService extends CareyShop
             // 隐藏不需要输出的字段
             $hidden = [
                 'order_service_id',
-                'get_user.user_id',
+                'get_user.user_id', 'get_admin.admin_id',
             ];
 
             return ['items' => $result->hidden($hidden)->toArray(), 'total_result' => $totalResult];
