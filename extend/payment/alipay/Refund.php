@@ -193,7 +193,7 @@ class Refund extends Payment
 
         if (isset($result->alipay_trade_fastpay_refund_query_response->trade_no)) {
             $data = [
-                'refund_amount'      => $result->alipay_trade_fastpay_refund_query_response->refund_amount,
+                'refund_amount'      => (float)$result->alipay_trade_fastpay_refund_query_response->refund_amount,
                 'refund_status'      => '退款成功',
                 'refund_recv_accout' => '支付宝原路退回',
                 'refund_no'          => $result->alipay_trade_fastpay_refund_query_response->out_request_no,
@@ -202,7 +202,7 @@ class Refund extends Payment
             ];
         } else {
             $data = [
-                'refund_amount'      => '0.00',
+                'refund_amount'      => 0.00,
                 'refund_status'      => '退款处理中',
                 'refund_recv_accout' => '支付宝原路退回',
                 'refund_no'          => '',
