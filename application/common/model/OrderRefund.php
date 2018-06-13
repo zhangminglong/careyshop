@@ -206,7 +206,7 @@ class OrderRefund extends CareyShop
     }
 
     /**
-     * 查询一笔退款记录
+     * 查询一笔退款信息
      * @access public
      * @param  array $data 外部数据
      * @return array|false

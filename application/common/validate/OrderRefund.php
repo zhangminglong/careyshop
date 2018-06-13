@@ -44,7 +44,7 @@ class OrderRefund extends CareyShop
         'order_refund_id' => '退款日志编号',
         'refund_no'       => '退款流水号',
         'order_no'        => '订单号',
-        'out_trade_no'    => '交易号',
+        'out_trade_no'    => '退款交易号',
         'out_trade_msg'   => '交易信息',
         'amount'          => '退款金额',
         'to_payment'      => '退款方式',

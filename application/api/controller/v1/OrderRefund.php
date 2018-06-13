@@ -23,7 +23,7 @@ class OrderRefund extends CareyShop
     protected static function initMethod()
     {
         return [
-            // 查询一笔退款记录
+            // 查询一笔退款信息
             'query.refund.item' => ['queryRefundItem'],
             // 获取退款记录列表
             'get.refund.list'   => ['getRefundList'],
