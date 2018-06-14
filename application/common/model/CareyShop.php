@@ -86,7 +86,7 @@ class CareyShop extends Model
         unset($key, $value);
 
         if (!$validate->scene($scene, $rule)->check($data, [], $scene)) {
-            return $this->setError($validate->getError());
+            return $this->setError((string)$validate->getError());
         }
 
         return true;

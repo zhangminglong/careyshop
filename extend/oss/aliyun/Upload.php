@@ -22,8 +22,6 @@ use aliyun\AssumeRoleRequest;
 use aliyun\core\Config as AliyunConfig;
 use aliyun\core\profile\DefaultProfile;
 use aliyun\core\DefaultAcsClient;
-use aliyun\core\exception\ClientException;
-use aliyun\core\exception\ServerException;
 
 class Upload extends UploadBase
 {
@@ -66,26 +64,30 @@ class Upload extends UploadBase
     public function getUploadUrl()
     {
         // 请求获取bucket所在数据中心位置信息
-        try {
-            $location = Cache::remember('aliyunLocation', function () {
-                $accessKeyId = Config::get('aliyun_access_key.value', 'upload');
-                $accessKeySecret = Config::get('aliyun_secret_key.value', 'upload');
-                $endPoint = Config::get('aliyun_endpoint.value', 'upload');
-                $bucket = Config::get('aliyun_bucket.value', 'upload');
+        $location = Cache::remember('aliyunLocation', function () {
+            $accessKeyId = Config::get('aliyun_access_key.value', 'upload');
+            $accessKeySecret = Config::get('aliyun_secret_key.value', 'upload');
+            $endPoint = Config::get('aliyun_endpoint.value', 'upload');
+            $bucket = Config::get('aliyun_bucket.value', 'upload');
 
+            try {
                 $ossClient = new OssClient($accessKeyId, $accessKeySecret, $endPoint);
                 $result = $ossClient->getBucketLocation($bucket);
 
                 if (false === $result = xml_to_array($result)) {
                     throw new OssException('解析数据失败');
                 }
+            } catch (OssException $e) {
+                return $this->setError($e->getErrorMessage());
+            }
 
-                $random = array_rand($result, 1);
-                return $bucket . '.' . $result[$random] . self::HOST;
-            }, 7200);
-        } catch (OssException $e) {
+            $random = array_rand($result, 1);
+            return $bucket . '.' . $result[$random] . self::HOST;
+        }, 7200);
+
+        if (false === $location) {
             Cache::rm('aliyunLocation');
-            return $this->setError($e->getErrorMessage());
+            return [];
         }
 
         $uploadUrl = Url::bUild('/', '', false, $location);
@@ -230,10 +232,8 @@ class Upload extends UploadBase
             $request->setPolicy(json_encode($policy, JSON_UNESCAPED_UNICODE));
             $request->setDurationSeconds(3600);
             $response = $client->getAcsResponse($request);
-        } catch (ServerException $e) {
-            return $this->setError($e->getErrorMessage());
-        } catch (ClientException $e) {
-            return $this->setError($e->getErrorMessage());
+        } catch (\exception $e) {
+            return $this->setError($e->getMessage());
         }
 
         $result = [

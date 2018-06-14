@@ -50,7 +50,7 @@ class GoodsAttribute extends CareyShop
      * 查询范围
      * @access protected
      * @param  object $query 模型
-     * @return $this
+     * @return void
      */
     protected function scopeDelete($query)
     {

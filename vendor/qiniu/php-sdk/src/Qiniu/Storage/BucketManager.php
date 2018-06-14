@@ -304,7 +304,7 @@ final class BucketManager
     /**
      * 在单次请求中进行多个资源管理操作
      *
-     * @param $operations     资源管理操作数组
+     * @param array $operations     资源管理操作数组
      *
      * @return array 每个资源的处理情况，结果类似：
      *              [

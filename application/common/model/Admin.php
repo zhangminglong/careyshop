@@ -67,7 +67,7 @@ class Admin extends CareyShop
      * 全局查询条件
      * @access protected
      * @param  object $query 模型
-     * @return $this
+     * @return void
      */
     protected function base($query)
     {

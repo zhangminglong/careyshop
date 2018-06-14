@@ -12,7 +12,6 @@
 namespace app\common\model;
 
 use think\Cache;
-use think\helper\Str;
 
 class Menu extends CareyShop
 {

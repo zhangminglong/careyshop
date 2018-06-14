@@ -21,7 +21,7 @@ class CouponGive extends CareyShop
      * @access public
      * @param  array $coupon        优惠劵数据
      * @param  array $goodsCategory 商品分类集合
-     * @param  array $payAmount     订单支付金额
+     * @param  float $payAmount     订单支付金额
      * @return bool
      */
     public function checkCoupon($coupon, $goodsCategory, $payAmount)

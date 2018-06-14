@@ -19,8 +19,6 @@ use aliyun\SendSmsRequest;
 use aliyun\core\Config as AliyunConfig;
 use aliyun\core\profile\DefaultProfile;
 use aliyun\core\DefaultAcsClient;
-use aliyun\core\exception\ClientException;
-use aliyun\core\exception\ServerException;
 
 class NoticeTpl extends CareyShop
 {
@@ -482,10 +480,8 @@ class NoticeTpl extends CareyShop
         try {
             $client = new DefaultAcsClient($profile);
             $client->getAcsResponse($request);
-        } catch (ServerException $e) {
-            return $this->setError($e->getErrorMessage());
-        } catch (ClientException $e) {
-            return $this->setError($e->getErrorMessage());
+        } catch (\exception $e) {
+            return $this->setError($e->getMessage());
         }
 
         return true;

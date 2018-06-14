@@ -48,7 +48,7 @@ class Region extends CareyShop
      * 全局查询条件
      * @access protected
      * @param  object $query 模型
-     * @return $this
+     * @return void
      */
     protected function base($query)
     {
@@ -221,7 +221,7 @@ class Region extends CareyShop
      * @param  array &$tree 树结构
      * @param  array &$list 原始数据结构
      * @param  bool  $isAll 是否提取已删除区域
-     * @return array
+     * @return void
      */
     private static function getRegionChildrenList($id, &$tree, &$list, $isAll)
     {

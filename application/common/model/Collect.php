@@ -176,7 +176,7 @@ class Collect extends CareyShop
             return ['total_result' => 0];
         }
 
-        $result = self::all(function ($query) use ($map) {
+        $result = self::all(function ($query) use ($map, $data) {
             // 翻页页数
             $pageNo = isset($data['page_no']) ? $data['page_no'] : 1;
 
