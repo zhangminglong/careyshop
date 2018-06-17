@@ -191,7 +191,7 @@ class Upload extends UploadBase
     /**
      * 获取STS临时授权Token(SDK或APP使用)
      * @access private
-     * @return array
+     * @return array|false
      */
     private function getAppToken()
     {
@@ -260,7 +260,8 @@ class Upload extends UploadBase
     /**
      * 接收第三方推送数据
      * @access public
-     * @return array
+     * @return array|false
+     * @throws
      */
     public function putUploadData()
     {
@@ -364,7 +365,7 @@ class Upload extends UploadBase
     /**
      * 上传资源
      * @access public
-     * @return array
+     * @return false
      */
     public function uploadFiles()
     {
@@ -375,6 +376,8 @@ class Upload extends UploadBase
     /**
      * 获取缩略大小请求参数
      * @access private
+     * @param  int $width  宽度
+     * @param  int $height 高度
      * @return string
      */
     private function getSizeParam($width, $height)
@@ -390,6 +393,8 @@ class Upload extends UploadBase
     /**
      * 获取裁剪区域请求参数
      * @access private
+     * @param  int $width  宽度
+     * @param  int $height 高度
      * @return string
      */
     private function getCropParam($width, $height)

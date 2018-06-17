@@ -52,7 +52,7 @@ class OrderRefund extends CareyShop
     /**
      * hasOne cs_user
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getUser()
     {
@@ -109,7 +109,7 @@ class OrderRefund extends CareyShop
      * @param  string &$refundNo 退款单号
      * @return bool
      */
-    public function refundOrderPayment($orderData, $amount = 0, &$refundNo = null)
+    public function refundOrderPayment($orderData, $amount = 0.0, &$refundNo = null)
     {
         if (!$this->validateData($orderData, 'OrderRefund.refund')) {
             return false;
@@ -159,6 +159,7 @@ class OrderRefund extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function retryRefundItem($data)
     {
@@ -210,6 +211,7 @@ class OrderRefund extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function queryRefundItem($data)
     {
@@ -253,6 +255,7 @@ class OrderRefund extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getRefundList($data)
     {

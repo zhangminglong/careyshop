@@ -41,6 +41,7 @@ class Topic extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addTopicItem($data)
     {
@@ -63,6 +64,7 @@ class Topic extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setTopicItem($data)
     {
@@ -100,6 +102,7 @@ class Topic extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getTopicItem($data)
     {
@@ -126,6 +129,7 @@ class Topic extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getTopicList($data)
     {

@@ -40,6 +40,7 @@ class ArticleCat extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addArticleCatItem($data)
     {
@@ -63,6 +64,7 @@ class ArticleCat extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setArticleCatItem($data)
     {
@@ -149,6 +151,7 @@ class ArticleCat extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getArticleCatItem($data)
     {
@@ -214,6 +217,7 @@ class ArticleCat extends CareyShop
      * @param  object $list       原始模型对象
      * @param  int    $limitLevel 显示多少级深度 null:全部
      * @param  bool   $isLayer    是否返回本级分类
+     * @param  int    $level      分类深度
      * @return array
      */
     private static function setArticleCatTree($parentId, &$list, $limitLevel = null, $isLayer = false, $level = 0)

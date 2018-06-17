@@ -56,7 +56,7 @@ class Card extends CareyShop
     /**
      * hasMany cs_card_use
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getCardUse()
     {
@@ -68,6 +68,7 @@ class Card extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addCardItem($data)
     {
@@ -118,6 +119,7 @@ class Card extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function setCardItem($data)
     {
@@ -152,6 +154,7 @@ class Card extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function getCardItem($data)
     {
@@ -222,6 +225,7 @@ class Card extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getCardList($data)
     {

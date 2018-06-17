@@ -38,6 +38,7 @@ class Navigation extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addNavigationItem($data)
     {
@@ -61,6 +62,7 @@ class Navigation extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setNavigationItem($data)
     {
@@ -100,6 +102,7 @@ class Navigation extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getNavigationItem($data)
     {
@@ -162,6 +165,7 @@ class Navigation extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getNavigationList($data)
     {

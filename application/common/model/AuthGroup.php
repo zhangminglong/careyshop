@@ -38,7 +38,7 @@ class AuthGroup extends CareyShop
     /**
      * hasMany cs_auth_rule
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function hasAuthRule()
     {
@@ -50,6 +50,7 @@ class AuthGroup extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addAuthGroupItem($data)
     {
@@ -73,6 +74,7 @@ class AuthGroup extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setAuthGroupItem($data)
     {
@@ -94,6 +96,7 @@ class AuthGroup extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getAuthGroupItem($data)
     {
@@ -114,6 +117,7 @@ class AuthGroup extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function delAuthGroupItem($data)
     {
@@ -152,6 +156,7 @@ class AuthGroup extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getAuthGroupList($data)
     {

@@ -54,6 +54,7 @@ class MessageUser extends CareyShop
      * @access public
      * @param  int $messageId 消息编号
      * @return bool
+     * @throws
      */
     public function updateMessageUserItem($messageId)
     {

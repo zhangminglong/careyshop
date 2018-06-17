@@ -90,6 +90,7 @@ class Notice extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function setNoticeStatus($data)
     {

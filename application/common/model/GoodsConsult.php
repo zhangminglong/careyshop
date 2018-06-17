@@ -56,7 +56,7 @@ class GoodsConsult extends CareyShop
     /**
      * hasMany cs_goods_consult
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getAnswer()
     {
@@ -66,7 +66,7 @@ class GoodsConsult extends CareyShop
     /**
      * hasOne cs_user
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getUser()
     {
@@ -79,7 +79,7 @@ class GoodsConsult extends CareyShop
     /**
      * hasOne cs_goods
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getGoods()
     {
@@ -94,6 +94,7 @@ class GoodsConsult extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addConsultItem($data)
     {
@@ -164,6 +165,7 @@ class GoodsConsult extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function replyConsultItem($data)
     {
@@ -213,6 +215,7 @@ class GoodsConsult extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getConsultItem($data)
     {
@@ -243,6 +246,7 @@ class GoodsConsult extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getConsultList($data)
     {

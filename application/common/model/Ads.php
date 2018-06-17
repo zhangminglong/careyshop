@@ -39,7 +39,7 @@ class Ads extends CareyShop
     /**
      * hasOne cs_ads_position
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getAdsPosition()
     {
@@ -54,6 +54,7 @@ class Ads extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addAdsItem($data)
     {
@@ -87,6 +88,7 @@ class Ads extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setAdsItem($data)
     {
@@ -188,6 +190,7 @@ class Ads extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getAdsItem($data)
     {
@@ -208,6 +211,7 @@ class Ads extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getAdsList($data)
     {
@@ -268,6 +272,7 @@ class Ads extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getAdsCode($data)
     {

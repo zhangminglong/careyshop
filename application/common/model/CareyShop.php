@@ -18,7 +18,7 @@ class CareyShop extends Model
     /**
      * 检测是否存在相同值
      * @access public
-     * @param array $map 查询条件
+     * @param  array $map 查询条件
      * @return bool false:不存在
      */
     public static function checkUnique($map)

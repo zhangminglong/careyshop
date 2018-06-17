@@ -73,6 +73,7 @@ class Region extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addRegionItem($data)
     {
@@ -93,6 +94,7 @@ class Region extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setRegionItem($data)
     {
@@ -135,6 +137,7 @@ class Region extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getRegionItem($data)
     {
@@ -158,6 +161,7 @@ class Region extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getRegionList($data)
     {

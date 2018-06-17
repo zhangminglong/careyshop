@@ -25,6 +25,7 @@ class Cod extends Payment
     /**
      * 设置请求来源
      * @access public
+     * @param  string $request 请求
      * @return object
      */
     public function setQequest($request)

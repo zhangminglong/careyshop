@@ -18,7 +18,7 @@ class CareyShop extends Validate
     /**
      * 获取某个字段的描述
      * @access public
-     * @param array $args 参数
+     * @param  string $field 参数
      * @return bool
      */
     public function getField($field)
@@ -29,7 +29,7 @@ class CareyShop extends Validate
     /**
      * 时间是否在合理范围内
      * @access public
-     * @param array $args 参数
+     * @param  array $args 参数
      * @return bool
      */
     public function betweenTime(...$args)
@@ -44,7 +44,7 @@ class CareyShop extends Validate
     /**
      * 某个字段的值是否小于某个字段(时间)
      * @access public
-     * @param array $args 参数
+     * @param  array $args 参数
      * @return bool
      */
     public function beforeTime(...$args)
@@ -63,7 +63,7 @@ class CareyShop extends Validate
     /**
      * 某个字段的值是否大于某个字段(时间)
      * @access public
-     * @param array $args 参数
+     * @param  array $args 参数
      * @return bool
      */
     public function afterTime(...$args)
@@ -82,7 +82,7 @@ class CareyShop extends Validate
     /**
      * 检测数组内所有键值是否都为int
      * @access public
-     * @param array $args 参数
+     * @param  array $args 参数
      * @return bool
      */
     public function arrayHasOnlyInts(...$args)
@@ -113,7 +113,7 @@ class CareyShop extends Validate
     /**
      * 检测数组内所有键值是否都为string
      * @access public
-     * @param array $args 参数
+     * @param  array $args 参数
      * @return bool
      */
     public function arrayHasOnlyStrings(...$args)
@@ -135,7 +135,7 @@ class CareyShop extends Validate
     /**
      * 获取验证器编辑场景
      * @access public
-     * @param string $scene 场景名
+     * @param  string $scene 场景名
      * @return array
      */
     public function getSetScene($scene)
@@ -146,7 +146,7 @@ class CareyShop extends Validate
     /**
      * 验证模块是否在指定范围内
      * @access public
-     * @param array $args 参数
+     * @param  array $args 参数
      * @return bool
      */
     public function checkModule(...$args)

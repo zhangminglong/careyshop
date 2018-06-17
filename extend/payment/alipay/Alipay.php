@@ -147,9 +147,10 @@ class Alipay extends Payment
     /**
      * sdkClient
      * @access public
-     * @param object $request 接口请求参数对象
-     * @param bool   $ispage  是否是页面接口,电脑网站支付是页面表单接口
-     * @return $response
+     * @param  object $request 接口请求参数对象
+     * @param  bool   $ispage  是否是页面接口,电脑网站支付是页面表单接口
+     * @return mixed
+     * @throws
      */
     private function aopclientRequestExecute($request, $ispage = false)
     {

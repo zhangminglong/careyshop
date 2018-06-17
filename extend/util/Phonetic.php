@@ -47,6 +47,7 @@ class Phonetic
      * 将中文编码成拼音
      * @param string $utf8Data   utf8字符集数据
      * @param string $sRetFormat 返回格式 [head:首字母|all:全拼音]
+     * @param string $sSpace     间隔符号
      * @return string
      */
     public static function encode($utf8Data, $sRetFormat = 'head', $sSpace = '')

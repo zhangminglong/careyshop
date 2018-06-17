@@ -54,7 +54,7 @@ class Index extends CareyShop
     /**
      * 获取系统版本号
      * @access public
-     * @return bool
+     * @return array
      */
     public static function getVersion()
     {

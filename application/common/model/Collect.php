@@ -56,7 +56,7 @@ class Collect extends CareyShop
     /**
      * hasOne cs_goods
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getGoods()
     {
@@ -161,6 +161,7 @@ class Collect extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function getCollectList($data)
     {

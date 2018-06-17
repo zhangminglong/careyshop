@@ -35,7 +35,7 @@ class Promotion extends CareyShop
     /**
      * hasMany cs_promotion_item
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function promotionItem()
     {
@@ -49,6 +49,7 @@ class Promotion extends CareyShop
      * @param  string $endTime   结束时间
      * @param  int    $excludeId 排除折扣Id
      * @return bool
+     * @throws
      */
     private function isRepeatPromotion($beginTime, $endTime, $excludeId = 0)
     {
@@ -76,6 +77,7 @@ class Promotion extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addPromotionItem($data)
     {
@@ -123,6 +125,7 @@ class Promotion extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setPromotionItem($data)
     {
@@ -176,6 +179,7 @@ class Promotion extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getPromotionItem($data)
     {
@@ -216,6 +220,7 @@ class Promotion extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function delPromotionList($data)
     {
@@ -241,6 +246,7 @@ class Promotion extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function getPromotionList($data)
     {
@@ -291,6 +297,7 @@ class Promotion extends CareyShop
      * 获取正在进行的促销列表
      * @access public
      * @return false|array
+     * @throws
      */
     public function getPromotionActive()
     {

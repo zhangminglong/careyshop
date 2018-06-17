@@ -86,8 +86,8 @@ if (!function_exists('get_client_group')) {
 if (!function_exists('user_md5')) {
     /**
      * 非常规用户密码加盐处理
-     * @param string $password 明文
-     * @param string $key      盐
+     * @param  string $password 明文
+     * @param  string $key      盐
      * @return string
      */
     function user_md5($password, $key = 'Carey_Shop#')
@@ -99,6 +99,7 @@ if (!function_exists('user_md5')) {
 if (!function_exists('get_order_no')) {
     /**
      * 生成唯一订单号
+     * @param  string $prefix 头部
      * @return string
      */
     function get_order_no($prefix = 'CS_')
@@ -182,8 +183,8 @@ if (!function_exists('get_randstr')) {
 if (!function_exists('auto_hid_substr')) {
     /**
      * 智能字符串模糊化
-     * @param string $str 被模糊的字符串
-     * @param int    $len 模糊的长度
+     * @param  string $str 被模糊的字符串
+     * @param  int    $len 模糊的长度
      * @return string
      */
     function auto_hid_substr($str, $len = 3)
@@ -209,8 +210,8 @@ if (!function_exists('auto_hid_substr')) {
 if (!function_exists('string_to_byte')) {
     /**
      * 字符计量大小转换为字节大小
-     * @param string $var 值
-     * @param int    $dec 小数位数
+     * @param  string $var 值
+     * @param  int    $dec 小数位数
      * @return int
      */
     function string_to_byte($var, $dec = 2)
@@ -230,7 +231,7 @@ if (!function_exists('string_to_byte')) {
 if (!function_exists('xml_to_array')) {
     /**
      * XML转为array
-     * @param mixed $xml 值
+     * @param  mixed $xml 值
      * @return array
      */
     function xml_to_array($xml)
@@ -252,6 +253,7 @@ if (!function_exists('xml_to_array')) {
 if (!function_exists('unique_and_delzero')) {
     /**
      * 先去除重复数值,再移除0值
+     * @param  array $var 数组
      * @return void
      */
     function unique_and_delzero(&$var)

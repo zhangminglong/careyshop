@@ -60,6 +60,7 @@ class GoodsReply extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addReplyItem($data)
     {
@@ -107,6 +108,7 @@ class GoodsReply extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function delReplyList($data)
     {
@@ -133,6 +135,7 @@ class GoodsReply extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getReplyList($data)
     {

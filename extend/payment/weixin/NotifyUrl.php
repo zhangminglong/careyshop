@@ -119,7 +119,9 @@ class NotifyUrl extends \WxPayNotify
     /**
      * 查询订单
      * @access public
+     * @param  string $transactionId 微信订单号
      * @return bool
+     * @throws
      */
     public function orderQuery($transactionId)
     {
@@ -149,6 +151,8 @@ class NotifyUrl extends \WxPayNotify
     /**
      * 重写回调处理函数
      * @access public
+     * @param  array  $data 数据
+     * @param  string $msg  消息
      * @return bool
      */
     public function NotifyProcess($data, &$msg)
@@ -174,6 +178,7 @@ class NotifyUrl extends \WxPayNotify
     /**
      * 验签方法
      * @access public
+     * @param  array $setting 配置参数
      * @return bool
      */
     public function checkReturn($setting = null)

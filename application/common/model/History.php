@@ -44,7 +44,7 @@ class History extends CareyShop
     /**
      * hasOne cs_goods
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getGoods()
     {
@@ -64,6 +64,7 @@ class History extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function addHistoryItem($data)
     {
@@ -121,7 +122,6 @@ class History extends CareyShop
     /**
      * 清空我的足迹
      * @access public
-     * @param  array $data 外部数据
      * @return bool
      */
     public function clearHistoryList()
@@ -149,6 +149,7 @@ class History extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function getHistoryList($data)
     {

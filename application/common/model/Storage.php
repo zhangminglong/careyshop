@@ -50,6 +50,7 @@ class Storage extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addStorageDirectoryItem($data)
     {
@@ -74,6 +75,7 @@ class Storage extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setStorageDirectoryItem($data)
     {
@@ -98,6 +100,7 @@ class Storage extends CareyShop
      * @param  array $data  外部数据
      * @param  bool  $isKey 是否以键名为索引
      * @return array|false
+     * @throws
      */
     public function getStorageDirectorySelect($data, $isKey = false)
     {
@@ -157,6 +160,7 @@ class Storage extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getStorageItem($data)
     {
@@ -177,6 +181,7 @@ class Storage extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getStorageList($data)
     {
@@ -281,6 +286,7 @@ class Storage extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function renameStorageItem($data)
     {
@@ -302,6 +308,7 @@ class Storage extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function coverStorageItem($data)
     {
@@ -430,6 +437,7 @@ class Storage extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function delStorageList($data)
     {

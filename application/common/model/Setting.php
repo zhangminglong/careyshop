@@ -39,7 +39,7 @@ class Setting extends CareyShop
      * 获取某个模块的设置
      * @access public
      * @param  array $data 外部数据
-     * @return array
+     * @return array|false
      */
     public function getSettingList($data)
     {
@@ -90,6 +90,7 @@ class Setting extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function setDeliveryDistList($data)
     {
@@ -131,6 +132,7 @@ class Setting extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function setPaymentList($data)
     {
@@ -168,6 +170,7 @@ class Setting extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function setDeliveryList($data)
     {
@@ -225,6 +228,7 @@ class Setting extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function setShoppingList($data)
     {
@@ -277,6 +281,7 @@ class Setting extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function setServiceList($data)
     {
@@ -321,6 +326,7 @@ class Setting extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function setSystemList($data)
     {
@@ -383,6 +389,7 @@ class Setting extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function setUploadList($data)
     {

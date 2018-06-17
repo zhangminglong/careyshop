@@ -89,6 +89,7 @@ class Payment extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addPaymentItem($data)
     {
@@ -113,6 +114,7 @@ class Payment extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setPaymentItem($data)
     {
@@ -156,6 +158,7 @@ class Payment extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getPaymentItem($data)
     {
@@ -179,6 +182,7 @@ class Payment extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getPaymentInfo($data)
     {
@@ -205,6 +209,7 @@ class Payment extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getPaymentList($data)
     {
@@ -302,6 +307,7 @@ class Payment extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function setPaymentFinance($data)
     {
@@ -448,6 +454,7 @@ class Payment extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function orderPaymentPay($data)
     {
@@ -521,6 +528,7 @@ class Payment extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool|string
+     * @throws
      */
     public function putPaymentData($data)
     {
@@ -581,6 +589,7 @@ class Payment extends CareyShop
      * @param  object &$paymentLogDb 支付日志
      * @param  int    $toPayment     支付方式
      * @return bool
+     * @throws
      */
     private function settleOrder(&$model, &$paymentLogDb, $toPayment)
     {
@@ -660,6 +669,7 @@ class Payment extends CareyShop
      * @param  object &$paymentLogDb 支付日志
      * @param  int    $toPayment     支付方式
      * @return bool
+     * @throws
      */
     private function settlePay(&$model, &$paymentLogDb, $toPayment)
     {

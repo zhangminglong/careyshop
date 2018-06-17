@@ -53,7 +53,7 @@ class Message extends CareyShop
     /**
      * hasOne cs_message_user
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getMessageUser()
     {
@@ -65,6 +65,7 @@ class Message extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addMessageItem($data)
     {
@@ -89,6 +90,7 @@ class Message extends CareyShop
      * @param  array $clientId   账号编号
      * @param  int   $clientType 消息成员组 0=顾客组 1=管理组
      * @return bool
+     * @throws
      */
     public function inAddMessageItem($data, $clientId, $clientType)
     {
@@ -138,6 +140,7 @@ class Message extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setMessageItem($data)
     {
@@ -220,6 +223,7 @@ class Message extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getMessageItem($data)
     {
@@ -247,6 +251,7 @@ class Message extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getMessageUserItem($data)
     {
@@ -303,6 +308,7 @@ class Message extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getMessageList($data)
     {
@@ -370,6 +376,7 @@ class Message extends CareyShop
      * @param  array $data       外部数据
      * @param  bool  $isGetTotal 是否只获取数量
      * @return array|false
+     * @throws
      */
     public function getMessageUserList($data, $isGetTotal = false)
     {

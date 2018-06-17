@@ -54,7 +54,7 @@ class Withdraw extends CareyShop
     /**
      * hasOne cs_user
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getUser()
     {
@@ -114,6 +114,7 @@ class Withdraw extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getWithdrawItem($data)
     {
@@ -140,6 +141,7 @@ class Withdraw extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getWithdrawList($data)
     {
@@ -204,6 +206,7 @@ class Withdraw extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addWithdrawItem($data)
     {
@@ -264,6 +267,7 @@ class Withdraw extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function cancelWithdrawItem($data)
     {
@@ -321,6 +325,7 @@ class Withdraw extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function processWithdrawItem($data)
     {
@@ -349,6 +354,7 @@ class Withdraw extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function completeWithdrawItem($data)
     {
@@ -393,6 +399,7 @@ class Withdraw extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function refuseWithdrawItem($data)
     {

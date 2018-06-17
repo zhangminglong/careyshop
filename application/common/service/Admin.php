@@ -20,7 +20,7 @@ class Admin extends CareyShop
      * @access private
      * @param  array $rules 验证规则
      * @param  array $data  待验证数据
-     * @return array
+     * @return bool
      */
     private function checkField($rules, $data)
     {
@@ -36,7 +36,7 @@ class Admin extends CareyShop
      * 验证账号是否合法
      * @access public
      * @param  array $data 外部数据
-     * @return array
+     * @return bool
      */
     public function checkAdminName($data)
     {
@@ -50,7 +50,7 @@ class Admin extends CareyShop
      * 验证账号昵称是否合法
      * @access public
      * @param  array $data 外部数据
-     * @return array
+     * @return bool
      */
     public function checkAdminNick($data)
     {

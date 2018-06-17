@@ -41,6 +41,7 @@ class Brand extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addBrandItem($data)
     {
@@ -70,6 +71,7 @@ class Brand extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setBrandItem($data)
     {
@@ -167,6 +169,7 @@ class Brand extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getBrandItem($data)
     {
@@ -193,6 +196,7 @@ class Brand extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getBrandList($data)
     {
@@ -260,6 +264,7 @@ class Brand extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getBrandSelect($data)
     {

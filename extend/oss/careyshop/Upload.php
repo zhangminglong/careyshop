@@ -82,7 +82,6 @@ class Upload extends UploadBase
     /**
      * 获取上传地址
      * @access public
-     * @param  string $replace 替换资源(path)
      * @return array
      */
     public function getUploadUrl()
@@ -117,7 +116,7 @@ class Upload extends UploadBase
     /**
      * 上传资源
      * @access public
-     * @return array
+     * @return array|false
      */
     public function uploadFiles()
     {
@@ -145,7 +144,7 @@ class Upload extends UploadBase
             }
 
             if (is_object($value)) {
-                $result = $this->saveFile($value);
+                $result = $this->saveFile((object)$value);
                 if (is_array($result)) {
                     $filesData[] = $result;
                 } else {
@@ -169,7 +168,7 @@ class Upload extends UploadBase
     /**
      * 接收第三方推送数据
      * @access public
-     * @return array
+     * @return false
      */
     public function putUploadData()
     {
@@ -179,7 +178,9 @@ class Upload extends UploadBase
     /**
      * 保存资源并写入库
      * @access private
+     * @param  object $file 上传文件对象
      * @return array|string
+     * @throws
      */
     private function saveFile($file)
     {
@@ -463,6 +464,7 @@ class Upload extends UploadBase
     /**
      * 清除缩略图文件夹
      * @access private
+     * @param  string $path 路径
      * @return void
      */
     private function clearThumb($path)
@@ -480,6 +482,7 @@ class Upload extends UploadBase
     /**
      * 验证是否为图片
      * @access private
+     * @param  string $path 路径
      * @return bool
      */
     private function checkImg($path)

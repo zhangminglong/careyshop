@@ -52,7 +52,7 @@ class PaymentLog extends CareyShop
     /**
      * hasOne cs_user
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getUser()
     {
@@ -81,6 +81,7 @@ class PaymentLog extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addPaymentLogItem($data)
     {
@@ -107,6 +108,7 @@ class PaymentLog extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function closePaymentLogItem($data)
     {
@@ -142,6 +144,7 @@ class PaymentLog extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getPaymentLogItem($data)
     {
@@ -170,6 +173,7 @@ class PaymentLog extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getPaymentLogList($data)
     {

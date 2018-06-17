@@ -35,6 +35,7 @@ class Qrcode extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getQrcodeItem($data = [])
     {
@@ -59,6 +60,7 @@ class Qrcode extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addQrcodeItem($data)
     {
@@ -81,6 +83,7 @@ class Qrcode extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setQrcodeItem($data)
     {
@@ -101,6 +104,7 @@ class Qrcode extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getQrcodeConfig($data)
     {
@@ -138,6 +142,7 @@ class Qrcode extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getQrcodeList($data)
     {

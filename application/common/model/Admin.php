@@ -76,6 +76,8 @@ class Admin extends CareyShop
 
     /**
      * hasOne db_token
+     * @access public
+     * @return mixed
      */
     public function hasToken()
     {
@@ -85,7 +87,7 @@ class Admin extends CareyShop
     /**
      * hasOne cs_auth_group
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getAuthGroup()
     {
@@ -100,6 +102,7 @@ class Admin extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|bool
+     * @throws
      */
     public function addAdminItem($data)
     {
@@ -120,6 +123,7 @@ class Admin extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setAdminItem($data)
     {
@@ -157,6 +161,7 @@ class Admin extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function setAdminStatus($data)
     {
@@ -183,6 +188,7 @@ class Admin extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function setAdminPassword($data)
     {
@@ -237,6 +243,7 @@ class Admin extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function delAdminList($data)
     {
@@ -264,6 +271,7 @@ class Admin extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getAdminItem($data)
     {
@@ -284,6 +292,7 @@ class Admin extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getAdminList($data)
     {
@@ -333,6 +342,7 @@ class Admin extends CareyShop
      * 注销账号
      * @access public
      * @return bool
+     * @throws
      */
     public function logoutAdmin()
     {
@@ -357,6 +367,7 @@ class Admin extends CareyShop
      * @param  array $data       外部数据
      * @param  bool  $isGetToken 是否需要返回Token
      * @return array|false
+     * @throws
      */
     public function loginAdmin($data, $isGetToken = true)
     {

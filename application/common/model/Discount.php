@@ -36,7 +36,7 @@ class Discount extends CareyShop
     /**
      * hasMany cs_discount_goods
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function discountGoods()
     {
@@ -51,6 +51,7 @@ class Discount extends CareyShop
      * @param  array  $goodsList 外部商品列表
      * @param  int    $excludeId 排除折扣Id
      * @return bool
+     * @throws
      */
     private function isRepeatGoods($beginTime, $endTime, $goodsList, $excludeId = 0)
     {
@@ -87,6 +88,7 @@ class Discount extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addDiscountItem($data)
     {
@@ -134,6 +136,7 @@ class Discount extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setDiscountItem($data)
     {
@@ -184,6 +187,7 @@ class Discount extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getDiscountItem($data)
     {
@@ -204,6 +208,7 @@ class Discount extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function delDiscountList($data)
     {
@@ -249,6 +254,7 @@ class Discount extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getDiscountList($data)
     {

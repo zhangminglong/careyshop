@@ -63,7 +63,7 @@ class OrderService extends CareyShop
     /**
      * belongsTo cs_order
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getOrder()
     {
@@ -76,7 +76,7 @@ class OrderService extends CareyShop
     /**
      * belongsTo cs_order_goods
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getOrderGoods()
     {
@@ -89,7 +89,7 @@ class OrderService extends CareyShop
     /**
      * belongsTo cs_order_refund
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getOrderRefund()
     {
@@ -102,7 +102,7 @@ class OrderService extends CareyShop
     /**
      * hasOne cs_user
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getUser()
     {
@@ -114,7 +114,7 @@ class OrderService extends CareyShop
     /**
      * hasOne cs_admin
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getAdmin()
     {
@@ -126,7 +126,7 @@ class OrderService extends CareyShop
     /**
      * hasMany cs_service_log
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getServiceLog()
     {
@@ -183,6 +183,7 @@ class OrderService extends CareyShop
      * @param  string $orderNo 订单号
      * @param  string $type    撤销类型
      * @return bool
+     * @throws
      */
     public function inCancelOrderService($orderNo, $type)
     {
@@ -263,6 +264,7 @@ class OrderService extends CareyShop
      * @param  object $orderGoodsDb 订单商品模型对象
      * @param  bool   $isRefundFee  是否返回退款结构
      * @return false|array
+     * @throws
      */
     public function getOrderServiceGoods($data, &$orderGoodsDb = null, $isRefundFee = false)
     {
@@ -379,6 +381,7 @@ class OrderService extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function getOrderServiceItem($data)
     {
@@ -419,6 +422,7 @@ class OrderService extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function getOrderServiceList($data)
     {
@@ -586,6 +590,7 @@ class OrderService extends CareyShop
      * @param  array  $data 外部数据
      * @param  string $type 售后类型 maintain或exchange
      * @return false|array
+     * @throws
      */
     private function addMaintainOfExchange(&$data, $type)
     {
@@ -688,6 +693,7 @@ class OrderService extends CareyShop
      * @param  array  $data 外部数据
      * @param  string $type 售后类型 refund或refund_refunds
      * @return false|array
+     * @throws
      */
     private function addServiceRefund(&$data, $type)
     {
@@ -797,6 +803,7 @@ class OrderService extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function addOrderServiceMessage($data)
     {
@@ -829,6 +836,7 @@ class OrderService extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function setOrderServiceAgree($data)
     {
@@ -879,6 +887,7 @@ class OrderService extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function setOrderServiceRefused($data)
     {
@@ -933,6 +942,7 @@ class OrderService extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function setOrderServiceSendback($data)
     {
@@ -995,6 +1005,7 @@ class OrderService extends CareyShop
      * @access private
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     private function setLogisticCode(&$data)
     {
@@ -1103,6 +1114,7 @@ class OrderService extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function setOrderServiceAfter($data)
     {
@@ -1147,6 +1159,7 @@ class OrderService extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function setOrderServiceCancel($data)
     {
@@ -1615,6 +1628,7 @@ class OrderService extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function setOrderServiceComplete($data)
     {

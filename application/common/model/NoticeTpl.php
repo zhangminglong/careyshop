@@ -70,7 +70,7 @@ class NoticeTpl extends CareyShop
     /**
      * hasMany cs_notice_item
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getNoticeItem()
     {
@@ -83,6 +83,7 @@ class NoticeTpl extends CareyShop
      * @param  int    $type 通知类型
      * @param  string $code 通知编码
      * @return array|false
+     * @throws
      */
     public function getNoticeTplData($type, $code = null)
     {
@@ -102,6 +103,7 @@ class NoticeTpl extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getNoticeTplItem($data)
     {
@@ -136,6 +138,7 @@ class NoticeTpl extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getNoticeTplList($data)
     {
@@ -160,6 +163,7 @@ class NoticeTpl extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setNoticeTplItem($data)
     {
@@ -495,6 +499,7 @@ class NoticeTpl extends CareyShop
      * @param  array  &$data      发送数据
      * @param  string $attachment 附件列表
      * @return bool
+     * @throws
      */
     private function snedNoticeEmail($email, $subject, &$data, $attachment = null)
     {

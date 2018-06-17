@@ -78,6 +78,7 @@ class Coupon extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addCouponItem($data)
     {
@@ -103,6 +104,7 @@ class Coupon extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setCouponItem($data)
     {
@@ -141,6 +143,7 @@ class Coupon extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getCouponItem($data)
     {
@@ -167,6 +170,7 @@ class Coupon extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getCouponList($data)
     {
@@ -283,6 +287,7 @@ class Coupon extends CareyShop
      * 获取当前可领取的优惠劵列表
      * @access public
      * @return array
+     * @throws
      */
     public function getCouponActive()
     {

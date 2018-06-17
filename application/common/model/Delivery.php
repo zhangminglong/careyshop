@@ -47,7 +47,7 @@ class Delivery extends CareyShop
     /**
      * hasMany cs_delivery_area
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getDeliveryArea()
     {
@@ -62,7 +62,7 @@ class Delivery extends CareyShop
     /**
      * hasOne cs_delivery_item
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getDeliveryItem()
     {
@@ -76,6 +76,7 @@ class Delivery extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addDeliveryItem($data)
     {
@@ -98,6 +99,7 @@ class Delivery extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setDeliveryItem($data)
     {
@@ -144,6 +146,7 @@ class Delivery extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getDeliveryItems($data)
     {
@@ -164,6 +167,7 @@ class Delivery extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getDeliveryList($data)
     {
@@ -220,6 +224,7 @@ class Delivery extends CareyShop
      * 获取配送方式选择列表
      * @access public
      * @return array
+     * @throws
      */
     public function getDeliverySelect()
     {
@@ -240,6 +245,7 @@ class Delivery extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getDeliveryFreight($data)
     {

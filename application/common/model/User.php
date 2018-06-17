@@ -82,6 +82,8 @@ class User extends CareyShop
 
     /**
      * hasOne db_token
+     * @access public
+     * @return mixed
      */
     public function hasToken()
     {
@@ -90,6 +92,8 @@ class User extends CareyShop
 
     /**
      * hasOne cs_user_money
+     * @access public
+     * @return mixed
      */
     public function hasUserMoney()
     {
@@ -98,6 +102,8 @@ class User extends CareyShop
 
     /**
      * hasOne cs_user_money
+     * @access public
+     * @return mixed
      */
     public function getUserMoney()
     {
@@ -109,6 +115,8 @@ class User extends CareyShop
 
     /**
      * hasOne cs_user_level
+     * @access public
+     * @return mixed
      */
     public function getUserLevel()
     {
@@ -123,6 +131,7 @@ class User extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|bool
+     * @throws
      */
     public function addUserItem($data)
     {
@@ -164,6 +173,7 @@ class User extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setUserItem($data)
     {
@@ -210,6 +220,7 @@ class User extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function setUserStatus($data)
     {
@@ -237,6 +248,7 @@ class User extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function setUserPassword($data)
     {
@@ -277,6 +289,7 @@ class User extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function delUserList($data)
     {
@@ -304,6 +317,7 @@ class User extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getUserItem($data)
     {
@@ -326,6 +340,7 @@ class User extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getUserList($data)
     {
@@ -404,6 +419,7 @@ class User extends CareyShop
      * 注销账号
      * @access public
      * @return bool
+     * @throws
      */
     public function logoutUser()
     {
@@ -428,6 +444,7 @@ class User extends CareyShop
      * @param  array $data       外部数据
      * @param  bool  $isGetToken 是否需要返回Token
      * @return array|false
+     * @throws
      */
     public function loginUser($data, $isGetToken = true)
     {
@@ -503,6 +520,7 @@ class User extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function findUserPassword($data)
     {

@@ -85,7 +85,7 @@ class Goods extends CareyShop
     /**
      * hasMany cs_goods_attr
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function goodsAttrItem()
     {
@@ -95,7 +95,7 @@ class Goods extends CareyShop
     /**
      * hasMany cs_spec_goods
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function goodsSpecItem()
     {
@@ -105,7 +105,7 @@ class Goods extends CareyShop
     /**
      * hasMany cs_spec_image
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function specImage()
     {
@@ -222,6 +222,7 @@ class Goods extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addGoodsItem($data)
     {
@@ -261,6 +262,7 @@ class Goods extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setGoodsItem($data)
     {
@@ -327,6 +329,7 @@ class Goods extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getGoodsItem($data)
     {
@@ -476,6 +479,7 @@ class Goods extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getGoodsAttrList($data)
     {
@@ -502,6 +506,7 @@ class Goods extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getGoodsSpecList($data)
     {
@@ -525,6 +530,7 @@ class Goods extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getGoodsSpecImage($data)
     {
@@ -548,6 +554,7 @@ class Goods extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getGoodsAdminList($data)
     {
@@ -615,6 +622,7 @@ class Goods extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getGoodsIndexType($data)
     {
@@ -941,6 +949,7 @@ class Goods extends CareyShop
      * @access private
      * @param  array $goodsIdList 商品编号
      * @return array
+     * @throws
      */
     private function getFilterBrand($goodsIdList)
     {
@@ -1060,6 +1069,7 @@ class Goods extends CareyShop
      * @param  array $goodsIdList 商品编号
      * @param  array $filterParam 已筛选的条件
      * @return array
+     * @throws
      */
     private function getFilterAttr($goodsIdList, $filterParam)
     {
@@ -1151,7 +1161,8 @@ class Goods extends CareyShop
     /**
      * 判断商品分类是否存在,并且取该分类所有的子Id
      * @access public
-     * @param  array &$data 外部数据
+     * @param  array &$data         外部数据
+     * @param  array $goodsCateList 购物车商品列表
      * @return bool
      */
     private function isCategoryList($data, &$goodsCateList)
@@ -1172,6 +1183,7 @@ class Goods extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getGoodsIndexList($data)
     {
@@ -1317,6 +1329,7 @@ class Goods extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function copyGoodsItem($data)
     {

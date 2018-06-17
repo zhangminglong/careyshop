@@ -22,7 +22,7 @@ class Payment extends CareyShop
      * @access public
      * @param  array $data     外部数据
      * @param  bool  $isString 是否直接返回URL地址
-     * @return string|false
+     * @return mixed
      */
     public function getPaymentNotify($data, $isString = false)
     {
@@ -42,7 +42,7 @@ class Payment extends CareyShop
      * @access public
      * @param  array $data     外部数据
      * @param  bool  $isString 是否直接返回URL地址
-     * @return string|false
+     * @return mixed
      */
     public function getPaymentReturn($data, $isString = false)
     {

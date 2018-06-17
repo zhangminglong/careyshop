@@ -58,6 +58,7 @@ class Token extends CareyShop
      * @param  string $username 账号
      * @param  string $platform 来源平台
      * @return false|array
+     * @throws
      */
     public function setToken($id, $group, $type, $username, $platform)
     {
@@ -107,6 +108,7 @@ class Token extends CareyShop
      * @param  string $refresh  刷新令牌
      * @param  string $oldToken 原授权令牌
      * @return false|array
+     * @throws
      */
     public function refreshUser($type, $refresh, $oldToken)
     {

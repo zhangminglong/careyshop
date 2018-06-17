@@ -49,6 +49,7 @@ class GoodsCategory extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addCategoryItem($data)
     {
@@ -84,6 +85,7 @@ class GoodsCategory extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setCategoryItem($data)
     {
@@ -180,6 +182,7 @@ class GoodsCategory extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getCategoryItem($data)
     {
@@ -282,6 +285,7 @@ class GoodsCategory extends CareyShop
      * @param  object &$list      原始模型对象
      * @param  int    $limitLevel 显示多少级深度 null:全部
      * @param  bool   $isLayer    是否返回本级分类
+     * @param  int    $level      分类深度
      * @return array
      */
     private static function setCategoryTree($parentId, &$list, $limitLevel = null, $isLayer = false, $level = 0)
@@ -333,6 +337,7 @@ class GoodsCategory extends CareyShop
      * @param  bool $isLayer      是否返回本级分类
      * @param  int  $level        分类深度
      * @return false|array
+     * @throws
      */
     public static function getCategoryList($catId = 0, $isGoodsTotal = false, $isLayer = false, $level = null)
     {

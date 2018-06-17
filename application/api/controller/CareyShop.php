@@ -192,8 +192,6 @@ class CareyShop extends Controller
     /**
      * api_debug模式下,尝试根据method命名规范查找模型方法(方便调试)
      * @access private
-     * @param  array $params 完整的请求参数
-     * @param  array $result 处理结果
      * @return void
      */
     private function autoFindMethod()
@@ -439,8 +437,8 @@ class CareyShop extends Controller
     /**
      * 输出请求结果
      * @access protected
-     * @param array $data 业务结果
-     * @param int   $code HTTP状态码
+     * @param  array $data 业务结果
+     * @param  int   $code HTTP状态码
      * @return array
      */
     protected function outputResult($data = [], $code = 200)
@@ -451,8 +449,8 @@ class CareyShop extends Controller
     /**
      * 输出错误结果
      * @access protected
-     * @param string $message 错误消息
-     * @param int    $code    错误编码
+     * @param  string $message 错误消息
+     * @param  int    $code    错误编码
      * @return void
      */
     protected function outputError($message = '', $code = 500)

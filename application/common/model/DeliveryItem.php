@@ -47,6 +47,7 @@ class DeliveryItem extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addCompanyItem($data)
     {
@@ -84,6 +85,7 @@ class DeliveryItem extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setCompanyItem($data)
     {
@@ -132,6 +134,7 @@ class DeliveryItem extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function delCompanyList($data)
     {
@@ -166,6 +169,7 @@ class DeliveryItem extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getCompanyItem($data)
     {
@@ -216,6 +220,7 @@ class DeliveryItem extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getCompanyList($data)
     {
@@ -264,7 +269,9 @@ class DeliveryItem extends CareyShop
     /**
      * 获取快递公司选择列表
      * @access public
+     * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getCompanySelect($data)
     {
@@ -289,7 +296,9 @@ class DeliveryItem extends CareyShop
     /**
      * 复制一个快递公司为"热门类型"
      * @access public
+     * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function copyCompanyHot($data)
     {

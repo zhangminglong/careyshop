@@ -42,7 +42,7 @@ class Article extends CareyShop
     /**
      * hasOne cs_article_cat
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getArticleCat()
     {
@@ -57,6 +57,7 @@ class Article extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addArticleItem($data)
     {
@@ -79,6 +80,7 @@ class Article extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setArticleItem($data)
     {
@@ -116,6 +118,7 @@ class Article extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getArticleItem($data)
     {
@@ -143,6 +146,7 @@ class Article extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getArticleList($data)
     {

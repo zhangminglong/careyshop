@@ -60,7 +60,7 @@ class Cart extends CareyShop
     /**
      * hasOne cs_goods
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function goods()
     {
@@ -77,7 +77,7 @@ class Cart extends CareyShop
     /**
      * hasMany cs_spec_goods
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function goodsSpecItem()
     {
@@ -90,6 +90,7 @@ class Cart extends CareyShop
      * @param  array $data     外部数据
      * @param  bool  $isBuyNow 是否立即购买
      * @return false|array
+     * @throws
      */
     public function setCartItem($data, $isBuyNow = false)
     {
@@ -161,6 +162,7 @@ class Cart extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function checkCartGoods($data)
     {
@@ -235,6 +237,7 @@ class Cart extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function addCartList($data)
     {
@@ -294,6 +297,7 @@ class Cart extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function getCartList($data)
     {

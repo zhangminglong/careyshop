@@ -152,6 +152,7 @@ class Refund extends Payment
      * 返回退款请求结果
      * @access public
      * @return array|false
+     * @throws
      */
     public function refundRequest()
     {
@@ -177,6 +178,12 @@ class Refund extends Payment
         return true;
     }
 
+    /**
+     * 交易退款查询
+     * @access public
+     * @return array|false
+     * @throws
+     */
     public function refundFastpayQueryRequest()
     {
         $input = new \WxPayRefundQuery();

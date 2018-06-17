@@ -71,7 +71,7 @@ class Upload extends CareyShop
     /**
      * 获取上传地址
      * @access public
-     * @return array
+     * @return mixed
      */
     public function getUploadUrl()
     {
@@ -96,7 +96,7 @@ class Upload extends CareyShop
     /**
      * 获取上传Token
      * @access public
-     * @return array
+     * @return mixed
      */
     public function getUploadToken()
     {
@@ -122,7 +122,8 @@ class Upload extends CareyShop
      * 替换上传资源
      * @access public
      * @param  array $data 外部数据
-     * @return array
+     * @return array|false
+     * @throws
      */
     public function replaceUploadItem($data)
     {
@@ -180,7 +181,7 @@ class Upload extends CareyShop
     /**
      * 资源上传请求(第三方OSS只能单文件直传方式上传)
      * @access public
-     * @return array
+     * @return mixed
      */
     public function addUploadList()
     {
@@ -200,7 +201,7 @@ class Upload extends CareyShop
     /**
      * 接收第三方推送数据
      * @access public
-     * @return array
+     * @return mixed
      */
     public function putUploadData()
     {

@@ -130,6 +130,7 @@ class Refund extends Payment
      * 返回退款请求结果
      * @access public
      * @return array|false
+     * @throws
      */
     public function refundRequest()
     {
@@ -165,6 +166,7 @@ class Refund extends Payment
      * 返回退款查询请求结果
      * @access public
      * @return array|false
+     * @throws
      */
     public function refundFastpayQueryRequest()
     {

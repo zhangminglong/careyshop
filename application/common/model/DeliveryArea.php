@@ -87,6 +87,7 @@ class DeliveryArea extends CareyShop
      * @param  int   $deliveryId 配送方式Id
      * @param  int   $areaId     字段delivery_area_id
      * @return bool true:重复 false:不重复
+     * @throws
      */
     private function checkRegionUnique($source, $deliveryId, $areaId)
     {
@@ -125,6 +126,7 @@ class DeliveryArea extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function addAreaItem($data)
     {
@@ -148,6 +150,7 @@ class DeliveryArea extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function setAreaItem($data)
     {
@@ -202,6 +205,7 @@ class DeliveryArea extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function getAreaItem($data)
     {
@@ -222,6 +226,7 @@ class DeliveryArea extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function getAreaList($data)
     {

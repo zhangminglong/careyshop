@@ -53,7 +53,7 @@ class Transaction extends CareyShop
     /**
      * hasOne cs_user
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getUser()
     {
@@ -68,6 +68,7 @@ class Transaction extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addTransactionItem($data)
     {
@@ -96,6 +97,7 @@ class Transaction extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getTransactionList($data)
     {

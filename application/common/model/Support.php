@@ -36,6 +36,7 @@ class Support extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addSupportItem($data)
     {
@@ -58,6 +59,7 @@ class Support extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setSupportItem($data)
     {
@@ -95,6 +97,7 @@ class Support extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getSupportItem($data)
     {
@@ -121,6 +124,7 @@ class Support extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getSupportList($data)
     {

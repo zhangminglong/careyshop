@@ -36,7 +36,7 @@ class Spec extends CareyShop
     /**
      * hasMany cs_spec_item
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function hasSpecItem()
     {
@@ -48,6 +48,7 @@ class Spec extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addSpecItem($data)
     {
@@ -92,6 +93,7 @@ class Spec extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setSpecItem($data)
     {
@@ -145,6 +147,7 @@ class Spec extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getSpecItem($data)
     {
@@ -172,6 +175,7 @@ class Spec extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getSpecList($data)
     {
@@ -205,6 +209,7 @@ class Spec extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function delSpecList($data)
     {

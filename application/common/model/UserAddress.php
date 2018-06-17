@@ -66,6 +66,7 @@ class UserAddress extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getAddressList($data)
     {
@@ -89,6 +90,7 @@ class UserAddress extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getAddressItem($data)
     {
@@ -115,6 +117,7 @@ class UserAddress extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getAddressDefault($data)
     {
@@ -142,6 +145,7 @@ class UserAddress extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addAddressItem($data)
     {
@@ -170,6 +174,7 @@ class UserAddress extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setAddressItem($data)
     {
@@ -235,6 +240,7 @@ class UserAddress extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function setAddressDefault($data)
     {

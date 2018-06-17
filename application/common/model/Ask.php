@@ -86,7 +86,7 @@ class Ask extends CareyShop
     /**
      * hasOne cs_user
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getUser()
     {
@@ -99,7 +99,7 @@ class Ask extends CareyShop
     /**
      * hasMany cs_ask
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getItems()
     {
@@ -111,6 +111,7 @@ class Ask extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function addAskItem($data)
     {
@@ -150,6 +151,7 @@ class Ask extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function delAskItem($data)
     {
@@ -183,6 +185,7 @@ class Ask extends CareyShop
      * @param  array $data 提交数据
      * @param  bool  $isQa true:咨询 false:回复
      * @return false|array
+     * @throws
      */
     private function addAskOrAnswer($data, $isQa)
     {
@@ -273,6 +276,7 @@ class Ask extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getAskItem($data)
     {
@@ -306,6 +310,7 @@ class Ask extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getAskList($data)
     {

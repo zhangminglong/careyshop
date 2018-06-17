@@ -40,6 +40,7 @@ class Verification extends CareyShop
      * @param  string $code   通知编码 sms或email
      * @param  string $number 手机号或邮箱地址
      * @return bool
+     * @throws
      */
     private function sendNotice($code, $number)
     {
@@ -75,7 +76,7 @@ class Verification extends CareyShop
     /**
      * 使用验证码
      * @access public
-     * @param  string $number 外部数据
+     * @param  array $data 外部数据
      * @return bool
      */
     public function useVerificationItem($data)
@@ -120,8 +121,10 @@ class Verification extends CareyShop
     /**
      * 验证验证码
      * @access public
-     * @param  array $data 外部数据
+     * @param  string $number 手机号或邮箱地址
+     * @param  string $code   通知编码 sms或email
      * @return bool
+     * @throws
      */
     public function verVerification($number, $code)
     {

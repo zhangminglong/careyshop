@@ -89,6 +89,7 @@ class StorageStyle extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addStorageStyleItem($data)
     {
@@ -112,6 +113,7 @@ class StorageStyle extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setStorageStyleItem($data)
     {
@@ -151,6 +153,7 @@ class StorageStyle extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getStorageStyleItem($data)
     {
@@ -171,6 +174,7 @@ class StorageStyle extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getStorageStyleCode($data)
     {
@@ -201,6 +205,7 @@ class StorageStyle extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getStorageStyleList($data)
     {

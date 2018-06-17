@@ -36,6 +36,7 @@ class FriendLink extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addFriendLinkItem($data)
     {
@@ -58,6 +59,7 @@ class FriendLink extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setFriendLinkItem($data)
     {
@@ -95,6 +97,7 @@ class FriendLink extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getFriendLinkItem($data)
     {
@@ -115,6 +118,7 @@ class FriendLink extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getFriendLinkList($data)
     {

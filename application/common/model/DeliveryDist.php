@@ -67,7 +67,7 @@ class DeliveryDist extends CareyShop
     /**
      * hasOne cs_delivery_item
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getDeliveryItem()
     {
@@ -80,7 +80,7 @@ class DeliveryDist extends CareyShop
     /**
      * hasOne cs_user
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getUser()
     {
@@ -95,6 +95,7 @@ class DeliveryDist extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function addDeliveryDistItem($data)
     {
@@ -268,6 +269,7 @@ class DeliveryDist extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function getDeliveryDistCode($data)
     {
@@ -327,6 +329,7 @@ class DeliveryDist extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function getDeliveryDistList($data)
     {

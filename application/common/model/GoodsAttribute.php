@@ -60,7 +60,7 @@ class GoodsAttribute extends CareyShop
     /**
      * hasMany cs_goods_attribute
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getAttribute()
     {
@@ -72,6 +72,7 @@ class GoodsAttribute extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addAttributeBodyItem($data)
     {
@@ -92,6 +93,7 @@ class GoodsAttribute extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setAttributeBodyItem($data)
     {
@@ -116,6 +118,7 @@ class GoodsAttribute extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getAttributeBodyItem($data)
     {
@@ -141,6 +144,7 @@ class GoodsAttribute extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getAttributeBodyList($data)
     {
@@ -173,6 +177,7 @@ class GoodsAttribute extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addAttributeItem($data)
     {
@@ -200,6 +205,7 @@ class GoodsAttribute extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setAttributeItem($data)
     {
@@ -231,6 +237,7 @@ class GoodsAttribute extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getAttributeItem($data)
     {
@@ -254,6 +261,7 @@ class GoodsAttribute extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getAttributeList($data)
     {
@@ -359,6 +367,7 @@ class GoodsAttribute extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function delAttributeList($data)
     {
@@ -389,7 +398,7 @@ class GoodsAttribute extends CareyShop
      * 获取基础数据索引列表
      * @access public
      * @param  array $data 外部数据
-     * @return bool
+     * @return array|false
      */
     public function getAttributeData($data)
     {

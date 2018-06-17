@@ -73,6 +73,7 @@ class App extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addAppItem($data)
     {
@@ -97,6 +98,7 @@ class App extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function setAppItem($data)
     {
@@ -129,6 +131,7 @@ class App extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getAppItem($data)
     {
@@ -149,6 +152,7 @@ class App extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getAppList($data)
     {
@@ -220,6 +224,7 @@ class App extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function replaceAppSecret($data)
     {

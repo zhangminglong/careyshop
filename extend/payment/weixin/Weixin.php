@@ -164,6 +164,12 @@ class Weixin extends Payment
         return $this->request == 'web' ? $result : $result['is_callback'];
     }
 
+    /**
+     * app查询结果
+     * @access private
+     * @return array|false
+     * @throws
+     */
     private function appRequestExecute()
     {
         $input = new \WxPayUnifiedOrder();
@@ -199,6 +205,12 @@ class Weixin extends Payment
         return $result;
     }
 
+    /**
+     * pc查询结果
+     * @access private
+     * @return string
+     * @throws
+     */
     private function pcRequestExecute()
     {
         $input = new \WxPayUnifiedOrder();
@@ -220,6 +232,12 @@ class Weixin extends Payment
         return '<img src="' . Url::build('api/v1/qrcode', $vars, true, true) . '"/>';
     }
 
+    /**
+     * js查询结果
+     * @access private
+     * @return string
+     * @throws
+     */
     private function jsRequestExecute()
     {
         $tools = new \JsApiPay();

@@ -41,7 +41,7 @@ class CardUse extends CareyShop
     /**
      * belongsTo cs_card
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getCard()
     {
@@ -51,7 +51,7 @@ class CardUse extends CareyShop
     /**
      * hasOne cs_user
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getUser()
     {
@@ -66,6 +66,7 @@ class CardUse extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function bindCardUseItem($data)
     {
@@ -163,7 +164,8 @@ class CardUse extends CareyShop
      * 导出生成的购物卡
      * @access public
      * @param  array $data 外部数据
-     * @return array
+     * @return array|false
+     * @throws
      */
     public function getCardUseExport($data)
     {
@@ -191,8 +193,9 @@ class CardUse extends CareyShop
      * @param  float  $value    数值
      * @param  int    $clientId 账号编号
      * @return bool
+     * @throws
      */
-    public function incCardUseMoney($number = '', $value = 0, $clientId = 0)
+    public function incCardUseMoney($number = '', $value = 0.0, $clientId = 0)
     {
         if (empty($number)) {
             return $this->setError('卡号不能为空');
@@ -232,8 +235,9 @@ class CardUse extends CareyShop
      * @param  float  $value    数值
      * @param  int    $clientId 账号编号
      * @return bool
+     * @throws
      */
-    public function decCardUseMoney($number = '', $value = 0, $clientId = 0)
+    public function decCardUseMoney($number = '', $value = 0.0, $clientId = 0)
     {
         if (empty($number)) {
             return $this->setError('卡号不能为空');
@@ -275,6 +279,7 @@ class CardUse extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function getCardUseMerge($data)
     {
@@ -322,6 +327,7 @@ class CardUse extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function setCardUseMerge($data)
     {
@@ -376,6 +382,7 @@ class CardUse extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function getCardUseList($data)
     {
@@ -455,6 +462,7 @@ class CardUse extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function getCardUseSelect($data)
     {
@@ -497,10 +505,10 @@ class CardUse extends CareyShop
      * @access private
      * @param  array $card          购物卡数据
      * @param  array $goodsCategory 商品分类集合
-     * @param  array $decMoney      准备减少的可用金额
+     * @param  float $decMoney      准备减少的可用金额
      * @return bool
      */
-    private function checkCard($card, $goodsCategory, $decMoney = 0)
+    private function checkCard($card, $goodsCategory, $decMoney = 0.0)
     {
         if ($decMoney > 0 && bccomp($decMoney, $card['money'], 2) === 1) {
             return $this->setError('卡号 ' . $card['number'] . ' 可用余额不足');
@@ -539,6 +547,7 @@ class CardUse extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function getCardUseCheck($data)
     {

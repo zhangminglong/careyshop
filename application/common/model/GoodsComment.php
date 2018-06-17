@@ -108,7 +108,7 @@ class GoodsComment extends CareyShop
     /**
      * hasMany cs_goods_comment
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getAddition()
     {
@@ -118,7 +118,7 @@ class GoodsComment extends CareyShop
     /**
      * hasMany cs_goods_comment
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getMainReply()
     {
@@ -128,7 +128,7 @@ class GoodsComment extends CareyShop
     /**
      * hasMany cs_goods_comment
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getAdditionReply()
     {
@@ -138,7 +138,7 @@ class GoodsComment extends CareyShop
     /**
      * hasOne cs_order_goods
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getGoods()
     {
@@ -151,7 +151,7 @@ class GoodsComment extends CareyShop
     /**
      * hasOne cs_user
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getUser()
     {
@@ -166,6 +166,7 @@ class GoodsComment extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addCommentItem($data)
     {
@@ -230,6 +231,7 @@ class GoodsComment extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function addAdditionItem($data)
     {
@@ -314,6 +316,7 @@ class GoodsComment extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function replyCommentItem($data)
     {
@@ -368,6 +371,7 @@ class GoodsComment extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function delCommentItem($data)
     {
@@ -408,6 +412,7 @@ class GoodsComment extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function addPraiseItem($data)
     {
@@ -594,6 +599,7 @@ class GoodsComment extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getCommentItem($data)
     {
@@ -656,6 +662,7 @@ class GoodsComment extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return array|false
+     * @throws
      */
     public function getCommentList($data)
     {

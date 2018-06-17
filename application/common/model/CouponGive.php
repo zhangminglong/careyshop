@@ -51,7 +51,7 @@ class CouponGive extends CareyShop
     /**
      * belongsTo cs_coupon
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getCoupon()
     {
@@ -64,7 +64,7 @@ class CouponGive extends CareyShop
     /**
      * hasOne cs_user
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getUser()
     {
@@ -79,6 +79,7 @@ class CouponGive extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function useCouponItem($data)
     {
@@ -120,6 +121,7 @@ class CouponGive extends CareyShop
      * @param  array $userId   发放用户(等同于发放数量)
      * @param  int   $type     优惠劵类型
      * @return false|object
+     * @throws
      */
     private function addCouponGive($couponId, $userId, $type)
     {
@@ -263,6 +265,7 @@ class CouponGive extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return bool
+     * @throws
      */
     public function giveCouponCode($data)
     {
@@ -304,6 +307,7 @@ class CouponGive extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function getCouponGiveList($data)
     {
@@ -447,6 +451,7 @@ class CouponGive extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function getCouponGiveExport($data)
     {
@@ -472,6 +477,7 @@ class CouponGive extends CareyShop
      * @access public
      * @param  array $data 外部数据
      * @return false|array
+     * @throws
      */
     public function getCouponGiveSelect($data)
     {
@@ -514,7 +520,8 @@ class CouponGive extends CareyShop
      * 验证优惠劵是否可使用
      * @access public
      * @param  array $data 外部数据
-     * @return bool
+     * @return array|false
+     * @throws
      */
     public function getCouponGiveCheck($data)
     {

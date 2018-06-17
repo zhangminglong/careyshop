@@ -45,7 +45,7 @@ class OrderGoods extends CareyShop
     /**
      * belongsTo cs_order
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function toOrder()
     {
@@ -55,7 +55,7 @@ class OrderGoods extends CareyShop
     /**
      * belongsTo cs_order
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getOrder()
     {
@@ -65,7 +65,7 @@ class OrderGoods extends CareyShop
     /**
      * hasMany cs_order_goods
      * @access public
-     * @return $this
+     * @return mixed
      */
     public function getOrderGoods()
     {
@@ -96,6 +96,7 @@ class OrderGoods extends CareyShop
      * @param  string $orderNo      订单号
      * @param  int    $orderGoodsId 订单商品编号
      * @return bool
+     * @throws
      */
     public function isComment($orderNo, $orderGoodsId)
     {
@@ -135,10 +136,11 @@ class OrderGoods extends CareyShop
     /**
      * 获取一个订单商品明细
      * @access public
-     * @param  array  $data          外部数据
-     * @param  string $returnArray   是否以数组的形式返回
-     * @param  bool   $hasOrderGoods 是否关联订单数据
+     * @param  array $data          外部数据
+     * @param  bool  $returnArray   是否以数组的形式返回
+     * @param  bool  $hasOrderGoods 是否关联订单数据
      * @return false|array|object
+     * @throws
      */
     public function getOrderGoodsItem($data, $returnArray = true, $hasOrderGoods = false)
     {
