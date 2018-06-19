@@ -210,6 +210,10 @@ class GoodsCategory extends CareyShop
             return false;
         }
 
+        if (empty($data['goods_category_id'])) {
+            return [];
+        }
+
         $catList = $this
             ->cache('GoodsCategoryNavi', null, 'GoodsCategory')
             ->order('sort,goods_category_id')

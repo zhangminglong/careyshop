@@ -275,6 +275,10 @@ class ArticleCat extends CareyShop
             return false;
         }
 
+        if (empty($data['article_cat_id'])) {
+            return [];
+        }
+
         $list = self::cache('ArticleCatNavi', null, 'ArticleCat')->column('article_cat_id,parent_id,cat_name');
         if ($list === false) {
             Cache::clear('ArticleCat');

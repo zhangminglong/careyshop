@@ -250,6 +250,10 @@ class Storage extends CareyShop
             return false;
         }
 
+        if (empty($data['storage_id'])) {
+            return [];
+        }
+
         $map['type'] = ['eq', 2];
         $list = self::cache('StorageNavi', null, 'StorageDirectory')->where($map)->column('storage_id,parent_id,name');
 

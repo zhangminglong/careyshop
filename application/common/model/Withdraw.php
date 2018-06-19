@@ -255,7 +255,7 @@ class Withdraw extends CareyShop
             }
 
             self::commit();
-            return $this->toArray();
+            return $this->hidden(['withdraw_user_id'])->toArray();
         } catch (\Exception $e) {
             self::rollback();
             return $this->setError($e->getMessage());
