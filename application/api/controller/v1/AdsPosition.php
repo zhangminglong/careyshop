@@ -39,7 +39,7 @@ class AdsPosition extends CareyShop
             'get.ads.position.list'    => ['getPositionList'],
             // 获取广告位选择列表
             'get.ads.position.select'  => ['getPositionSelect'],
-            // 根据广告位编码获取广告
+            // 根据广告位编码获取广告列表
             'get.ads.position.code'    => ['getPositionCode'],
         ];
     }
