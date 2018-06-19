@@ -110,7 +110,7 @@ class Ask extends CareyShop
      * 添加一个提问
      * @access public
      * @param  array $data 外部数据
-     * @return bool
+     * @return array|false
      * @throws
      */
     public function addAskItem($data)
@@ -139,7 +139,7 @@ class Ask extends CareyShop
             }
 
             self::commit();
-            return true;
+            return $this->toArray();
         } catch (\Exception $e) {
             self::rollback();
             return $this->setError($e->getMessage());
