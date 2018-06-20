@@ -383,6 +383,11 @@ class GoodsComment extends CareyShop
             $map['goods_comment_id'] = ['eq', $data['goods_comment_id']];
             $map['is_delete'] = ['eq', 0];
 
+            if (!is_client_admin()) {
+                $map['user_id'] = ['eq', get_client_id()];
+                $map['type'] = ['in', [self::COMMENT_TYPE_MAIN, self::COMMENT_TYPE_ADDITION]];
+            }
+
             $query->where($map);
         });
 
