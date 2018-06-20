@@ -217,7 +217,7 @@ class GoodsCategory extends CareyShop
         $catList = $this
             ->cache('GoodsCategoryNavi', null, 'GoodsCategory')
             ->order('sort,goods_category_id')
-            ->column('goods_category_id,parent_id,name');
+            ->column('goods_category_id,parent_id,name,alias');
 
         if (false === $catList) {
             Cache::clear('GoodsCategory');
