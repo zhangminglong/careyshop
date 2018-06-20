@@ -303,8 +303,11 @@ class GoodsComment extends CareyShop
                 throw new \Exception($orderGoodsDb->getError());
             }
 
+            // 隐藏不返回的字段
+            $hidden = ['is_show', 'is_top', 'status', 'praise', 'reply_count'];
+
             self::commit();
-            return $result->toArray();
+            return $result->hidden($hidden)->toArray();
         } catch (\Exception $e) {
             self::rollback();
             return $this->setError($e->getMessage());
@@ -360,7 +363,9 @@ class GoodsComment extends CareyShop
         }
 
         if (false !== $result->isUpdate(false)->save()) {
-            return $result->toArray();
+            // 隐藏不返回的字段
+            $hidden = ['is_show', 'is_top', 'status', 'praise', 'reply_count'];
+            return $result->hidden($hidden)->toArray();
         }
 
         return false;
