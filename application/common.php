@@ -72,6 +72,24 @@ if (!function_exists('get_client_name')) {
     }
 }
 
+if (!function_exists('get_client_nickname')) {
+    /**
+     * 返回当前账号昵称
+     * @return mixed
+     */
+    function get_client_nickname()
+    {
+        if (get_client_group() == AUTH_GUEST) {
+            return '游客';
+        }
+
+        $userType = is_client_admin() ? 'admin' : 'user';
+        $map['user_id'] = ['eq', get_client_id()];
+
+        return db($userType)->where($map)->value('nickname', '');
+    }
+}
+
 if (!function_exists('get_client_group')) {
     /**
      * 返回当前账号用户组编号
