@@ -309,7 +309,7 @@ class CardUse extends CareyShop
         $result = self::all(function ($query) use ($map) {
             $query
                 ->alias('u')
-                ->field('u.number,u.money')
+                ->field('u.number,u.money,c.name,c.description')
                 ->join('card c', 'c.card_id = u.card_id')
                 ->order(['u.money' => 'desc'])
                 ->where($map);
@@ -350,9 +350,13 @@ class CardUse extends CareyShop
         }
 
         // 合并金额不存在则需要获取来源卡金额
-        if (!isset($data['money'])) {
+        if (empty($data['money'])) {
             $map['number'] = ['eq', $data['src_number']];
             $data['money'] = $this->where($map)->value('money', 0, true);
+        }
+
+        if ($data['money'] <= 0) {
+            return $this->setError('金额未变动');
         }
 
         // 开启事务
@@ -489,12 +493,16 @@ class CardUse extends CareyShop
         $goodsResult = Goods::where(['goods_id' => ['in', $data['goods_id']]])->column('goods_category_id');
 
         foreach ($cardResult as $value) {
-            if ($this->checkCard($value->toArray(), $goodsResult)) {
-                $result[] = [
-                    'number' => $value->getAttr('number'),
-                    'money'  => $value->getAttr('money'),
-                ];
-            }
+            $tempCard = $value->toArray();
+            $tempData['number'] = $tempCard['number'];
+            $tempData['money'] = $tempCard['money'];
+            $tempData['name'] = $tempCard['get_card']['name'];
+            $tempData['description'] = $tempCard['get_card']['description'];
+            $tempData['is_use'] = (int)$this->checkCard($tempCard, $goodsResult);
+            $tempData['not_use_error'] = 0 == $tempData['is_use'] ? $this->getError() : '';
+
+            $result[] = $tempData;
+            unset($tempCard, $tempData);
         }
 
         return $result;
