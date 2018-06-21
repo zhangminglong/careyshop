@@ -20,7 +20,6 @@ class GoodsReply extends CareyShop
     protected $rule = [
         'goods_reply_id'   => 'integer|gt:0',
         'goods_comment_id' => 'require|integer|gt:0',
-        'nick_name'        => 'require|max:50',
         'to_name'          => 'max:50',
         'content'          => 'require|max:200',
         'is_anon'          => 'in:0,1',
@@ -35,7 +34,6 @@ class GoodsReply extends CareyShop
     protected $field = [
         'goods_reply_id'   => '商品评价回复编号',
         'goods_comment_id' => '商品评价编号',
-        'nick_name'        => '回复者昵称',
         'to_name'          => '被回复者昵称',
         'content'          => '回复内容',
         'is_anon'          => '是否匿名',

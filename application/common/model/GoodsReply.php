@@ -51,7 +51,6 @@ class GoodsReply extends CareyShop
         'goods_reply_id'   => 'integer',
         'goods_comment_id' => 'integer',
         'reply_type'       => 'integer',
-        'is_show'          => 'integer',
         'user_id'          => 'integer',
     ];
 
@@ -78,6 +77,7 @@ class GoodsReply extends CareyShop
         // 避免无关字段及初始化数据
         unset($data['goods_reply_id']);
         $data['user_id'] = get_client_id();
+        $data['nick_name'] = get_client_nickname();
 
         // 是否进行匿名处理
         if (!empty($data['is_anon'])) {
@@ -97,7 +97,7 @@ class GoodsReply extends CareyShop
 
         if (false !== $this->allowField(true)->save($data)) {
             GoodsComment::where(['goods_comment_id' => ['eq', $data['goods_comment_id']]])->setInc('reply_count');
-            return $this->toArray();
+            return $this->hidden(['is_anon'])->toArray();
         }
 
         return false;
