@@ -504,13 +504,14 @@ class CouponGive extends CareyShop
 
         // 优惠劵发放服务层实例化
         $giveSer = new \app\common\service\CouponGive();
+
         foreach ($couponResult as $value) {
-            if ($giveSer->checkCoupon($value->toArray(), $goodsResult, $data['pay_amount'])) {
-                $result[] = [
-                    'coupon_give_id' => $value->getAttr('coupon_give_id'),
-                    'name'           => $value->getAttr('get_coupon')->getAttr('name'),
-                ];
-            }
+            $temp = $value->hidden(['is_delete'])->toArray();
+            $temp['is_use'] = (int)$giveSer->checkCoupon($temp, $goodsResult, $data['pay_amount']);
+            $temp['not_use_error'] = 0 == $temp['is_use'] ? $giveSer->getError() : '';
+
+            $result[] = $temp;
+            unset($temp);
         }
 
         return $result;
@@ -558,7 +559,7 @@ class CouponGive extends CareyShop
         }
 
         // 获取订单商品分类并进行筛选
-        $result = $couponResult->toArray();
+        $result = $couponResult->hidden(['is_delete'])->toArray();
         $goodsResult = Goods::where(['goods_id' => ['in', $data['goods_id']]])->column('goods_category_id');
 
         $giveSer = new \app\common\service\CouponGive();
