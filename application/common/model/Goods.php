@@ -1262,8 +1262,9 @@ class Goods extends CareyShop
             $orderField = !empty($data['order_field']) ? $data['order_field'] : 'goods_id';
 
             // 过滤不需要的字段
-            $field = 'goods_category_id,goods_code,goods_spu,goods_sku,bar_code,give_integral,is_integral,measure,unit,';
-            $field .= 'measure_type,keywords,description,content,goods_type_id,status,is_delete,create_time,update_time';
+            $field = 'goods_category_id,goods_code,goods_spu,goods_sku,bar_code,integral_type,give_integral,';
+            $field .= 'is_integral,measure,unit,measure_type,keywords,description,content,goods_type_id,status,';
+            $field .= 'is_delete,create_time,update_time';
 
             $query
                 ->field($field, true)
