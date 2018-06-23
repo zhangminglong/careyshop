@@ -23,10 +23,10 @@ class Cart extends CareyShop
     protected static function initMethod()
     {
         return [
-            // 添加或编辑购物车商品
-            'set.cart.item'      => ['setCartItem'],
             // 验证是否允许添加或编辑购物车
             'check.cart.goods'   => ['checkCartGoods'],
+            // 添加或编辑购物车商品
+            'set.cart.item'      => ['setCartItem'],
             // 批量添加商品到购物车
             'add.cart.list'      => ['addCartList'],
             // 获取购物车列表

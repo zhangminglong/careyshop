@@ -71,7 +71,10 @@ class Cart extends CareyShop
             'integral_type', 'give_integral', 'is_integral',
         ];
 
-        return $this->hasOne('Goods', 'goods_id', 'goods_id')->field($field);
+        return $this
+            ->hasOne('Goods', 'goods_id', 'goods_id')
+            ->field($field)
+            ->setEagerlyType(0);
     }
 
     /**
@@ -227,6 +230,10 @@ class Cart extends CareyShop
             $data['key_value'] = $goodsSpec[$data['goods_spec']]['key_value'];
         }
 
+        // 数据处理
+        $data['goods_id'] = (int)$data['goods_id'];
+        $data['goods_num'] = (int)$data['goods_num'];
+
         // 前端只保存合适的数据,此字段不再需要
         unset($data['goods_spec']);
         return $data;
@@ -251,10 +258,14 @@ class Cart extends CareyShop
 
         // 提取需要插入或更新的数据
         foreach ($data['cart_goods'] as $value) {
+            if (!isset($value['goods_id']) || empty($value['goods_num'])) {
+                continue;
+            }
+
             $cartData[] = [
                 'user_id'     => $userId,
-                'goods_id'    => isset($value['goods_id']) ? $value['goods_id'] : 0,
-                'goods_num'   => isset($value['goods_num']) ? $value['goods_num'] : 0,
+                'goods_id'    => $value['goods_id'],
+                'goods_num'   => $value['goods_num'],
                 'key_name'    => !empty($value['key_name']) ? $value['key_name'] : '',
                 'key_value'   => !empty($value['key_value']) ? $value['key_value'] : '',
                 'update_time' => $nowTime,
@@ -335,8 +346,8 @@ class Cart extends CareyShop
         $map['is_show'] = ['eq', 1];
 
         $totalResult = isset($data['total_type']) && 'number' == $data['total_type']
-            ? self::where($map)->sum('goods_num')
-            : self::where($map)->count();
+            ? self::where($map)->with('goods')->sum('goods_num')
+            : self::where($map)->with('goods')->count();
 
         return ['total_result' => (int)$totalResult];
     }

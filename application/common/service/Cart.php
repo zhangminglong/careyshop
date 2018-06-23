@@ -32,6 +32,12 @@ class Cart extends CareyShop
             $goodsData[$key]['goods']['goods_image'] = isset($goodsData[$key]['goods']['attachment'][0]) ? $goodsData[$key]['goods']['attachment'][0] : '';
             unset($goodsData[$key]['goods']['attachment']);
 
+            // 检测商品是否存在
+            if (is_null($value['goods'])) {
+                unset($goodsData[$key]);
+                continue;
+            }
+
             // 检测商品状态
             if ($value['goods']['store_qty'] <= 0 || $value['goods']['status'] != 1 || $value['goods']['is_delete'] != 0) {
                 $goodsData[$key]['error'] = 1;
@@ -79,6 +85,7 @@ class Cart extends CareyShop
                 unset($goodsData[$key]['goods_spec_item']);
             }
         }
+
 
         return $goodsData;
     }

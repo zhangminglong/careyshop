@@ -39,7 +39,7 @@ class Cart extends CareyShop
         'goods_spec'  => '商品规格',
         'goods_num'   => '购买数量',
         'is_selected' => '是否选中',
-        'show_size'   => '显示数量',
+        'show_size'   => '显示多少记录',
         'cart_goods'  => '购物车商品列表',
         'total_type'  => '合计类型',
         'former_spec' => '原先的商品规格',
