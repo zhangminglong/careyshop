@@ -722,8 +722,8 @@ class Order extends CareyShop
      */
     private function setInvoiceData(&$invoiceData)
     {
-        $invoiceType = isset($invoiceData['invoice_type']) ? $invoiceData['invoice_type'] : 0;
-        if (2 == $invoiceType && empty($invoiceData['invoice_title'])) {
+        $invoiceType = isset($this->dataParams['invoice_type']) ? $this->dataParams['invoice_type'] : 0;
+        if (2 == $invoiceType && empty($this->dataParams['invoice_title'])) {
             return $this->setError('发票抬头必须填写');
         }
 
