@@ -2,13 +2,16 @@
 /**
  * @copyright   Copyright (c) http://careyshop.cn All rights reserved.
  *
- * CareyShop    路由器
+ * CareyShop    PHP自带WebServer支持
  *
  * @author      zxm <252404501@qq.com>
  * @version     v1.1
  * @date        2017/4/24
  */
 
+/**
+ * 启动命令：php -S localhost:8080 router.php
+ */
 if (is_file($_SERVER["DOCUMENT_ROOT"] . $_SERVER["SCRIPT_NAME"])) {
     return false;
 } else {
