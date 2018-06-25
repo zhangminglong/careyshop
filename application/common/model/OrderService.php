@@ -658,7 +658,7 @@ class OrderService extends CareyShop
             }
 
             self::commit();
-            return $this->hidden(['order_service_id'])->toArray();
+            return $this->hidden(['order_service_id', 'admin_new'])->toArray();
         } catch (\Exception $e) {
             self::rollback();
             return $this->setError($e->getMessage());
@@ -769,7 +769,7 @@ class OrderService extends CareyShop
             }
 
             self::commit();
-            return $this->hidden(['order_service_id'])->toArray();
+            return $this->hidden(['order_service_id', 'admin_new'])->toArray();
         } catch (\Exception $e) {
             self::rollback();
             return $this->setError($e->getMessage());
