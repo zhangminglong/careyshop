@@ -21,6 +21,9 @@ CareyShop（简称 CS）是一套基于 ThinkPHP5 框架开发的高性能商城
 ### 文档中心
 > [https://doc.careyshop.cn](https://doc.careyshop.cn "CareyShop文档中心")
 
+### 帮助交流
+> CareyShop 交流一群（QQ）：714593455
+
 ### 初始数据
 > **超级管理员**
 账号：admin
@@ -31,9 +34,6 @@ CareyShop（简称 CS）是一套基于 ThinkPHP5 框架开发的高性能商城
 > **App**
 app_key：86757125
 app_secret：ea1bd533d001fd73b09944f04c96a6fc
-
-### 帮助交流
-> CareyShop 交流一群（QQ）：714593455
 
 ### 版权信息
 CareyShop 仅提供个人非商业用途免费使用，商业需授权。
