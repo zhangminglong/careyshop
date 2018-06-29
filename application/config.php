@@ -154,7 +154,7 @@ return [
     'exception_tmpl'          => THINK_PATH . 'tpl' . DS . 'think_exception.tpl',
 
     // 错误显示信息,非调试模式有效
-    'error_message'           => '系统正在维护中，请稍后访问！ - CareyShop',
+    'error_message'           => '访问系统出错，请稍后访问！',
     // 显示错误信息
     'show_error_msg'          => false,
     // 异常处理handle类 留空使用 \think\exception\Handle
