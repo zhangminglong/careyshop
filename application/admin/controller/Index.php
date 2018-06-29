@@ -15,6 +15,6 @@ class Index
 {
     public function index()
     {
-        return 'welcome to careyshop admin';
+        return '欢迎使用CareyShop商城框架系统 - Admin';
     }
 }

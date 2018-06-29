@@ -15,6 +15,6 @@ class Index
 {
     public function index()
     {
-        return ['status' => 200, 'data' => 'welcome to careyshop api'];
+        return ['status' => 200, 'data' => '欢迎使用CareyShop商城框架系统 - Api'];
     }
 }
