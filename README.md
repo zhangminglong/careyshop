@@ -15,13 +15,13 @@ CareyShop（简称 CS）是一套基于 ThinkPHP5 框架开发的高性能商城
 
 如果您还不熟悉 GitHub 的 Fork and Pull 开发模式，您可以 [阅读GitHub的文档](https://help.github.com/articles/about-pull-requests/ "阅读GitHub的文档") 获得更多的信息。
 
-#### 官方网站
+### 官方网站
 > [https://www.careyshop.cn](https://www.careyshop.cn "CareyShop官方网站")
 
-#### 文档中心
+### 文档中心
 > [https://doc.careyshop.cn](https://doc.careyshop.cn "CareyShop文档中心")
 
-#### 初始数据
+### 初始数据
 **超级管理员**
 账号：admin
 密码：admin888
@@ -30,7 +30,7 @@ CareyShop（简称 CS）是一套基于 ThinkPHP5 框架开发的高性能商城
 app_key：86757125
 app_secret：ea1bd533d001fd73b09944f04c96a6fc
 
-#### 帮助交流
+### 帮助交流
 > CareyShop 交流一群（QQ）：714593455
 
 ### 版权信息
