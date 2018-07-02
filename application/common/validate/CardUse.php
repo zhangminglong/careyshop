@@ -5,7 +5,6 @@
  * CareyShop    购物卡使用验证器
  *
  * @author      zxm <252404501@qq.com>
- * @version     v1.1
  * @date        2017/11/21
  */
 

@@ -5,7 +5,6 @@
  * CareyShop    资源上传服务层
  *
  * @author      zxm <252404501@qq.com>
- * @version     v1.1
  * @date        2018/1/26
  */
 

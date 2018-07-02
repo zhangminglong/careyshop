@@ -5,7 +5,6 @@
  * CareyShop    应用行为扩展定义文件
  *
  * @author      zxm <252404501@qq.com>
- * @version     v1.1
  * @date        2017/03/22
  */
 

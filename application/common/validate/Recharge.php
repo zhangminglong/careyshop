@@ -5,7 +5,6 @@
  * CareyShop    充值验证器
  *
  * @author      zxm <252404501@qq.com>
- * @version     v1.1
  * @date        2017/6/27
  */
 

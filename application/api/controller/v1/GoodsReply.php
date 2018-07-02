@@ -5,7 +5,6 @@
  * CareyShop    商品评价回复控制器
  *
  * @author      zxm <252404501@qq.com>
- * @version     v1.1
  * @date        2017/4/11
  */
 

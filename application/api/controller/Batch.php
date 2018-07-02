@@ -5,7 +5,6 @@
  * CareyShop    API批量调用
  *
  * @author      zxm <252404501@qq.com>
- * @version     v1.1
  * @date        2017/12/1
  */
 

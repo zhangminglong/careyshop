@@ -5,7 +5,6 @@
  * CareyShop    优惠劵发放控制器
  *
  * @author      zxm <252404501@qq.com>
- * @version     v1.1
  * @date        2017/5/20
  */
 
