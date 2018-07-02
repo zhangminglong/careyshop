@@ -19,8 +19,10 @@ CareyShop（简称 CS）是一套基于 ThinkPHP5 框架开发的高性能商城
 > [https://doc.careyshop.cn](https://doc.careyshop.cn "CareyShop文档中心")
 
 ### 相关文档
-> [客户组API 使用手册](https://doc.careyshop.cn/docs/client_api/a-61295176156 "客户组API 使用手册")
+[客户组API 使用手册](https://doc.careyshop.cn/docs/client_api/a-61295176156 "客户组API 使用手册")
+
 [管理组API 使用手册](https://doc.careyshop.cn/docs/admin_api/a-11523287990 "管理组API 使用手册")
+
 [数据库词典](https://doc.careyshop.cn/docs/data_dict "数据库词典")
 
 ### 帮助交流
