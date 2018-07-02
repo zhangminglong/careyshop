@@ -5,7 +5,7 @@
  * CareyShop    Geohash扩展库
  *
  * @author      zxm <252404501@qq.com>
- * @version     v1.1
+
  * @date        2017/7/31
  */
 

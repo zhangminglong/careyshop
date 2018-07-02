@@ -5,7 +5,7 @@
  * CareyShop    货到付款同步返回
  *
  * @author      zxm <252404501@qq.com>
- * @version     v1.1
+
  * @date        2017/9/3
  */
 
