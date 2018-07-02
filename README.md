@@ -30,11 +30,13 @@ CareyShop（简称 CS）是一套基于 ThinkPHP5 框架开发的高性能商城
 
 ### 初始数据
 **超级管理员**
+
 账号：admin
 
 密码：admin888
 
 **App**
+
 app_key：86757125
 
 app_secret：ea1bd533d001fd73b09944f04c96a6fc
