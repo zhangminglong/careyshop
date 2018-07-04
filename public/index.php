@@ -18,6 +18,7 @@ define('APP_PATH', __DIR__ . '/../application/');
 
 // 定义额外的系统常量
 define('APP_PUBLIC_PATH', '');
+define('ADMIN_MODULE', 'admin');
 
 // 加载框架引导文件
 require __DIR__ . '/../thinkphp/start.php';

@@ -10,4 +10,12 @@
 
 use think\Route;
 
+Route::group(ADMIN_MODULE, function () {
+    Route::rule('/', 'admin/index/index');
+});
+
+Route::group('admin', function () {
+    Route::rule('/', 'index/index/index');
+});
+
 Route::rule('api/:version/:controller', 'api/:version.:controller/index');
