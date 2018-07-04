@@ -217,7 +217,7 @@ class Upload extends UploadBase
         $isImage = (int)$width > 0 && (int)$height > 0;
 
         // 附件相对路径,并统一斜杠为'/'
-        $path = $filePath . $info->getSaveName();
+        $path = APP_PUBLIC_PATH . $filePath . $info->getSaveName();
         $path = str_replace('\\', '/', $path);
 
         // 自定义附件名
