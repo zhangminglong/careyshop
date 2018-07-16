@@ -484,8 +484,14 @@ class User extends CareyShop
             return $this->setError($tokenDb->getError());
         }
 
+        $appSecret = '';
+        if (!empty($data['app_key'])) {
+            $appMap = ['app_key' => $data['app_key'], 'status' => 1, 'is_delete' => 0];
+            $appSecret = App::cache(true, null, 'app')->where($appMap)->value('app_secret', '');
+        }
+
         Cache::clear('token:user_' . $result->getAttr('user_id'));
-        return ['user' => $result->toArray(), 'token' => $tokenResult];
+        return ['user' => $result->toArray(), 'token' => $tokenResult, 'app_secret' => $appSecret];
     }
 
     /**

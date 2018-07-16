@@ -331,7 +331,7 @@ class CareyShop extends Controller
         if (!$appSecret) {
             return 'appkey已禁用或不存在';
         }
-        
+
         unset($this->params['sign']);
         $params = $this->params;
         ksort($params);
